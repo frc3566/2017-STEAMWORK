@@ -53,7 +53,7 @@ public class FishyThread extends Thread {
 
 	@Override
 	public void run() {
-//		 while (!Thread.interrupted()) {
+		 while (!Thread.interrupted()) {
 			// updates the fps
 			camera.setFPS(myFPS);
 			System.out.println(myFPS);
@@ -72,12 +72,7 @@ public class FishyThread extends Thread {
 
 			Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
 // refs/remotes/origin/master
-			// Put a rectangle on the image
-<<<<<<< HEAD
-			//Imgproc.rectangle(mat, new Point(100, 100), new Point(500, 400), new Scalar(255, 255, 255), 5);
-=======
-			//Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
->>>>>>> refs/remotes/origin/master
+
 			// Give the output stream a new image to display
 			outputStream.putFrame(mat);
 			try {
@@ -85,8 +80,9 @@ public class FishyThread extends Thread {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-		} 
-	}
+		}
+}
+	
 
 	public void setCamFPSvalue(int fps) {
 		//if (fps <= FPStotal) {
