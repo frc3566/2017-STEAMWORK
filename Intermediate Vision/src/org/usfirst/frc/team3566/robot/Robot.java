@@ -20,7 +20,8 @@ import org.opencv.imgproc.Imgproc;
  * processing.
  */
 public class Robot extends IterativeRobot {
-	FishyThread[] cams;
+
+	private FishyThread camA, camB;
 	//private VisionThread myVisionThread;
 	//private double centerX = 0.0;
 	
@@ -28,15 +29,13 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		FishyThread camA = new FishyThread (0, FishyThread.defaultStart);
 		FishyThread camB = new FishyThread (1, FishyThread.defaultStart);
-		cams = new FishyThread[2];
-		cams[0] = camA; 
-		cams[1] = camB;
 		
 		camA.setDaemon(true);
 		camA.start();
 		
 		camB.setDaemon(true);
 		camB.start();
+		
 		
 		//
 //		//create visionThread to use the pipeline created
@@ -56,11 +55,11 @@ public class Robot extends IterativeRobot {
 	public void adjustFPSofCams(int camNum, int fps){
 		//we want the total fps on the dashboard to be a fixed number
 		if(camNum==0){
-		cams[0].setCamFPSvalue(fps);
-		cams[1].setCamFPSvalue(FishyThread.FPStotal-fps);
+		camA.setCamFPSvalue(fps);
+		camB.setCamFPSvalue(FishyThread.FPStotal-fps);
 		}else if (camNum == 1){
-		cams[1].setCamFPSvalue(fps);
-		cams[0].setCamFPSvalue(FishyThread.FPStotal-fps);
+		camB.setCamFPSvalue(fps);
+		camA.setCamFPSvalue(FishyThread.FPStotal-fps);
 		}
 	}
 }

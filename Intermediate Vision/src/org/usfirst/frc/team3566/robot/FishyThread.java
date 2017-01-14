@@ -15,7 +15,7 @@ import visionPac.GripPipelineJan10;
 
 public class FishyThread extends Thread {
 
-	public static int FPStotal = 24, defaultStart = 12;
+	public static int FPStotal = 60, defaultStart = FPStotal/2;
 
 	private int myFPS;
 	private UsbCamera camera;
@@ -54,6 +54,7 @@ public class FishyThread extends Thread {
 	@Override
 	public void run() {
 		// while (!Thread.interrupted()) {
+		System.out.println("thread running");
 		if (!Thread.interrupted()) {
 			// updates the fps
 			camera.setFPS(myFPS);
@@ -65,14 +66,14 @@ public class FishyThread extends Thread {
 				// skip the rest of the current iteration
 				// continue;
 			}
-			pipeline.process(mat); // processes our mat through grip generated
+			//pipeline.process(mat); // processes our mat through grip generated
 									// code
 			// Put a rectangle on the image
 			Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400), new Scalar(255, 255, 255), 5);
 			// Give the output stream a new image to display
 			outputStream.putFrame(mat);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
