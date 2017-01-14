@@ -78,7 +78,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 		double filterContoursMaxRatio = 1000.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
-		System.out.println("done pipeline processing");
+		System.out.println("done pipeline processing"); 
 	}
 
 	/**
