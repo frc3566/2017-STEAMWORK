@@ -2,6 +2,7 @@ package org.usfirst.frc.team3566.robot;
 
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
@@ -9,6 +10,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.vision.VisionThread;
 import visionPac.GripPipelineJan10;
 
 public class FishyThread extends Thread {
@@ -21,7 +23,8 @@ public class FishyThread extends Thread {
 	private CvSource outputStream;
 	private Mat mat;
 	private GripPipelineJan10 pipeline;
-
+	private final Object imgLock = new Object();
+	
 	public FishyThread(int portNumber, int startFPS) {
 		// Get the UsbCamera from CameraServer
 		camera = CameraServer.getInstance().startAutomaticCapture(portNumber);
@@ -41,7 +44,7 @@ public class FishyThread extends Thread {
 
 		// create example of gripPipeline class
 		pipeline = new GripPipelineJan10();
-
+		
 		// This cannot be 'true'. The program will never exit if it is. This
 		// lets the robot stop this thread when restarting robot code or
 		// deploying.

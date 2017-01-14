@@ -5,8 +5,11 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
+import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
@@ -18,7 +21,9 @@ import org.opencv.imgproc.Imgproc;
  */
 public class Robot extends IterativeRobot {
 	FishyThread[] cams;
-
+	//private VisionThread myVisionThread;
+	//private double centerX = 0.0;
+	
 	@Override
 	public void robotInit() {
 		FishyThread camA = new FishyThread (0, FishyThread.defaultStart);
@@ -32,6 +37,20 @@ public class Robot extends IterativeRobot {
 		
 		camB.setDaemon(true);
 		camB.start();
+		
+		//
+//		//create visionThread to use the pipeline created
+//		myVisionThread = new VisionThread(camera, pipeline, pipeline -> {
+//	        if (!pipeline.filterContoursOutput().isEmpty()) {
+//	            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+//	            synchronized (imgLock) {
+//	                centerX = r.x + (r.width / 2);
+//	            }
+//	        }
+//	    });
+//		myVisionThread.start(); 
+		
+		
 	}
 	
 	public void adjustFPSofCams(int camNum, int fps){
