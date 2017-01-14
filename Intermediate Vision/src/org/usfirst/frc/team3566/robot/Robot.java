@@ -36,8 +36,11 @@ public class Robot extends IterativeRobot {
 		camB.setDaemon(true);
 		camB.start();
 		
+		camB.setCamFPSvalue(12);
+		camA.setCamFPSvalue(12);
+		//12 fps per camera is the maximum the rio can process without breaking.
+		//otherwise one camera can have higher fps, but performance is about the same
 		
-		//
 //		//create visionThread to use the pipeline created
 //		myVisionThread = new VisionThread(camera, pipeline, pipeline -> {
 //	        if (!pipeline.filterContoursOutput().isEmpty()) {
@@ -52,14 +55,14 @@ public class Robot extends IterativeRobot {
 		
 	}
 	
-	public void adjustFPSofCams(int camNum, int fps){
-		//we want the total fps on the dashboard to be a fixed number
-		if(camNum==0){
-		camA.setCamFPSvalue(fps);
-		camB.setCamFPSvalue(FishyThread.FPStotal-fps);
-		}else if (camNum == 1){
-		camB.setCamFPSvalue(fps);
-		camA.setCamFPSvalue(FishyThread.FPStotal-fps);
-		}
-	}
+//	public void adjustFPSofCams(int camNum, int fps){
+//		//we want the total fps on the dashboard to be a fixed number
+//		if(camNum==0){
+//		camA.setCamFPSvalue(fps);
+//		camB.setCamFPSvalue(FishyThread.FPStotal-fps);
+//		}else if (camNum == 1){
+//		camB.setCamFPSvalue(fps);
+//		camA.setCamFPSvalue(FishyThread.FPStotal-fps);
+//		}
+//	}
 }

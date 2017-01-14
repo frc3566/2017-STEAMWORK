@@ -15,8 +15,8 @@ import visionPac.GripPipelineJan10;
 
 public class FishyThread extends Thread {
 
-	public static int FPStotal = 60, defaultStart = FPStotal/2;
-
+	public static int FPStotal = 24, defaultStart = FPStotal/2;
+	//total should be smaller than 24 to make sure each cam starts at <= 12
 	private int myFPS;
 	private UsbCamera camera;
 	private CvSink cvSink;
@@ -53,11 +53,10 @@ public class FishyThread extends Thread {
 
 	@Override
 	public void run() {
-		// while (!Thread.interrupted()) {
-		System.out.println("thread running");
-		if (!Thread.interrupted()) {
+		 while (!Thread.interrupted()) {
 			// updates the fps
 			camera.setFPS(myFPS);
+			System.out.println(myFPS);
 			// Tell the CvSink to grab a frame from the camera and put it
 			// in the source mat. If there is an error notify the output.
 			if (cvSink.grabFrame(mat) == 0) {
@@ -77,17 +76,15 @@ public class FishyThread extends Thread {
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-		} else {
-			System.out.println("thread interrupted");
-		}
+		} 
 	}
 
 	public void setCamFPSvalue(int fps) {
-		if (fps <= FPStotal) {
+		//if (fps <= FPStotal) {
 			myFPS = fps;
-		} else {
-			System.out.println("fps total is 24. Do not exceed the value");
-		}
+	//	} else {
+		//	System.out.println("fps total is "+FPStotal+". Do not exceed the value");
+		//}
 	}
 
 }
