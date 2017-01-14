@@ -67,7 +67,7 @@ public class FishyThread extends Thread {
 			}
 			pipeline.process(mat); // processes our mat through grip generated
 									// code
-			//Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+			//Imgproc  .boundingRect(pipeline.filterContoursOutput().get(0));
 			// Put a rectangle on the image
 			//Imgproc.rectangle(mat, new Point(100, 100), new Point(500, 400), new Scalar(255, 255, 255), 5);
 			// Give the output stream a new image to display
