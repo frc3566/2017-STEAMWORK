@@ -41,6 +41,9 @@ public class GripPipelineJan10 implements VisionPipeline {
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
 	@Override	public void process(Mat source0) {
+		
+		System.out.println("pipeline start processing");
+		
 		// Step Resize_Image0:
 		Mat resizeImageInput = source0;
 		double resizeImageWidth = 320.0;
@@ -75,6 +78,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 		double filterContoursMaxRatio = 1000.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
+		System.out.println("done pipeline processing");
 	}
 
 	/**
@@ -121,6 +125,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 	private void resizeImage(Mat input, double width, double height,
 		int interpolation, Mat output) {
 		Imgproc.resize(input, output, new Size(width, height), 0.0, 0.0, interpolation);
+		System.out.println("imaged resized");
 	}
 
 	/**
@@ -137,6 +142,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 		Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2HLS);
 		Core.inRange(out, new Scalar(hue[0], lum[0], sat[0]),
 			new Scalar(hue[1], lum[1], sat[1]), out);
+		System.out.println("hslThreshold");
 	}
 
 	/**
@@ -159,6 +165,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 		}
 		int method = Imgproc.CHAIN_APPROX_SIMPLE;
 		Imgproc.findContours(input, contours, hierarchy, mode, method);
+		System.out.println("ContoursFound");
 	}
 
 
@@ -208,6 +215,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 			if (ratio < minRatio || ratio > maxRatio) continue;
 			output.add(contour);
 		}
+		System.out.println("Contours Filtered");
 	}
 
 

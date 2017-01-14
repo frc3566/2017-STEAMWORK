@@ -21,8 +21,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void robotInit() {
-		FishyThread camA = new FishyThread (0, 12);
-		FishyThread camB = new FishyThread (1, 12);
+		FishyThread camA = new FishyThread (0, FishyThread.defaultStart);
+		FishyThread camB = new FishyThread (1, FishyThread.defaultStart);
 		cams = new FishyThread[2];
 		cams[0] = camA; 
 		cams[1] = camB;
@@ -37,11 +37,11 @@ public class Robot extends IterativeRobot {
 	public void adjustFPSofCams(int camNum, int fps){
 		//we want the total fps on the dashboard to be a fixed number
 		if(camNum==0){
-		cams[0].setCamFPS(fps);
-		cams[1].setCamFPS(FishyThread.FPStotal-fps);
+		cams[0].setCamFPSvalue(fps);
+		cams[1].setCamFPSvalue(FishyThread.FPStotal-fps);
 		}else if (camNum == 1){
-		cams[1].setCamFPS(fps);
-		cams[0].setCamFPS(FishyThread.FPStotal-fps);
+		cams[1].setCamFPSvalue(fps);
+		cams[0].setCamFPSvalue(FishyThread.FPStotal-fps);
 		}
 	}
 }
