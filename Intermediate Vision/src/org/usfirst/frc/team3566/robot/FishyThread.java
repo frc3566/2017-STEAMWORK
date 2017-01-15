@@ -74,7 +74,7 @@ public class FishyThread extends Thread {
 // refs/remotes/origin/master
 
 			// Give the output stream a new image to display
-			outputStream.putFrame(mat);
+			outputStream.putFrame(pipeline.hslThresholdOutput());
 			try {
 				Thread.sleep(100);
 			} catch (Exception e) {
