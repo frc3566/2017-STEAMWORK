@@ -10,6 +10,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 import visionPac.GripPipelineJan10;
 
@@ -37,7 +38,7 @@ public class FishyThread extends Thread {
 		cvSink = CameraServer.getInstance().getVideo();
 		// Setup a CvSource. This will send images back to the Dashboard
 
-		outputStream = CameraServer.getInstance().putVideo("Rectangle " + portNumber, 640, 480);
+		outputStream = CameraServer.getInstance().putVideo("Grip process " + portNumber, 640, 480);
 
 		// Mats are very memory expensive. Lets reuse this Mat.
 		mat = new Mat();
@@ -55,7 +56,7 @@ public class FishyThread extends Thread {
 	public void run() {
 		 while (!Thread.interrupted()) {
 			// updates the fps
-			camera.setFPS(myFPS);
+			//camera.setFPS(myFPS);
 			System.out.println(myFPS);
 			// Tell the CvSink to grab a frame from the camera and put it
 			// in the source mat. If there is an error notify the output.
@@ -70,16 +71,8 @@ public class FishyThread extends Thread {
 
 			//Imgproc.boundingRect(pipeline.filterContoursOutput().get(0)); 
 
-			Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-// refs/remotes/origin/master
-
 			// Give the output stream a new image to display
-			outputStream.putFrame(mat);
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+			outputStream.putFrame(pipeline.hslThresholdOutput());
 		}
 }
 	

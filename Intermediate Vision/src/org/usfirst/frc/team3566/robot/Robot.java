@@ -28,13 +28,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		FishyThread camA = new FishyThread (0, FishyThread.defaultStart);
-		FishyThread camB = new FishyThread (1, FishyThread.defaultStart);
+	//	FishyThread camB = new FishyThread (1, FishyThread.defaultStart);
 		
 		camA.setDaemon(true);
 		camA.start();
 		
-		camB.setDaemon(true);
-		camB.start();
+	//	camB.setDaemon(true);
+	//	camB.start();
 		
 		//camA.setFPS(12);
 		//12 fps per camera is the maximum the rio can process without breaking.
