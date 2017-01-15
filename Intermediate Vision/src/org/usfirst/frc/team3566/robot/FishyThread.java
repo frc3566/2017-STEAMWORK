@@ -37,7 +37,7 @@ public class FishyThread extends Thread {
 		cvSink = CameraServer.getInstance().getVideo();
 		// Setup a CvSource. This will send images back to the Dashboard
 
-		outputStream = CameraServer.getInstance().putVideo("Rectangle " + portNumber, 640, 480);
+		outputStream = CameraServer.getInstance().putVideo("HSL " + portNumber, 640, 480);
 
 		// Mats are very memory expensive. Lets reuse this Mat.
 		mat = new Mat();
@@ -69,17 +69,11 @@ public class FishyThread extends Thread {
 									// code
 
 			//Imgproc.boundingRect(pipeline.filterContoursOutput().get(0)); 
-
-			Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-// refs/remotes/origin/master
+			//disabled for now 
 
 			// Give the output stream a new image to display
 			outputStream.putFrame(pipeline.hslThresholdOutput());
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
+			
 		}
 }
 	
