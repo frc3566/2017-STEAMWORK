@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot {
 		
 		camA.setDaemon(true);
 		camA.start();
-		
+		  
 	//	camB.setDaemon(true);
 	//	camB.start();
 		
