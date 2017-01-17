@@ -18,17 +18,18 @@ public class runClimber extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-	    setDefaultCommand(new climbNOW());
+	  //  setDefaultCommand(new climbNOW());
+		
 	    oi = new OI();
 		
 	}
 	public void climbFastorSlow(double speed){
 		climbBOY.set(oi.getYValue());
+		
 	}
     public void climbOK(){
-    	climbBOY.set(1);
-    	
-    	
+    	climbBOY.set(.5);
+
     }
 
 }
