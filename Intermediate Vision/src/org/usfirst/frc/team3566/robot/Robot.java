@@ -5,6 +5,8 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
 import org.opencv.core.Mat;
@@ -22,6 +24,7 @@ import org.opencv.imgproc.Imgproc;
 public class Robot extends IterativeRobot {
 
 	private FishyThread camA, camB;
+	public static NetworkTable table;
 	//private VisionThread myVisionThread;
 	//private double centerX = 0.0;
 	
@@ -35,6 +38,9 @@ public class Robot extends IterativeRobot {
 		
 		camB.setDaemon(true);
 		camB.start();
+		
+		NetworkTable.setIPAddress("roborio-3566-Frc.local");
+		table = NetworkTable.getTable("datatable");
 		
 		//camA.setFPS(12);
 		//12 fps per camera is the maximum the rio can process without breaking.
@@ -53,15 +59,15 @@ public class Robot extends IterativeRobot {
 		
 		
 	}
+
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+		
+	}
 	
-//	public void adjustFPSofCams(int camNum, int fps){
-//		//we want the total fps on the dashboard to be a fixed number
-//		if(camNum==0){
-//		camA.setCamFPSvalue(fps);
-//		camB.setCamFPSvalue(FishyThread.FPStotal-fps);
-//		}else if (camNum == 1){
-//		camB.setCamFPSvalue(fps);
-//		camA.setCamFPSvalue(FishyThread.FPStotal-fps);
-//		}
-//	}
+	public NetworkTable getTable(){
+		return table;
+	}
+	
+	
 }

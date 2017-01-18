@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3566.robot;
 
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
 import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
@@ -10,6 +11,7 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 import visionPac.GripPipelineJan10;
 
@@ -65,15 +67,22 @@ public class FishyThread extends Thread {
 				// skip the rest of the current iteration
 				// continue;
 			}
-			pipeline.process(mat); // processes our mat through grip generated
-									// code
-
-			//Imgproc.boundingRect(pipeline.filterContoursOutput().get(0)); 
-			//disabled for now 
+			
+			pipeline.process(mat); // puts mat through pipeline
 
 			// Give the output stream a new image to display
 			outputStream.putFrame(pipeline.hslThresholdOutput());
-			
+			//puts rectangle around the first contour if contours are found
+			 if (!pipeline.filterContoursOutput().isEmpty()) {
+				 Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+			 }
+			 int count = 0;
+			 for(MatOfPoint m: pipeline.filterContoursOutput()){
+				System.out.println("getting value: "+ Robot.table.getValue("area", "nothing!!!"));
+				Robot.table.putValue("area "+count, Imgproc.contourArea(m));
+				count++;
+			 }
+			 
 		}
 }
 	
