@@ -27,10 +27,9 @@ public class Robot extends IterativeRobot {
 		  
 	//	camB.setDaemon(true);
 	//	camB.start();
-		
 		NetworkTable.setIPAddress("roborio-3566-Frc.local");
 		table = NetworkTable.getTable("datatable");
-		
+
 		//camA.setFPS(12);
 		//12 fps per camera is the maximum the rio can process without breaking.
 		//otherwise one camera can have higher fps, but performance is about the same
