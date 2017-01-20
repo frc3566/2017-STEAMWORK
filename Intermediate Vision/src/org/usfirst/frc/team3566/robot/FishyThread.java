@@ -106,11 +106,21 @@ public class FishyThread extends Thread {
 			 Robot.table.putValue("Max area 3", max3);
 			 Robot.table.putValue("TotalContour#", count);
 			 if(max1>20000 && max2>20000){
-				pipeline.filterContoursOutput().get(maxNum1);
-				//	Imgproc.max 
+				MatOfPoint temp1 = pipeline.filterContoursOutput().get(maxNum1);
+				MatOfPoint temp2 = pipeline.filterContoursOutput().get(maxNum2);
+				Rect r1 = Imgproc.boundingRect(temp1);
+				Rect r2 = Imgproc.boundingRect(temp2);
+				
 				 
-			//	 Robot.table.putValue("1stTargetCoord", );
-			//	 Robot.table.putValue("2ndTargetCoord", value);
+				 Robot.table.putValue("1stTargetX", r1.x);
+				 Robot.table.putValue("1stTargetY", r1.y);
+				 Robot.table.putValue("2ndTargetX", r2.x);
+				 Robot.table.putValue("2ndTargetX", r2.y);
+			 }else{
+				 Robot.table.putValue("1stTargetX", -1);
+				 Robot.table.putValue("1stTargetY", -1);
+				 Robot.table.putValue("2ndTargetX", -1);
+				 Robot.table.putValue("2ndTargetX", -1);
 			 }
 		}
 }
