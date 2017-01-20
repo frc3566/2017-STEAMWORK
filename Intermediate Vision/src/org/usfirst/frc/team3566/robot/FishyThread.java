@@ -2,17 +2,13 @@ package org.usfirst.frc.team3566.robot;
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.vision.VisionThread;
 import visionPac.GripPipelineJan10;
 
 public class FishyThread extends Thread {
@@ -61,6 +57,7 @@ public class FishyThread extends Thread {
 
 	@Override
 	public void run() {
+		
 		 while (!Thread.interrupted()) {
 			// updates the fps
 			camera.setFPS(myFPS);
@@ -76,13 +73,21 @@ public class FishyThread extends Thread {
 			pipeline.process(mat); // puts mat through pipeline
 
 			// Give the output stream a new image to display
+			//**doesn't necessarily need this in competition bc it slows down the dashboard
 			outputStream.putFrame(pipeline.hslThresholdOutput());
+			
+			/**
 			//puts rectangle around the first contour if contours are found
 			 if (!pipeline.filterContoursOutput().isEmpty()) {
 				 Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
 			 }
-			 int count = 0; double max1 =0, max2=0 , max3 =0; 
-			 int maxNum1=-1, maxNum2=-1;
+			 **/
+			
+			 int count = 0; double max1 = 0, max2= 0 , max3 = 0; 
+			 int maxNum1 = -1, maxNum2 = -1;
+			 
+	//the loop finds out the first, second and third biggest contours in the filtered results
+			 //TODO check if in contoursOutput the contours are already sorted by size
 			 for(MatOfPoint m: pipeline.filterContoursOutput()){
 				double temp = Imgproc.contourArea(m);
 				if(temp>=max1)
@@ -101,21 +106,50 @@ public class FishyThread extends Thread {
 				}
 				count++;
 			 }
+			 
 			 Robot.table.putValue("Max area 1", max1);
 			 Robot.table.putValue("Max area 2", max2);
 			 Robot.table.putValue("Max area 3", max3);
 			 Robot.table.putValue("TotalContour#", count);
-			 if(max1>20000 && max2>20000){
+			 
+			 if(max1 > VisionTargetImgProcAreaThreshold && 
+					 max2 > VisionTargetImgProcAreaThreshold){
+				 //will print out 1 and 2 if the contours are already sorted by size
+				 System.out.println("maxNums "+maxNum1+" "+maxNum2);
 				MatOfPoint temp1 = pipeline.filterContoursOutput().get(maxNum1);
 				MatOfPoint temp2 = pipeline.filterContoursOutput().get(maxNum2);
+				
+				//draw bounding rects around contours
 				Rect r1 = Imgproc.boundingRect(temp1);
 				Rect r2 = Imgproc.boundingRect(temp2);
 				
+				int r1X = r1.x, r1Y=r1.y, r2X = r2.x, r2Y = r2.y, r1Width = r1.width,
+						r1Height = r1.height, r2Width = r2.width, r2Height = r2.height;
+				 Robot.table.putValue("1stTargetX", r1X);
+				 Robot.table.putValue("1stTargetY", r1Y);
+				 Robot.table.putValue("2ndTargetX", r2X);
+				 Robot.table.putValue("2ndTargetX", r2Y);
 				 
-				 Robot.table.putValue("1stTargetX", r1.x);
-				 Robot.table.putValue("1stTargetY", r1.y);
-				 Robot.table.putValue("2ndTargetX", r2.x);
-				 Robot.table.putValue("2ndTargetX", r2.y);
+				 Robot.table.putValue("CalculatedXCenter", 
+				(r1X>r2X)? //checks which r is at left
+						//if r2 at left (r1x>r2x)
+				(	(r1X>(r2X+r2Width))? //checks if the two r are touching
+						(r1X+r2X+r2Width)/2: -1	) //if touching return -1
+				//if r1 at left (r1x<r2x)
+				: (	(r2X>(r1X+r1Width))? //checks if the two r are touching
+						(r1X+r2X+r1Width)/2: -1 )			);
+				 
+				 
+				 Robot.table.putValue("CalculatedYCenter", 
+							(r1Y>r2Y)? //checks which r is at top
+									//if r2 at top (r1y>r2y)
+							(	(r1Y>(r2Y+r2Height))? //checks if the two r are touching
+									(r1Y+r2Y+r2Height)/2: -1	) //if touching return -1
+							//if r1 at top (r1y<r2y)
+							: (	(r2Y>(r1Y+r1Height))? //checks if the two r are touching
+									(r1Y+r2Y+r1Height)/2: -1 )			);
+				 
+				 
 			 }else{
 				 Robot.table.putValue("1stTargetX", -1);
 				 Robot.table.putValue("1stTargetY", -1);
@@ -127,11 +161,7 @@ public class FishyThread extends Thread {
 	
 
 	public void setCamFPSvalue(int fps) {
-		//if (fps <= FPStotal) {
 			myFPS = fps;
-	//	} else {
-		//	System.out.println("fps total is "+FPStotal+". Do not exceed the value");
-		//}
 	}
 
 }
