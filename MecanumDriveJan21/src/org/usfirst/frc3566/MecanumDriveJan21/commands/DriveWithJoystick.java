@@ -48,8 +48,9 @@ public class DriveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	myDrive.mecanumDrive_Cartesian(controller.getX(), controller.getY(), 
-    			controller.getZ(), 0);
+    	myDrive.mecanumDrive_Cartesian(controller.getRawAxis(0), controller.getRawAxis(1), 
+    			controller.getRawAxis(2), 0);
+    	System.out.println("hey");
     }
 
     // Make this return true when this Command no longer needs to run execute()
