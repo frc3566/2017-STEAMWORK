@@ -1,22 +1,11 @@
 package visionPac;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.HashMap;
-
 import edu.wpi.first.wpilibj.vision.VisionPipeline;
 
 import org.opencv.core.*;
-import org.opencv.core.Core.*;
-import org.opencv.features2d.FeatureDetector;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
-import org.opencv.objdetect.*;
 
 /**
 * GripPipeline class.
@@ -41,9 +30,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 	 */
 	@Override	public void process(Mat source0) {
 		
-		System.out.println("pipeline start processing");
 		
-
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
 		double[] hslThresholdHue = {77.69784172661869, 92.45733788395904};
@@ -58,7 +45,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 60.0;
+		double filterContoursMinArea = 100.0;
 		double filterContoursMinPerimeter = 0.0;
 		double filterContoursMinWidth = 0.0;
 		double filterContoursMaxWidth = 1000.0;
@@ -71,10 +58,7 @@ public class GripPipelineJan10 implements VisionPipeline {
 		double filterContoursMaxRatio = 1000.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
-		System.out.println("done pipeline processing"); 
 	}
-
-	
 
 	/**
 	 * This method is a generated getter for the output of a HSL_Threshold.
@@ -100,26 +84,6 @@ public class GripPipelineJan10 implements VisionPipeline {
 		return filterContoursOutput;
 	}
 
-
-<<<<<<< Updated upstream
-=======
-	/**
-	 * Scales and image to an exact size.
-	 * @param input The image on which to perform the Resize.
-	 * @param width The width of the output in pixels.
-	 * @param height The height of the output in pixels.
-	 * @param interpolation The type of interpolation.
-	 * @param output The image in which to store the output.
-	 */
-	private void resizeImage(Mat input, double width, double height,
-		int interpolation, Mat output) {
-		Imgproc.resize(input, output, new Size(width, height), 0.0, 0.0, interpolation);
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-	}
->>>>>>> Stashed changes
 
 	/**
 	 * Segment an image based on hue, saturation, and luminance ranges.
