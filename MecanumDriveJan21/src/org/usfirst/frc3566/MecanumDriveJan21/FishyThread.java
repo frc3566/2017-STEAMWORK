@@ -17,7 +17,7 @@ public class FishyThread extends Thread {
 	/**test this on network table and see what's the ideal distinction value
 	for differentiating actual vision targets and unwanted interfering contours
 	**/
-	public static int VisionTargetImgProcAreaThreshold = 20000;
+	public static int VisionTargetImgProcAreaThreshold = 5000;
 	//total should be smaller than 24 to make sure each cam starts at <= 12
 	private int myFPS;
 	private UsbCamera camera;
@@ -128,33 +128,33 @@ public class FishyThread extends Thread {
 				 Robot.table.putValue("1stTargetX", r1X);
 				 Robot.table.putValue("1stTargetY", r1Y);
 				 Robot.table.putValue("2ndTargetX", r2X);
-				 Robot.table.putValue("2ndTargetX", r2Y);
+				 Robot.table.putValue("2ndTargetY", r2Y);
 				 
 				 Robot.table.putValue("CalculatedXCenter", 
 				(r1X>r2X)? //checks which r is at left
 						//if r2 at left (r1x>r2x)
 				(	(r1X>(r2X+r2Width))? //checks if the two r are touching
-						(r1X+r2X+r2Width)/2: -1	) //if touching return -1
+						(r1X+r2X+r2Width)/2: "NA"	) //if touching return -1
 				//if r1 at left (r1x<r2x)
 				: (	(r2X>(r1X+r1Width))? //checks if the two r are touching
-						(r1X+r2X+r1Width)/2: -1 )			);
+						(r1X+r2X+r1Width)/2: "NA" )			);
 				 
 				 
 				 Robot.table.putValue("CalculatedYCenter", 
 							(r1Y>r2Y)? //checks which r is at top
 									//if r2 at top (r1y>r2y)
 							(	(r1Y>(r2Y+r2Height))? //checks if the two r are touching
-									(r1Y+r2Y+r2Height)/2: -1	) //if touching return -1
+									(r1Y+r2Y+r2Height)/2: "NA"	) //if touching return -1
 							//if r1 at top (r1y<r2y)
 							: (	(r2Y>(r1Y+r1Height))? //checks if the two r are touching
-									(r1Y+r2Y+r1Height)/2: -1 )			);
+									(r1Y+r2Y+r1Height)/2: "NA" )			);
 				 
 				 
 			 }else{
-				 Robot.table.putValue("1stTargetX", -1);
-				 Robot.table.putValue("1stTargetY", -1);
-				 Robot.table.putValue("2ndTargetX", -1);
-				 Robot.table.putValue("2ndTargetX", -1);
+				 Robot.table.putValue("1stTargetX", "NA");
+				 Robot.table.putValue("1stTargetY", "NA");
+				 Robot.table.putValue("2ndTargetX", "NA");
+				 Robot.table.putValue("2ndTargetX", "NA");
 			 }
 		}
 }
