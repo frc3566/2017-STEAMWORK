@@ -61,11 +61,11 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     public void driveTrainForward(double speed){
-    	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
+    	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
     }
     
     public void driveTrainBackward(double speed){
-    	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
+    	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
     }
     
     public void driveTrainSidewayLeft(double speed){

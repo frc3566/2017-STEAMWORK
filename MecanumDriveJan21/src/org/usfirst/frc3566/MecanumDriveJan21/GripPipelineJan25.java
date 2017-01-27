@@ -122,9 +122,6 @@ public class GripPipelineJan25 implements VisionPipeline {
 		}
 		int method = Imgproc.CHAIN_APPROX_SIMPLE;
 		Imgproc.findContours(input, contours, hierarchy, mode, method);
-		if(contours.size()!=0){
-		System.out.println("ContoursFound");
-		}
 	}
 
 

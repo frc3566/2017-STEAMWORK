@@ -25,8 +25,10 @@ public class AutonomousLiftFront extends Command {
     	idealTargetArea = RobotMap.idealVerticalTargetArea;
     }
 
-    public boolean checkIfInRange(double goalArea){
-    	if(Robot.camA.getAvgVerticalArea()>goalArea){
+    public boolean checkIfInRange(){
+    	System.out.println(Robot.camA.avgDetectedVerticalTargetArea);
+    	//System.out.println(" hey "+idealTargetArea);
+    	if(Robot.camA.avgDetectedVerticalTargetArea>RobotMap.idealVerticalTargetArea){
     		return true;
     	}else{
     		return false;
@@ -42,7 +44,7 @@ public class AutonomousLiftFront extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return checkIfInRange(idealTargetArea);
+        return checkIfInRange();
     }
 
     // Called once after isFinished returns true

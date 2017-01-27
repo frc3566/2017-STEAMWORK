@@ -18,7 +18,7 @@ public class FishyThread extends Thread {
 	/**test this on network table and see what's the ideal distinction value
 	for differentiating actual vision targets and unwanted interfering contours
 	**/
-	private int VisionTargetImgProcAreaThreshold = 3000;
+	private int VisionTargetImgProcAreaThreshold = 2000;
 	
 	//total should be smaller than 24 to make sure each cam starts at <= 12
 	private int myFPS;
@@ -28,7 +28,7 @@ public class FishyThread extends Thread {
 	private Mat mat;
 	private GripPipelineJan25 pipeline;
 	private double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter;
-	private double avgDetectedVerticalTargetArea;
+	public static double avgDetectedVerticalTargetArea;
 	
 	public FishyThread(int portNumber, int startFPS) {
 		// Get the UsbCamera from CameraServer
@@ -36,7 +36,7 @@ public class FishyThread extends Thread {
 		// Set the resolution
 		camera.setResolution(640, 480);
 		myFPS = startFPS;
-		camera.setFPS(myFPS);
+		//camera.setFPS(myFPS);
 
 		
 		// Get a CvSink. This will capture Mats from the camera
@@ -118,7 +118,7 @@ public class FishyThread extends Thread {
 			 if(max1 > VisionTargetImgProcAreaThreshold && 
 					 max2 > VisionTargetImgProcAreaThreshold){
 				 //will print out 1 and 2 if the contours are already sorted by size
-				 System.out.println("maxNums "+maxNum1+" "+maxNum2);
+				// System.out.println("maxNums "+maxNum1+" "+maxNum2);
 				MatOfPoint temp1 = pipeline.filterContoursOutput().get(maxNum1);
 				MatOfPoint temp2 = pipeline.filterContoursOutput().get(maxNum2);
 				
@@ -189,6 +189,6 @@ public class FishyThread extends Thread {
 	}
 	
 	public double getAvgVerticalArea(){
-		return avgDetected
+		return avgDetectedVerticalTargetArea;
 	}
 }
