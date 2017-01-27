@@ -52,5 +52,28 @@ public class MecanumDriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    
+    public void stopDriveTrain(){
+    	talonSRX1.set(0);
+    	talonSRX2.set(0);
+    	talonSRX3.set(0);
+    	talonSRX4.set(0);
+    }
+    
+    public void driveTrainForward(double speed){
+    	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
+    }
+    
+    public void driveTrainBackward(double speed){
+    	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
+    }
+    
+    public void driveTrainSidewayLeft(double speed){
+    	robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
+    }
+
+    public void driveTrainSidewayRight(double speed){
+    	robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
+    }
 }
 

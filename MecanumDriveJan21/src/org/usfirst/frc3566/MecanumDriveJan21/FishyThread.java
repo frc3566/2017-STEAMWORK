@@ -14,10 +14,12 @@ import edu.wpi.first.wpilibj.CameraServer;
 public class FishyThread extends Thread {
 
 	public static int FPStotal = 24, defaultStart = FPStotal/2;
+	
 	/**test this on network table and see what's the ideal distinction value
 	for differentiating actual vision targets and unwanted interfering contours
 	**/
-	public static int VisionTargetImgProcAreaThreshold = 5000;
+	private int VisionTargetImgProcAreaThreshold = 3000;
+	
 	//total should be smaller than 24 to make sure each cam starts at <= 12
 	private int myFPS;
 	private UsbCamera camera;
@@ -25,8 +27,8 @@ public class FishyThread extends Thread {
 	private CvSource outputStream;
 	private Mat mat;
 	private GripPipelineJan25 pipeline;
-	private final Object imgLock = new Object();
-	
+	private double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter;
+	private double avgDetectedVerticalTargetArea;
 	
 	public FishyThread(int portNumber, int startFPS) {
 		// Get the UsbCamera from CameraServer
@@ -112,6 +114,7 @@ public class FishyThread extends Thread {
 			 Robot.table.putValue("Max area 3", max3);
 			 Robot.table.putValue("TotalContour#", count);
 			 
+			 //if 2 major visionTargets in view...We're seeing the targets!!
 			 if(max1 > VisionTargetImgProcAreaThreshold && 
 					 max2 > VisionTargetImgProcAreaThreshold){
 				 //will print out 1 and 2 if the contours are already sorted by size
@@ -119,7 +122,7 @@ public class FishyThread extends Thread {
 				MatOfPoint temp1 = pipeline.filterContoursOutput().get(maxNum1);
 				MatOfPoint temp2 = pipeline.filterContoursOutput().get(maxNum2);
 				
-				//draw bounding rects around contours
+				//create bounding rects around contours
 				Rect r1 = Imgproc.boundingRect(temp1);
 				Rect r2 = Imgproc.boundingRect(temp2);
 				
@@ -130,31 +133,35 @@ public class FishyThread extends Thread {
 				 Robot.table.putValue("2ndTargetX", r2X);
 				 Robot.table.putValue("2ndTargetY", r2Y);
 				 
-				 Robot.table.putValue("CalculatedXCenter", 
-				(r1X>r2X)? //checks which r is at left
+				 avgDetectedVerticalTargetArea = (max1+max2)/2;
+				 
+				 detectedVerticalTargetXCenter = (r1X>r2X)? //checks which r is at left
 						//if r2 at left (r1x>r2x)
 				(	(r1X>(r2X+r2Width))? //checks if the two r are touching
-						(r1X+r2X+r2Width)/2: "NA"	) //if touching return -1
+						(r1X+r2X+r2Width)/2: -1	) //if touching return -1
 				//if r1 at left (r1x<r2x)
 				: (	(r2X>(r1X+r1Width))? //checks if the two r are touching
-						(r1X+r2X+r1Width)/2: "NA" )			);
+						(r1X+r2X+r1Width)/2: -1 ); 
+				 Robot.table.putValue("CalculatedXCenter", detectedVerticalTargetXCenter);
 				 
 				 
-				 Robot.table.putValue("CalculatedYCenter", 
-							(r1Y>r2Y)? //checks which r is at top
+				 detectedVerticalTargetYCenter	= (r1Y>r2Y)? //checks which r is at top
 									//if r2 at top (r1y>r2y)
 							(	(r1Y>(r2Y+r2Height))? //checks if the two r are touching
-									(r1Y+r2Y+r2Height)/2: "NA"	) //if touching return -1
+									(r1Y+r2Y+r2Height)/2: -1	) //if touching return -1
 							//if r1 at top (r1y<r2y)
 							: (	(r2Y>(r1Y+r1Height))? //checks if the two r are touching
-									(r1Y+r2Y+r1Height)/2: "NA" )			);
-				 
+									(r1Y+r2Y+r1Height)/2: -1 );
+				Robot.table.putValue("CalculatedYCenter", detectedVerticalTargetYCenter);
 				 
 			 }else{
 				 Robot.table.putValue("1stTargetX", "NA");
 				 Robot.table.putValue("1stTargetY", "NA");
 				 Robot.table.putValue("2ndTargetX", "NA");
 				 Robot.table.putValue("2ndTargetX", "NA");
+				 Robot.table.putValue("CalculatedXCenter", "NA");
+				 Robot.table.putValue("CalculatedYCenter", "NA");
+				 avgDetectedVerticalTargetArea = -1;
 			 }
 		}
 }
@@ -164,4 +171,24 @@ public class FishyThread extends Thread {
 			myFPS = fps;
 	}
 
+	public void setVisionTargetThresholdArea(int area){
+		VisionTargetImgProcAreaThreshold = area;
+		System.out.println("visionThresholdArea set: "+area);
+	}
+	
+	public int getVisionTargetThresholdArea(){
+		return VisionTargetImgProcAreaThreshold;
+	}
+	
+	public double getVerticalCenterX(){
+		return detectedVerticalTargetXCenter;
+	}
+	
+	public double getVerticalCenterY(){
+		return detectedVerticalTargetYCenter;
+	}
+	
+	public double getAvgVerticalArea(){
+		return avgDetected
+	}
 }
