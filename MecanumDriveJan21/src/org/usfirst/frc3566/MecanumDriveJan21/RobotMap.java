@@ -33,6 +33,7 @@ public class RobotMap {
     public static CANTalon mecanumDriveTrainTalonSRX2;
     public static CANTalon mecanumDriveTrainTalonSRX3;
     public static CANTalon mecanumDriveTrainTalonSRX4;
+    public static CANTalon mailbox; 
     public static RobotDrive mecanumDriveTrainRobotDrive;
     public static double idealVerticalTargetArea;
     
@@ -56,6 +57,8 @@ public class RobotMap {
         
         mecanumDriveTrainRobotDrive = new RobotDrive(mecanumDriveTrainTalonSRX4, mecanumDriveTrainTalonSRX1,
               mecanumDriveTrainTalonSRX3, mecanumDriveTrainTalonSRX2);
+        
+        mailbox = new CANTalon(5);
         
         mecanumDriveTrainRobotDrive.setSafetyEnabled(true);
         mecanumDriveTrainRobotDrive.setExpiration(0.1);
