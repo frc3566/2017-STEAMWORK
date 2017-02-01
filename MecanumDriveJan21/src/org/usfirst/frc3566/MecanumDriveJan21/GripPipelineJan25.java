@@ -46,7 +46,8 @@ public class GripPipelineJan25 implements VisionPipeline {
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 150.0;
+		//the min filtering area CAN BE ADJUSTED in the VisionValues class!!!!!
+		double filterContoursMinArea = VisionValues.GripAreaThreshold;
 		double filterContoursMinPerimeter = 0.0;
 		double filterContoursMinWidth = 0.0;
 		double filterContoursMaxWidth = 1000.0;
