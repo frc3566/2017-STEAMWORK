@@ -22,10 +22,11 @@ public class FishyThread extends Thread {
 	private CvSource outputStream;
 	private Mat mat;
 	private GripPipelineJan25 pipeline;
-	public static double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter,
+	private double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter,
 	detectedHorizontalTargetXCenter, detectedHorizontalTargetYCenter;
-	public static char VHcheck;
-	public static double avgDetectedTargetArea;
+	private char VHcheck;
+	private double avgDetectedTargetArea;
+	private boolean targetsDetected;
 	
 	public FishyThread(int portNumber, int startFPS) {
 		// Get the UsbCamera from CameraServer
@@ -111,6 +112,8 @@ public class FishyThread extends Thread {
 			 	if(max1 > VisionValues.TargetAreaThreshold && 
 					 max2 > VisionValues.TargetAreaThreshold){
 				 
+			 	targetsDetected = true;
+			 	
 				MatOfPoint temp1 = pipeline.filterContoursOutput().get(maxNum1);
 				MatOfPoint temp2 = pipeline.filterContoursOutput().get(maxNum2);
 				
@@ -162,6 +165,7 @@ public class FishyThread extends Thread {
 					 
 			 }else{
 				 //if didn't pass basic target line, will not recognize targets
+				 targetsDetected = false;
 				 Robot.table.putValue("1stTargetX", "NA");
 				 Robot.table.putValue("1stTargetY", "NA");
 				 Robot.table.putValue("2ndTargetX", "NA");
@@ -185,6 +189,70 @@ public class FishyThread extends Thread {
 			myFPS = fps;
 	}
 
+	public double getXCenter(){
+		if(VHcheck=='V'){
+			return detectedVerticalTargetXCenter;
+		}else if(VHcheck=='H'){
+			return detectedHorizontalTargetXCenter;
+		}else{
+			return -1;
+		}
+	}
 	
+	public double getYCenter(){
+		if(VHcheck=='V'){
+			return detectedVerticalTargetYCenter;
+		}else if(VHcheck=='H'){
+			return detectedHorizontalTargetYCenter;
+		}else{
+			return -1;
+		}
+	}
 	
+	public char VorH(){
+		return VHcheck;
+	}
+	
+	public double getArea(){
+		return avgDetectedTargetArea;
+	}
+	
+	public boolean checkIfTargetsDetected(){
+		return targetsDetected;
+	}
+	
+	public boolean checkIfXCenterInRange(){
+		if(VHcheck=='V'){
+			if(detectedVerticalTargetXCenter > VisionValues.inRangeXminV &&
+					detectedVerticalTargetXCenter < VisionValues.inRangeXmaxV){
+				return true;
+			}else{
+				return false;
+			}
+		}else if(VHcheck=='H'){
+			//TODO work on this if we want high goal in autonomous
+			return false;
+		}else{
+			return false;
+		}
+	}
+	
+	/**
+	 * Since the camera is fixed, we don't need the y check for now
+	 */
+//	public boolean checkIfYCenterInRange(){
+//		if(VHcheck=='V'){
+//			if(detectedVerticalTargetYCenter > VisionValues.inRangeYminV &&
+//					detectedVerticalTargetYCenter < VisionValues.inRangeYmaxV){
+//				return true;
+//			}else{
+//				return false;
+//			}
+//		}else if(VHcheck=='H'){
+//			//TODO work on this if we want high goal in autonomous
+//			return false;
+//		}else{
+//			return false;
+//		}
+//	}
 }

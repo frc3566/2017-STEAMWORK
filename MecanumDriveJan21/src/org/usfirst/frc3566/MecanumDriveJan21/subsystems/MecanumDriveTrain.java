@@ -16,7 +16,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.TalonSRX;
-
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -60,21 +60,36 @@ public class MecanumDriveTrain extends Subsystem {
     	talonSRX4.set(0);
     }
     
-    public void driveTrainForward(double speed){
+    public void driveTrainForward(double speed, double delay){
     	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
+    	Timer.delay(delay);
     }
     
-    public void driveTrainBackward(double speed){
+    public void driveTrainBackward(double speed, double delay){
     	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
+    	Timer.delay(delay);
     }
     
-    public void driveTrainSidewayLeft(double speed){
+    public void driveTrainSidewayLeft(double speed, double delay){
     	robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
+    	Timer.delay(delay);
     }
 
-    public void driveTrainSidewayRight(double speed){
+    public void driveTrainSidewayRight(double speed, double delay){
     	robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
+    	Timer.delay(delay);
     }
     
+    //TODO test
+    public void rotateLeft(double speed, double delay){
+    	robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
+    	Timer.delay(delay);
+    }
+    
+  //TODO test
+    public void rotateRight(double speed, double delay){
+    	robotDrive.mecanumDrive_Cartesian(0, 0, speed * -1, 0);
+    	Timer.delay(delay);
+    }
 }
 

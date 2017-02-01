@@ -11,24 +11,22 @@
 
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
-import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
+import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
 /**
  *
  */
 public class AutonomousLiftFront extends Command {
-	
-	private double idealTargetArea;
-	
-    public void AutonomousCommand() {
-    	idealTargetArea = RobotMap.idealVerticalTargetArea;
-    }
+	//this is the autonomous command for when there is a lift in front of the robot
+	public AutonomousLiftFront(){
+		
+	}
 
-    public boolean checkIfInRange(){
-    	System.out.println(Robot.camA.avgDetectedVerticalTargetArea);
-    	//System.out.println(" hey "+idealTargetArea);
-    	if(Robot.camA.avgDetectedVerticalTargetArea>RobotMap.idealVerticalTargetArea){
+    public boolean checkArea(){
+   //checks if the avgArea of the detected targets meets the target area requirements of the Lift 
+    	if(Robot.camA.getArea() > VisionValues.idealVerticalTargetArea){
     		return true;
     	}else{
     		return false;
@@ -36,15 +34,19 @@ public class AutonomousLiftFront extends Command {
     }
     
     protected void initialize() {
+    	
     }
 
     protected void execute() {
-    	Robot.mecanumDriveTrain.driveTrainForward(0.1);
+    	//delay is 0 in the method below because this is called in the execute loop. 
+    	//Since the motor is already receiving constant commands, no extra delay is needed
+    	Robot.mecanumDriveTrain.driveTrainForward(0.1, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return checkIfInRange();
+    	//when detected target area is big enough, calls the command to stop
+        return checkArea();
     }
 
     // Called once after isFinished returns true
