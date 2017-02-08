@@ -60,7 +60,7 @@ public class OI {
     }
     
     public double getSideWays(){
-    	return joystick1.getRawAxis(0) * -1 * slowDownValue;
+    	return joystick1.getRawAxis(0) * slowDownValue;
     }
     
     public double getRotation(){

@@ -64,12 +64,12 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     public void driveTrainForward(double speed, double delay){
-    	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
+    	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
     	Timer.delay(delay);
     }
     
     public void driveTrainBackward(double speed, double delay){
-    	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
+    	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
     	Timer.delay(delay);
     }
     

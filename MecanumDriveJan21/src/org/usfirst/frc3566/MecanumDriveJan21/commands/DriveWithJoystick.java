@@ -46,7 +46,7 @@ public class DriveWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	myDrive.mecanumDrive_Cartesian(Robot.oi.getStraight(), Robot.oi.getSideWays(), 
+    	myDrive.mecanumDrive_Cartesian(Robot.oi.getStraight()*(-1), Robot.oi.getSideWays(), 
     			Robot.oi.getRotation(), 0);
     }
 
