@@ -79,7 +79,7 @@ public class MecanumDriveTrain extends Subsystem {
     }
 
     public void driveTrainSidewayRight(double speed, double delay){
-    	robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
+    	robotDrive.mecanumDrive_Cartesian(0, speed*-1, 0, 0);
     	Timer.delay(delay);
     }
     
