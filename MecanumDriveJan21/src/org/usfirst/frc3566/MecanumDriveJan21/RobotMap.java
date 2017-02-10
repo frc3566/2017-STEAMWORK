@@ -33,7 +33,7 @@ public class RobotMap {
     public static CANTalon mecanumDriveTrainTalonSRX2; //rearright
     public static CANTalon mecanumDriveTrainTalonSRX7; //frontleft
     public static CANTalon mecanumDriveTrainTalonSRX5; //rearleft
-    public static CANTalon gearDeliveryMotor9;
+    public static CANTalon gearDeliveryMotor4;
     public static CANTalon fuelPickerUpper8;
     public static CANTalon ballShooter1;
     public static CANTalon mailbox; 
@@ -54,7 +54,7 @@ public class RobotMap {
         
         mecanumDriveTrainTalonSRX7 = new CANTalon(7);
         LiveWindow.addActuator("MecanumDriveTrain", "FrontLeft 7", mecanumDriveTrainTalonSRX7);
-        mecanumDriveTrainTalonSRX7.setInverted(false);
+        mecanumDriveTrainTalonSRX7.setInverted(true);
         
         mecanumDriveTrainTalonSRX5 = new CANTalon(5);
         LiveWindow.addActuator("MecanumDriveTrain", "RearLeft 5", mecanumDriveTrainTalonSRX5);
@@ -63,7 +63,7 @@ public class RobotMap {
         mecanumDriveTrainRobotDrive = new RobotDrive(mecanumDriveTrainTalonSRX7, mecanumDriveTrainTalonSRX5,
               mecanumDriveTrainTalonSRX6, mecanumDriveTrainTalonSRX2);
         
-        gearDeliveryMotor9 = new CANTalon(4);
+        gearDeliveryMotor4 = new CANTalon(4);
         
         fuelPickerUpper8 = new CANTalon(8);
         
