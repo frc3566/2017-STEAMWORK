@@ -5,6 +5,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -33,6 +34,7 @@ public class DriveForDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	SmartDashboard.putNumber("encoderDistance", myEncoder.getDistance());
     	switch (myDirection){
     	case 'f': drivetrain.driveTrainForward(speed);
     	break;
