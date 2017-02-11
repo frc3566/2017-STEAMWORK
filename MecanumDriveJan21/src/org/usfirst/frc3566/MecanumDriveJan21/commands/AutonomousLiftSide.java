@@ -3,6 +3,7 @@ package org.usfirst.frc3566.MecanumDriveJan21.commands;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -15,8 +16,6 @@ public class AutonomousLiftSide extends Command {
 	//this boolean shows if the auto command is aware of the targets
 	
     public AutonomousLiftSide(int side) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	leftOrRightTarget = side;
     	targetsDetected = false;
     	done = false;
@@ -25,7 +24,8 @@ public class AutonomousLiftSide extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	//make the robot drive forward for 14 feet to be right next to the target!!!
-    	Robot.mecanumDriveTrain.driveTrainForward(0.2, 5);
+    	new DriveForDistance('f', 3, 0.2).start(); //direction, distance, speed
+    	Timer.delay(3);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,9 +34,9 @@ public class AutonomousLiftSide extends Command {
     	if (!targetsDetected){
     		//if no targets in view yet, rotate a little bit and then check again
     		if(leftOrRightTarget == 1){
-    	    	Robot.mecanumDriveTrain.rotateRight(0.1, 0);
+    	    	Robot.mecanumDriveTrain.rotateRight(0.1);
     	    	}else if(leftOrRightTarget == 2){
-    	        	Robot.mecanumDriveTrain.rotateLeft(0.1, 0);
+    	        	Robot.mecanumDriveTrain.rotateLeft(0.1);
     	    	}
     		targetsDetected = Robot.camA.checkIfTargetsDetected();
     	}else{
@@ -51,9 +51,9 @@ public class AutonomousLiftSide extends Command {
     			 * if it's not in range, either xCenter is bigger than max or smaller than min
     			 */
     			if(Robot.camA.getXCenter()>VisionValues.inRangeXmaxV){
-    			Robot.mecanumDriveTrain.rotateLeft(0.05, 0); 
+    			Robot.mecanumDriveTrain.rotateLeft(0.05); 
     		}else if(Robot.camA.getXCenter()<VisionValues.inRangeXminV){
-    			Robot.mecanumDriveTrain.rotateRight(0.05, 0);
+    			Robot.mecanumDriveTrain.rotateRight(0.05);
     		}
     	}
     	}

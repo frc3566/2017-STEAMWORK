@@ -63,37 +63,31 @@ public class MecanumDriveTrain extends Subsystem {
     	rearRight.set(0);
     }
     
-    public void driveTrainForward(double speed, double delay){
+    public void driveTrainForward(double speed){
     	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
-    	Timer.delay(delay);
     }
     
-    public void driveTrainBackward(double speed, double delay){
+    public void driveTrainBackward(double speed){
     	robotDrive.mecanumDrive_Cartesian(-1*speed, 0, 0, 0);
-    	Timer.delay(delay);
     }
     
-    public void driveTrainSidewayLeft(double speed, double delay){
+    public void driveTrainSidewayLeft(double speed){
     	robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
-    	Timer.delay(delay);
     }
 
-    public void driveTrainSidewayRight(double speed, double delay){
+    public void driveTrainSidewayRight(double speed){
     	robotDrive.mecanumDrive_Cartesian(0, speed*-1, 0, 0);
-    	Timer.delay(delay);
     }
     
     //TODO test
-    public void rotateLeft(double speed, double delay){
+    public void rotateLeft(double speed){
     	robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
-    	Timer.delay(delay);
     }
     
     
   //TODO test
-    public void rotateRight(double speed, double delay){
+    public void rotateRight(double speed){
     	robotDrive.mecanumDrive_Cartesian(0, 0, speed * -1, 0);
-    	Timer.delay(delay);
     }
 }
 
