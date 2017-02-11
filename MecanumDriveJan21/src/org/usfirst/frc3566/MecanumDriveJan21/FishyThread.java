@@ -22,11 +22,11 @@ public class FishyThread extends Thread {
 	private CvSource outputStream;
 	private Mat mat;
 	private GripPipelineJan25 pipeline;
-	private double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter,
+	private static double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter,
 	detectedHorizontalTargetXCenter, detectedHorizontalTargetYCenter;
-	private char VHcheck;
-	public static double avgDetectedTargetArea;
-	private boolean targetsDetected;
+	private static char VHcheck;
+	private static double avgDetectedTargetArea;
+	private static boolean targetsDetected;
 	
 	public FishyThread(int portNumber, int startFPS) {
 		// Get the UsbCamera from CameraServer
@@ -217,11 +217,11 @@ public class FishyThread extends Thread {
 		return avgDetectedTargetArea;
 	}
 	
-	public boolean checkIfTargetsDetected(){
+	public static boolean checkIfTargetsDetected(){
 		return targetsDetected;
 	}
 	
-	public boolean checkIfXCenterInRange(){
+	public static boolean checkIfXCenterInRange(){
 		if(VHcheck=='V'){
 			if(detectedVerticalTargetXCenter > VisionValues.inRangeXminV &&
 					detectedVerticalTargetXCenter < VisionValues.inRangeXmaxV){

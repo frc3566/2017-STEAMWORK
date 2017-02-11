@@ -34,7 +34,6 @@ public class DriveForDistance extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putNumber("encoderDistance", myEncoder.getDistance());
     	switch (myDirection){
     	case 'f': drivetrain.driveTrainForward(speed);
     	break;

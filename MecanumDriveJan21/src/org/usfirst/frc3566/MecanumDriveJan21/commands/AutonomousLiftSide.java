@@ -1,5 +1,6 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
+import org.usfirst.frc3566.MecanumDriveJan21.FishyThread;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
@@ -25,7 +26,7 @@ public class AutonomousLiftSide extends Command {
     protected void initialize() {
     	//make the robot drive forward for 14 feet to be right next to the target!!!
     	new DriveForDistance('f', 3, 0.2).start(); //direction, distance, speed
-    	Timer.delay(3);
+    	Timer.delay(2);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -38,10 +39,10 @@ public class AutonomousLiftSide extends Command {
     	    	}else if(leftOrRightTarget == 2){
     	        	Robot.mecanumDriveTrain.rotateLeft(0.1);
     	    	}
-    		targetsDetected = Robot.camA.checkIfTargetsDetected();
+    		targetsDetected = FishyThread.checkIfTargetsDetected();
     	}else{
     		//once targets detected, center the targets
-    		if(Robot.camA.checkIfXCenterInRange()){
+    		if(FishyThread.checkIfXCenterInRange()){
     			/**
     			 * Gear Delivery!!
     			 */
