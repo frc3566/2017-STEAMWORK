@@ -25,7 +25,7 @@ public class FishyThread extends Thread {
 	private double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter,
 	detectedHorizontalTargetXCenter, detectedHorizontalTargetYCenter;
 	private char VHcheck;
-	private double avgDetectedTargetArea;
+	public static double avgDetectedTargetArea;
 	private boolean targetsDetected;
 	
 	public FishyThread(int portNumber, int startFPS) {
@@ -213,7 +213,7 @@ public class FishyThread extends Thread {
 		return VHcheck;
 	}
 	
-	public double getArea(){
+	public static double getArea(){
 		return avgDetectedTargetArea;
 	}
 	

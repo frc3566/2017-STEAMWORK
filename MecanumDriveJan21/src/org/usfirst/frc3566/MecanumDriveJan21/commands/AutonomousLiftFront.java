@@ -12,6 +12,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc3566.MecanumDriveJan21.FishyThread;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
@@ -26,7 +27,7 @@ public class AutonomousLiftFront extends Command {
 
     public boolean checkArea(){
    //checks if the avgArea of the detected targets meets the target area requirements of the Lift 
-    	if(Robot.camA.getArea() > VisionValues.idealVerticalTargetArea){
+    	if(FishyThread.getArea() > VisionValues.idealVerticalTargetArea){
     		return true;
     	}else{
     		return false;
