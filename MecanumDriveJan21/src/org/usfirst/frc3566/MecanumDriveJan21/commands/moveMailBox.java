@@ -14,16 +14,16 @@ public class moveMailBox extends Command {
     public moveMailBox(boolean sign) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.mailbox);
+    	//requires(Robot.mailbox);
     	myDirection = sign;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	if(myDirection){
-    		Robot.mailbox.positiveMailbox();
+    	//	Robot.mailbox.positiveMailbox();
     	}else if(!myDirection){
-    		Robot.mailbox.negativeMailbox();
+    	//	Robot.mailbox.negativeMailbox();
     	}
     }
 

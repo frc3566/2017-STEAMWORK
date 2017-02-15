@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DriveForDistance extends Command {
 
-	private Encoder myEncoder;
+	//private Encoder myEncoder;
 	private double myDistance;
 	private double speed;
 	private char myDirection;
@@ -28,8 +28,8 @@ public class DriveForDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	myEncoder = Robot.encoder1;
-    	myEncoder.reset();
+    //	myEncoder = Robot.encoder1;
+    	//myEncoder.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -50,7 +50,8 @@ public class DriveForDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
+    	return false;
+     //   return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
     }
 
     // Called once after isFinished returns true

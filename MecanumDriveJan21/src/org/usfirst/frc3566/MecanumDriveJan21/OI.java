@@ -42,27 +42,23 @@ public class OI {
 
         joystick1 = new Joystick(0);
         
-        /*
-        hopeMailMoves = new JoystickButton(joystick1, 1);
-        hopeMailMoves.whileHeld(new moveMailBox(true));
+        
+    //    hopeMailMoves = new JoystickButton(joystick1, 1);
+    //    hopeMailMoves.whileHeld(new moveMailBox(true));
 
         gearPositive = new JoystickButton(joystick1, 3);
         gearPositive.whileHeld(new moveGearDeliveryPositive());
-        
+        gearPositive.whenReleased(new stopGearPLEASE());
         
         gearNegative = new JoystickButton(joystick1, 4);
         gearNegative.whileHeld(new moveGearNegative());
+        gearNegative.whenReleased(new stopGearPLEASE());
         
-        hopeMailMovesOpp = new JoystickButton(joystick1, 2);
-        hopeMailMovesOpp.whileHeld(new moveMailBox(false));
+      //  hopeMailMovesOpp = new JoystickButton(joystick1, 2);
+       //// hopeMailMovesOpp.whileHeld(new moveMailBox(false));
         
-        gearSTOPNOW = new JoystickButton(joystick1, 3);
-        gearSTOPNOW.whenReleased(new stopGearPLEASE());
+    
         
-        gearSTOPTWO = new JoystickButton(joystick1, 4);
-        gearSTOPTWO.whenReleased(new stopGearPLEASE());
-        
-        */
         
         
         // SmartDashboard Buttons
@@ -78,11 +74,11 @@ public class OI {
 
     public double getStraight(){
     	//on large robot logitech dual action, this axis is the y axis, axis 1
-    	return joystick1.getRawAxis(1) * slowDownValue;
+    	return joystick1.getRawAxis(1)* -1 * slowDownValue;
     }
     
     public double getSideWays(){
-    	return joystick1.getRawAxis(0) * slowDownValue;
+    	return joystick1.getRawAxis(0) * -1 * slowDownValue;
     }
     
     public double getRotation(){

@@ -24,7 +24,7 @@ public class FishyThread extends Thread {
 	private GripPipelineJan25 pipeline;
 	private static double detectedVerticalTargetXCenter, detectedVerticalTargetYCenter,
 	detectedHorizontalTargetXCenter, detectedHorizontalTargetYCenter;
-	private static char VHcheck;
+	private static int VHcheck; //NA: -1; Horizontal:0 ; Vertical:1;
 	private static double avgDetectedTargetArea;
 	private static boolean targetsDetected;
 	
@@ -57,9 +57,9 @@ public class FishyThread extends Thread {
 
 	@Override
 	public void run() {
-		
+		System.out.println("thread started");
 		 while (!Thread.interrupted()) {
-			 
+			 System.out.println("thread on");
 			// updates the fps
 			camera.setFPS(myFPS);
 			
@@ -76,7 +76,7 @@ public class FishyThread extends Thread {
 
 			// Give the output stream a new image to display
 			//**doesn't necessarily need this in competition bc it slows down the dashboard
-			outputStream.putFrame(pipeline.hslThresholdOutput());
+		//	outputStream.putFrame(pipeline.hslThresholdOutput());
 			
 			 int count = 0; double max1 = 0, max2= 0 , max3 = 0; 
 			 int maxNum1 = -1, maxNum2 = -1;
@@ -134,12 +134,12 @@ public class FishyThread extends Thread {
 				 VHcheck = (r1X>r2X)? //checks which r is at left
 							//if r2 at left (r1x>r2x)
 					(	(r1X>(r2X+r2Width))? //checks if the two r are touching
-							'V': 'H'	) //if not vertical, f touching then horizontal
+							1: 0	) //if not vertical, f touching then horizontal
 					//if r1 at left (r1x<r2x)
 					: (	(r2X>(r1X+r1Width))? //checks if the two r are touching
-							'V': 'H' ); 
+							1: 0 ); 
 				 
-					 if(VHcheck=='V'){
+					 if(VHcheck==1){
 						 
 			detectedVerticalTargetXCenter = (r1X>r2X)? //checks which r is at left
 				((r1X+r2X+r2Width)/2) : ((r1X+r2X+r1Width)/2); 
@@ -150,7 +150,7 @@ public class FishyThread extends Thread {
 				
 				 detectedHorizontalTargetXCenter = -1;
 				 detectedHorizontalTargetYCenter = -1;
-					 }else if(VHcheck=='H'){
+					 }else if(VHcheck==0){
 						 
 			detectedHorizontalTargetXCenter = ((r1X+r1Width/2) + (r2X+r2Width/2))/2;
 				Robot.table.putValue("CalculatedXCenter", detectedHorizontalTargetXCenter);
@@ -172,7 +172,7 @@ public class FishyThread extends Thread {
 				 Robot.table.putValue("2ndTargetX", "NA");
 				 Robot.table.putValue("CalculatedXCenter", "NA");
 				 Robot.table.putValue("CalculatedYCenter", "NA");
-				 VHcheck = 'N';
+				 VHcheck = -1;
 				 detectedVerticalTargetXCenter = -1;
 				 detectedVerticalTargetYCenter = -1;
 				 detectedHorizontalTargetXCenter = -1;
@@ -190,9 +190,9 @@ public class FishyThread extends Thread {
 	}
 
 	public double getXCenter(){
-		if(VHcheck=='V'){
+		if(VHcheck==1){
 			return detectedVerticalTargetXCenter;
-		}else if(VHcheck=='H'){
+		}else if(VHcheck==0){
 			return detectedHorizontalTargetXCenter;
 		}else{
 			return -1;
@@ -200,16 +200,16 @@ public class FishyThread extends Thread {
 	}
 	
 	public double getYCenter(){
-		if(VHcheck=='V'){
+		if(VHcheck==1){
 			return detectedVerticalTargetYCenter;
-		}else if(VHcheck=='H'){
+		}else if(VHcheck==0){
 			return detectedHorizontalTargetYCenter;
 		}else{
 			return -1;
 		}
 	}
 	
-	public char VorH(){
+	public int VorH(){
 		return VHcheck;
 	}
 	
@@ -222,14 +222,14 @@ public class FishyThread extends Thread {
 	}
 	
 	public static boolean checkIfXCenterInRange(){
-		if(VHcheck=='V'){
+		if(VHcheck==1){
 			if(detectedVerticalTargetXCenter > VisionValues.inRangeXminV &&
 					detectedVerticalTargetXCenter < VisionValues.inRangeXmaxV){
 				return true;
 			}else{
 				return false;
 			}
-		}else if(VHcheck=='H'){
+		}else if(VHcheck==0){
 			//TODO work on this if we want high goal in autonomous
 			return false;
 		}else{
