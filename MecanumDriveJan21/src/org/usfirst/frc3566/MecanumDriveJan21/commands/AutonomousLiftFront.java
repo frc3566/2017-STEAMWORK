@@ -53,7 +53,7 @@ public class AutonomousLiftFront extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.mecanumDriveTrain.stopDriveTrain();
-    	Robot.GearDelivery.
+    	Robot.GearDelivery.deliver();
     }
 
     // Called when another command which requires one or more of the same

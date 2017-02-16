@@ -48,11 +48,11 @@ public class OI {
 
         gearPositive = new JoystickButton(joystick1, 3);
         gearPositive.whileHeld(new moveGearDeliveryPositive());
-        gearPositive.whenReleased(new stopGearPLEASE());
+        gearPositive.whenReleased(new stopGear());
         
         gearNegative = new JoystickButton(joystick1, 4);
         gearNegative.whileHeld(new moveGearNegative());
-        gearNegative.whenReleased(new stopGearPLEASE());
+        gearNegative.whenReleased(new stopGear());
         
       //  hopeMailMovesOpp = new JoystickButton(joystick1, 2);
        //// hopeMailMovesOpp.whileHeld(new moveMailBox(false));

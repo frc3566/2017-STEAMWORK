@@ -21,7 +21,7 @@ public class moveGearNegative extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-    	Robot.GearDelivery.pleaseMoveGearNegative();
+    	Robot.GearDelivery.retract();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ public class moveGearNegative extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.GearDelivery.stopPlease();
+    	Robot.GearDelivery.stop();
     	
     }
 
