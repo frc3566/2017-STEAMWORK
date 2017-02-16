@@ -19,14 +19,17 @@ public class GearDelivery extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void pleaseMoveGearPositive(){
+    
+    public void deliver(){
     	gearDelivery.set(0.5);
     	
     }
-    public void pleaseMoveGearNegative(){
+    
+    public void retract(){
     	gearDelivery.set(-0.5);
     }
-	public void stopPlease() {
+    
+	public void stop() {
 		// TODO Auto-generated method stub
 		gearDelivery.set(0.0);
 		
