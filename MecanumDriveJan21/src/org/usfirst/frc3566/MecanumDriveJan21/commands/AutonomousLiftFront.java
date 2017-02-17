@@ -20,6 +20,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
  *
  */
 public class AutonomousLiftFront extends Command {
+	private boolean finished;
 	//this is the autonomous command for when there is a lift in front of the robot
 	public AutonomousLiftFront(){
 		
@@ -35,25 +36,37 @@ public class AutonomousLiftFront extends Command {
     }
     
     protected void initialize() {
-    	
+    	finished = false;
     }
 
     protected void execute() {
     	//delay is 0 in the method below because this is called in the execute loop. 
     	//Since the motor is already receiving constant commands, no extra delay is needed
-    	Robot.mecanumDriveTrain.driveTrainForward(0.2);
+    	
+    	if(checkArea()){
+    		Robot.mecanumDriveTrain.stopDriveTrain();
+        	new moveGearDeliveryPositive().start();
+        	try {
+        		while(Robot.gearLimitSwitchFront.get())
+				wait(); //IMPORTANT MAKE SURE FINISHED IS DECLARED AFTER THE METHOD FINISHES
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+        	finished = true;
+    	}else{
+    		Robot.mecanumDriveTrain.driveTrainForward(0.2);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//when detected target area is big enough, calls the command to stop
-        return checkArea();
+        return finished;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.mecanumDriveTrain.stopDriveTrain();
-    	Robot.GearDelivery.deliver();
+    	new DriveForDistance('b', 1, 0.2).start();
     }
 
     // Called when another command which requires one or more of the same

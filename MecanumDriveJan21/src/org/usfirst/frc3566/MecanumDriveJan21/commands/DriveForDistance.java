@@ -24,6 +24,7 @@ public class DriveForDistance extends Command {
     	myDistance = distanceToDrive;
     	speed = s;
     	drivetrain = Robot.mecanumDriveTrain;
+    	this.setTimeout(distanceToDrive);
     }
 
     // Called just before this Command runs the first time
@@ -50,7 +51,7 @@ public class DriveForDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+    	return this.isTimedOut();
      //   return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
     }
 

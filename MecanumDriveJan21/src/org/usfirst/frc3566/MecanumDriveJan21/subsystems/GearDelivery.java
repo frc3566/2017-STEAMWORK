@@ -1,5 +1,6 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
+import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
 
 
@@ -21,12 +22,13 @@ public class GearDelivery extends Subsystem {
     }
     
     public void deliver(){
-    	gearDelivery.set(0.5);
-    	
+    	if(Robot.gearLimitSwitchFront.get())
+    	gearDelivery.set(-0.5);
     }
     
     public void retract(){
-    	gearDelivery.set(-0.5);
+    	if(Robot.gearLimitSwitchBack.get())
+    	gearDelivery.set(0.5);
     }
     
 	public void stop() {

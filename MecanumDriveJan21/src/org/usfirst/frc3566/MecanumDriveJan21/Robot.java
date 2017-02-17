@@ -12,11 +12,14 @@
 package org.usfirst.frc3566.MecanumDriveJan21;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -36,7 +39,9 @@ public class Robot extends IterativeRobot {
 
 	public static FishyThread camA;
 	public static UsbCamera camB;
+	public static DigitalInput gearLimitSwitchFront, gearLimitSwitchBack;
 	public static NetworkTable table;
+	public static Potentiometer gearPotentiometer;
     Command autonomous;
    // public static Mailbox mailbox;
     public static OI oi;
@@ -64,6 +69,10 @@ public class Robot extends IterativeRobot {
     		camA.start();
     		  
     		//camB = CameraServer.getInstance().startAutomaticCapture(1);
+    		gearLimitSwitchFront = new DigitalInput(0);
+    		gearLimitSwitchBack = new DigitalInput(1);
+    		
+    		gearPotentiometer = new AnalogPotentiometer(0, 360, 0);
     		
     		NetworkTable.setIPAddress("roborio-3566-Frc.local");
     		table = NetworkTable.getTable("datatable");
@@ -127,6 +136,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     	//SmartDashboard.putNumber("encoderDistance", encoder1.getDistance());
+        SmartDashboard.putNumber("GearPotentiometer", gearPotentiometer.get());
     }
 
     /**
