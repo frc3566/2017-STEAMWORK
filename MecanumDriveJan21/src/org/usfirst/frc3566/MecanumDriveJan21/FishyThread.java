@@ -74,7 +74,7 @@ public class FishyThread extends Thread {
 			
 			pipeline.process(mat); // puts mat through pipeline
 
-			// Give the output stream a new image to display
+			// Give the output stream a new image to display666666666666
 			//**doesn't necessarily need this in competition bc it slows down the dashboard
 		//	outputStream.putFrame(pipeline.hslThresholdOutput());
 			
