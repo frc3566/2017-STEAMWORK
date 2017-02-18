@@ -22,14 +22,14 @@ public class GearDelivery extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void deliver(){
+    public void deliver(double speed){
     	if(Robot.gearLimitSwitchFront.get())
-    	gearDelivery.set(-0.5);
+    	gearDelivery.set(speed*-1);
     }
     
-    public void retract(){
+    public void retract(double speed){
     	if(Robot.gearLimitSwitchBack.get())
-    	gearDelivery.set(0.5);
+    	gearDelivery.set(speed);
     }
     
 	public void stop() {

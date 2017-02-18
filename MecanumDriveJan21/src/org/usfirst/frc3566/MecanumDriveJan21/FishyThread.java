@@ -166,10 +166,10 @@ public class FishyThread extends Thread {
 			 }else{
 				 //if didn't pass basic target line, will not recognize targets
 				 targetsDetected = false;
-				 Robot.table.putValue("1stTargetX", "NA");
-				 Robot.table.putValue("1stTargetY", "NA");
-				 Robot.table.putValue("2ndTargetX", "NA");
-				 Robot.table.putValue("2ndTargetX", "NA");
+			//	 Robot.table.putValue("1stTargetX", "NA");
+				// Robot.table.putValue("1stTargetY", "NA");
+				 //Robot.table.putValue("2ndTargetX", "NA");
+				 //Robot.table.putValue("2ndTargetY", "NA");
 				 Robot.table.putValue("CalculatedXCenter", "NA");
 				 Robot.table.putValue("CalculatedYCenter", "NA");
 				 VHcheck = -1;

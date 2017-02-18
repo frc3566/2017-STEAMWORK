@@ -7,44 +7,30 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class moveGearDeliveryPositive extends Command {
+public class climbPositive extends Command {
 
-	Command endCommand; 
-	double mySpeed;
-	
-    public moveGearDeliveryPositive() {
+    public climbPositive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	mySpeed=0.5;
     }
 
-    public moveGearDeliveryPositive(double speed, Command end){
-    	endCommand = end;
-    	mySpeed = speed;
-    }
-    
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.climber.climbOneWay();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-    	Robot.GearDelivery.deliver(mySpeed);
-    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (!Robot.gearLimitSwitchFront.get());
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	if(endCommand!=null){
-    		endCommand.start();
-    	}
-    	Robot.GearDelivery.stop();
+    	Robot.climber.STOP();
     }
 
     // Called when another command which requires one or more of the same

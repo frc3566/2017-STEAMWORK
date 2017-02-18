@@ -37,6 +37,7 @@ public class RobotMap {
     public static CANTalon fuelPickerUpper8;
     public static CANTalon ballShooter1;
     public static CANTalon mailbox; 
+    public static CANTalon climber;
  //   public static CANTalon ballPick; 
     public static RobotDrive mecanumDriveTrainRobotDrive;
     
@@ -69,6 +70,8 @@ public class RobotMap {
         gearDeliveryMotor3 = new CANTalon(3);
         
         fuelPickerUpper8 = new CANTalon(8);
+        
+        climber = new CANTalon(4);
         
        // ballShooter1 = new CANTalon(1);
         

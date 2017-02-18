@@ -10,14 +10,17 @@ import edu.wpi.first.wpilibj.command.Command;
 public class moveGearNegative extends Command {
 
 	Command endCommand;
+	double mySpeed;
 	
     public moveGearNegative() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	mySpeed = 0.5;
     }
 
-    public moveGearNegative(Command end){
+    public moveGearNegative(double speed, Command end){
     	endCommand = end;
+    	mySpeed = speed;
     }
     
     // Called just before this Command runs the first time
@@ -27,7 +30,7 @@ public class moveGearNegative extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-    	Robot.GearDelivery.retract();
+    	Robot.GearDelivery.retract(mySpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

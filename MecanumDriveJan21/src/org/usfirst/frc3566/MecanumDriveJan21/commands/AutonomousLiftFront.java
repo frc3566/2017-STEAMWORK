@@ -10,6 +10,7 @@
 
 
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc3566.MecanumDriveJan21.FishyThread;
@@ -45,11 +46,11 @@ public class AutonomousLiftFront extends Command {
     	
     	if(checkArea()){
     		Robot.mecanumDriveTrain.stopDriveTrain();
-        	new moveGearDeliveryPositive(
-        			new moveGearNegative(new DriveForDistance('b', 1, 0.2))).start();
+    		Timer.delay(2);
+        	new moveGearDeliveryPositive(0.6, new DriveForDistance('b', 1, 0.2)).start();
         	finished = true;
     	}else{
-    		Robot.mecanumDriveTrain.driveTrainForward(0.2);
+    		Robot.mecanumDriveTrain.driveTrainForward(0.15);
     	}
     }
 
