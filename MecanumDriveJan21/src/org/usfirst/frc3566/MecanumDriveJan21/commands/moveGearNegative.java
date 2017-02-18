@@ -9,11 +9,17 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class moveGearNegative extends Command {
 
+	Command endCommand;
+	
     public moveGearNegative() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
+    public moveGearNegative(Command end){
+    	endCommand = end;
+    }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }
@@ -31,6 +37,9 @@ public class moveGearNegative extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	if(endCommand!=null){
+    		endCommand.start();
+    	}
     	Robot.GearDelivery.stop();
     	
     }

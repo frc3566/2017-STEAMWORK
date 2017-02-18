@@ -42,6 +42,7 @@ public class Robot extends IterativeRobot {
 	public static DigitalInput gearLimitSwitchFront, gearLimitSwitchBack;
 	public static NetworkTable table;
 	public static Potentiometer gearPotentiometer;
+	public static pickingBalls fuels;
     Command autonomous;
    // public static Mailbox mailbox;
     public static OI oi;
@@ -85,6 +86,7 @@ public class Robot extends IterativeRobot {
     		
     //	mailbox = new Mailbox();
     	GearDelivery= new GearDelivery();
+    	fuels = new pickingBalls();
     	
         oi = new OI();
         OI.slowDownValue = 0.5;

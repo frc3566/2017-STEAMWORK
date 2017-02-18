@@ -14,12 +14,12 @@ public class VisionValues {
 	 * basic filtering ImgProcArea values for both vertical and horizontal targets
 	 * access through FishyThread for vision targeting aid. 
 	 */
-	public static double TargetAreaThreshold = 2000;
+	public static double TargetAreaThreshold = 1500;
 	/**
 	 * the ideal area of vertical targets (avg) for the robot to stop and deliver the gear
 	 * acess through the autonomous command/control class for robot behavior control
 	 */
-	public static double idealVerticalTargetArea = 5000;
+	public static double idealVerticalTargetArea = 2000;
 	public static double idealHorizontalTargetArea = 100000000;
 	
 	/**

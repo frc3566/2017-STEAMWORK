@@ -59,7 +59,7 @@ public class FishyThread extends Thread {
 	public void run() {
 		System.out.println("thread started");
 		 while (!Thread.interrupted()) {
-			 System.out.println("thread on");
+		//	 System.out.println("thread on");
 			// updates the fps
 			camera.setFPS(myFPS);
 			

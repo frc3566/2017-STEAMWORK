@@ -45,13 +45,8 @@ public class AutonomousLiftFront extends Command {
     	
     	if(checkArea()){
     		Robot.mecanumDriveTrain.stopDriveTrain();
-        	new moveGearDeliveryPositive().start();
-        	try {
-        		while(Robot.gearLimitSwitchFront.get())
-				wait(); //IMPORTANT MAKE SURE FINISHED IS DECLARED AFTER THE METHOD FINISHES
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+        	new moveGearDeliveryPositive(
+        			new moveGearNegative(new DriveForDistance('b', 1, 0.2))).start();
         	finished = true;
     	}else{
     		Robot.mecanumDriveTrain.driveTrainForward(0.2);
@@ -66,7 +61,7 @@ public class AutonomousLiftFront extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	new DriveForDistance('b', 1, 0.2).start();
+    	
     }
 
     // Called when another command which requires one or more of the same
