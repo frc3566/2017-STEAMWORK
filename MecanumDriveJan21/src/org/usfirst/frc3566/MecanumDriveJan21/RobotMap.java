@@ -74,7 +74,7 @@ public class RobotMap {
         
         fuelPickerUpper8 = new CANTalon(8);
         ballShooter1 = new CANTalon(1);
-        climber = new CANTalon(4);
+        climber = new CANTalon(9);
         
        // ballShooter1 = new CANTalon(1);
         
