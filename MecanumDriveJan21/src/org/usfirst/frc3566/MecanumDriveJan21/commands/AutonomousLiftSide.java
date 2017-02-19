@@ -25,7 +25,7 @@ public class AutonomousLiftSide extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	//make the robot drive forward for 14 feet to be right next to the target!!!
-    	new DriveForDistance('f', 3, 0.2).start(); //direction, distance, speed
+    	new DriveForDistance('f', 2, 0.2).start(); //direction, distance, speed
     	Timer.delay(2);
     }
 

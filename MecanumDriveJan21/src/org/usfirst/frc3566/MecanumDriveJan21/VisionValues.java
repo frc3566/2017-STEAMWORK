@@ -19,7 +19,7 @@ public class VisionValues {
 	 * the ideal area of vertical targets (avg) for the robot to stop and deliver the gear
 	 * acess through the autonomous command/control class for robot behavior control
 	 */
-	public static double idealVerticalTargetArea = 6000;
+	public static double idealVerticalTargetArea = 9000;
 	public static double idealHorizontalTargetArea = 100000000;
 	
 	/**

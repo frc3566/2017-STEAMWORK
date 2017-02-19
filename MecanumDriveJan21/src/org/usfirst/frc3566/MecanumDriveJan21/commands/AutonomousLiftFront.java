@@ -46,8 +46,8 @@ public class AutonomousLiftFront extends Command {
     	
     	if(checkArea()){
     		Robot.mecanumDriveTrain.stopDriveTrain();
-    		Timer.delay(2);
-        	new moveGearDeliveryPositive(0.6, new DriveForDistance('b', 1, 0.2)).start();
+    		Timer.delay(1);
+        	new moveGearDeliveryPositive(0.5, 0.5, new DriveForDistance('b', 1, 0.2)).start();
         	finished = true;
     	}else{
     		Robot.mecanumDriveTrain.driveTrainForward(0.15);
