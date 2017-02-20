@@ -170,7 +170,7 @@ public class FishyCam extends Thread {
 				 * A negative slope indicates that we are close on the right and
 				 * should therefore strafe left AND turn right
 				 */
-				horizonSlope = ((right.y + right.height) - (left.y + left.height)) / ((right.x + right.width) - left.x);
+				horizonSlope = (double) ((right.y + right.height) - (left.y + left.height)) / (double) ((right.x + right.width) - left.x);
 
 				/*
 				 * checks if targets are vertical or horizontal
