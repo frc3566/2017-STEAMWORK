@@ -15,7 +15,7 @@ import org.opencv.imgproc.*;
 *
 * @author GRIP
 */
-public class GripPipelineJan25 implements VisionPipeline {
+public class GripPipeline implements VisionPipeline {
 
 	//Outputs
 	private Mat hslThresholdOutput = new Mat();
@@ -30,34 +30,31 @@ public class GripPipelineJan25 implements VisionPipeline {
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
 	@Override	public void process(Mat source0) {
-		
-		
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-		double[] hslThresholdHue = {77.69784172661869, 92.45733788395904};
-		double[] hslThresholdSaturation = {64.20863309352517, 255.0};
-		double[] hslThresholdLuminance = {32.10431654676259, 255.0};
+		double[] hslThresholdHue = {0.0, 180.0};
+		double[] hslThresholdSaturation = {0.0, 255.0};
+		double[] hslThresholdLuminance = {250.0, 255.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
 		// Step Find_Contours0:
 		Mat findContoursInput = hslThresholdOutput;
-		boolean findContoursExternalOnly = false;
+		boolean findContoursExternalOnly = true;
 		findContours(findContoursInput, findContoursExternalOnly, findContoursOutput);
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		//the min filtering area CAN BE ADJUSTED in the VisionValues class!!!!!
-		double filterContoursMinArea = VisionValues.GripAreaThreshold;
+		double filterContoursMinArea = 200.0;
 		double filterContoursMinPerimeter = 0.0;
-		double filterContoursMinWidth = 0.0;
-		double filterContoursMaxWidth = 1000.0;
-		double filterContoursMinHeight = 0.0;
-		double filterContoursMaxHeight = 1000.0;
-		double[] filterContoursSolidity = {0, 100};
-		double filterContoursMaxVertices = 1000000.0;
-		double filterContoursMinVertices = 0.0;
-		double filterContoursMinRatio = 0.0;
-		double filterContoursMaxRatio = 1000.0;
+		double filterContoursMinWidth = 0;
+		double filterContoursMaxWidth = 1000;
+		double filterContoursMinHeight = 0;
+		double filterContoursMaxHeight = 1000;
+		double[] filterContoursSolidity = {15, 100};
+		double filterContoursMaxVertices = 1000000;
+		double filterContoursMinVertices = 0;
+		double filterContoursMinRatio = 0.2;
+		double filterContoursMaxRatio = 5.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
 	}

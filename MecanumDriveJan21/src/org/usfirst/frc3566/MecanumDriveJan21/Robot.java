@@ -37,7 +37,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-	public static FishyThread camA;
+	public static FishyCam camA;
 	public static UsbCamera camB;
 	public static DigitalInput gearLimitSwitchFront, gearLimitSwitchBack;
 	public static NetworkTable table;
@@ -67,10 +67,11 @@ public class Robot extends IterativeRobot {
             mecanumDriveTrain = new MecanumDriveTrain();
         
         //NOTE: FishyThread includes vision processing loop. DO NOT CREATE TWO
-        	FishyThread camA = new FishyThread (0, FishyThread.defaultStart);
+        	FishyCam camA = new FishyCam (0, FishyCam.defaultStart);
     		
     		camA.setDaemon(true);
     		camA.start();
+    		System.out.println(camA.getId());
     		  
     		//camB = CameraServer.getInstance().startAutomaticCapture(1);
     		gearLimitSwitchFront = new DigitalInput(0);
