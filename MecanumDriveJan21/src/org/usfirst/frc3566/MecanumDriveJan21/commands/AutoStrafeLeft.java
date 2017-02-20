@@ -16,9 +16,7 @@ public class AutoStrafeLeft extends Command {
     }
 
     protected void initialize() {
-    	new DriveForDistance('l',2, 0.2).start();
-    	Timer.delay(2);
-    	new AutonomousLiftFront().start();
+    	new DriveForDistance('r',2, 0.35, new AutonomousLiftFront()).start();
     }
 
     // Called repeatedly when this Command is scheduled to run

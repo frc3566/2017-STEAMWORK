@@ -2,6 +2,7 @@ package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -44,6 +45,7 @@ public class moveGearDeliveryPositive extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	if(endCommand!=null){
+    		Timer.delay(1);
     		endCommand.start();
     	}
     	Robot.GearDelivery.stop();

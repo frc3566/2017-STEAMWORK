@@ -123,11 +123,15 @@ public class FishyThread extends Thread {
 				
 				int r1X = r1.x, r1Y=r1.y, r2X = r2.x, r2Y = r2.y, r1Width = r1.width,
 						r1Height = r1.height, r2Width = r2.width, r2Height = r2.height;
+				if(r1X>100)
 				 Robot.table.putValue("1stTargetX", r1X);
 				 Robot.table.putValue("1stTargetY", r1Y);
+				 if(r2X>100)
 				 Robot.table.putValue("2ndTargetX", r2X);
 				 Robot.table.putValue("2ndTargetY", r2Y);
 				 
+				 Robot.table.putValue("LeftCenter", (r1X<r2X ? (r1X+0.5*r1Width):
+					 (r2X+0.5*r2Width)));
 				 avgDetectedTargetArea = (max1+max2)/2;
 				
 				 //checks if targets are vertical or horizontal
@@ -181,6 +185,7 @@ public class FishyThread extends Thread {
 			 }
 			 	 Robot.table.putValue("avgArea", avgDetectedTargetArea);
 			 	 Robot.table.putValue("VorH", VHcheck);
+			 	 Robot.table.putValue("Detected", targetsDetected);
 		}
 }
 	

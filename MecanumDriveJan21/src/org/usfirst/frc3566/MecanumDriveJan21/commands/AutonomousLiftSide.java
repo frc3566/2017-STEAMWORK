@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutonomousLiftSide extends Command {
 	
-	private int leftOrRightTarget; //1 = left; 2 = right
-	private boolean targetsDetected, done;
+	private char leftOrRightTarget; //1 = left; 2 = right
+	private boolean ready, done;
 	//this boolean shows if the auto command is aware of the targets
 	
-    public AutonomousLiftSide(int side) {
+    public AutonomousLiftSide(char side) {
     	leftOrRightTarget = side;
-    	targetsDetected = false;
+    	ready = false;
     	done = false;
     }
 
@@ -27,42 +27,28 @@ public class AutonomousLiftSide extends Command {
     	//make the robot drive forward for 14 feet to be right next to the target!!!
     	new DriveForDistance('f', 2, 0.2).start(); //direction, distance, speed
     	Timer.delay(2);
+    	ready = true;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//execute has to happen AFTER initialize is done. Check if it does.
-    	if (!targetsDetected){
+    	if (ready){
     		//if no targets in view yet, rotate a little bit and then check again
-    		if(leftOrRightTarget == 1){
-    	    	Robot.mecanumDriveTrain.rotateRight(0.1);
-    	    	}else if(leftOrRightTarget == 2){
-    	        	Robot.mecanumDriveTrain.rotateLeft(0.1);
+    		if(leftOrRightTarget == 'l'){
+    	    	Robot.mecanumDriveTrain.rotateRight(0.4);
+    	    	}else if(leftOrRightTarget == 'r'){
+    	        	Robot.mecanumDriveTrain.rotateLeft(0.4);
     	    	}
-    		targetsDetected = FishyThread.checkIfTargetsDetected();
+    	//	targetsDetected = FishyThread.checkIfTargetsDetected();
     	}else{
-    		//once targets detected, center the targets
-    		if(FishyThread.checkIfXCenterInRange()){
-    			/**
-    			 * Gear Delivery!!
-    			 */
-    			done = true;
-    		}else{
-    			/**
-    			 * if it's not in range, either xCenter is bigger than max or smaller than min
-    			 */
-    			if(Robot.camA.getXCenter()>VisionValues.inRangeXmaxV){
-    			Robot.mecanumDriveTrain.rotateLeft(0.05); 
-    		}else if(Robot.camA.getXCenter()<VisionValues.inRangeXminV){
-    			Robot.mecanumDriveTrain.rotateRight(0.05);
-    		}
-    	}
+    	
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return done;
+        return false;
     }
 
     // Called once after isFinished returns true

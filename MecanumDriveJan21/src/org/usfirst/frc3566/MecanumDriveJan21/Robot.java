@@ -83,8 +83,8 @@ public class Robot extends IterativeRobot {
     		
     		autoChooser = new SendableChooser<Command>();
     		autoChooser.addDefault("autoLiftFront", new AutonomousLiftFront());
-    		autoChooser.addObject("autoLiftLeft", new AutonomousLiftSide(1));
-    		autoChooser.addObject("autoLiftRight", new AutonomousLiftSide(2));
+    		autoChooser.addObject("autoLiftLeft", new AutonomousLiftSide('l'));
+    		autoChooser.addObject("autoLiftRight", new AutonomousLiftSide('r'));
     		autoChooser.addObject("autoStrafeLeft", new AutoStrafeLeft());
     		autoChooser.addObject("autoStrafeRight", new AutoStrafeRight());
     		SmartDashboard.putData("Auto Chooser", autoChooser);

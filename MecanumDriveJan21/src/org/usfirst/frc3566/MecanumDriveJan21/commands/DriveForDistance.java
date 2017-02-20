@@ -17,14 +17,26 @@ public class DriveForDistance extends Command {
 	private double speed;
 	private char myDirection;
 	private MecanumDriveTrain drivetrain;
+	private Command myEnd;
 	
-    public DriveForDistance(char direction, double distanceToDrive, double s) {
+	  public DriveForDistance(char direction, double distanceToDrive, double s) {
+	    	//Directions: f, b, l, r
+	    	myDirection = direction;
+	    	myDistance = distanceToDrive;
+	    	speed = s;
+	    	drivetrain = Robot.mecanumDriveTrain;
+	    	this.setTimeout(distanceToDrive);
+	    }
+	  
+    public DriveForDistance(char direction, double distanceToDrive, double s,
+    		Command endCommand) {
     	//Directions: f, b, l, r
     	myDirection = direction;
     	myDistance = distanceToDrive;
     	speed = s;
     	drivetrain = Robot.mecanumDriveTrain;
     	this.setTimeout(distanceToDrive);
+    	myEnd = endCommand;
     }
 
     // Called just before this Command runs the first time
@@ -57,6 +69,9 @@ public class DriveForDistance extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	if(myEnd!=null){
+    		myEnd.start();
+    	}
     	drivetrain.stopDriveTrain();
     }
 
