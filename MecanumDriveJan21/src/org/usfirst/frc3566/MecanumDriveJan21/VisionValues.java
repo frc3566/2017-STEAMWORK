@@ -27,5 +27,9 @@ public class VisionValues {
 	 */
 	public static double maxHorizontalBearing = 640/2 + 20, minHorizontalBearing = 640/2 - 20;
 	public static double maxVerticalBearing = 480/2 + 10, minVerticalBearing = 480/2 - 10;
-	
+
+	/**
+	 * acceptable leveling range for vision target "horizon"
+	 */
+	public static double maxHorizonSlope = 0.05, minHorizonSlope = -0.05;
 }
