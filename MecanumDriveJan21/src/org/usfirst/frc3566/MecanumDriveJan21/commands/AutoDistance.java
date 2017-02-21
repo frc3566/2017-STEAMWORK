@@ -1,5 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -14,7 +16,7 @@ public class AutoDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	new DriveForDistance('f',3, 0.2);
+    	new DriveForDistance(Direction.FORWARD,3, 0.2);
     }
 
     // Called repeatedly when this Command is scheduled to run

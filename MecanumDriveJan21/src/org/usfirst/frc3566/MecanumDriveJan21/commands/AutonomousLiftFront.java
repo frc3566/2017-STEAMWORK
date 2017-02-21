@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3566.MecanumDriveJan21.FishyCam;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
 
 /**
  *
@@ -42,7 +43,7 @@ public class AutonomousLiftFront extends Command {
 		if (FishyCam.getArea() >= VisionValues.idealVerticalTargetArea) {
 			Robot.mecanumDriveTrain.stopDriveTrain();
 			Timer.delay(1);
-			new moveGearDeliveryPositive(0.5, 0.8, new DriveForDistance('b', 1, 0.2)).start();
+			new moveGearDeliveryPositive(0.5, 0.8, new DriveForDistance(Direction.BACKWARD, 1, 0.2)).start();
 			finished = true;
 		} else {
 			if (FishyCam.isTargetsDetected()) {
