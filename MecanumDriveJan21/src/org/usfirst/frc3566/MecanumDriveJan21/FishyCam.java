@@ -28,7 +28,11 @@ public class FishyCam extends Thread {
 
 	public static enum Orientation {
 		VERTICAL, HORIZONTAL, NA
-	};
+	}
+
+	public static enum Bearing {
+		LEFT, RIGHT, UP, DOWN, CENTER, NA
+	}
 
 	public static final int INVALID = -1;
 
@@ -170,7 +174,8 @@ public class FishyCam extends Thread {
 				 * A negative slope indicates that we are close on the right and
 				 * should therefore strafe left AND turn right
 				 */
-				horizonSlope = (double) ((right.y + right.height) - (left.y + left.height)) / (double) ((right.x + right.width) - left.x);
+				horizonSlope = (double) ((right.y + right.height) - (left.y + left.height))
+						/ (double) ((right.x + right.width) - left.x);
 
 				/*
 				 * checks if targets are vertical or horizontal
@@ -194,6 +199,7 @@ public class FishyCam extends Thread {
 			Robot.table.putValue("Center Y", getCenterY());
 			Robot.table.putValue("Orientation", getOrientation().toString());
 			Robot.table.putValue("Horizon Slope", getHorizonSlope());
+			Robot.table.putValue("Bearing to Target", getBearingToTarget().toString());
 		}
 	}
 
@@ -215,7 +221,7 @@ public class FishyCam extends Thread {
 		return INVALID;
 	}
 
-	public Orientation getOrientation() {
+	public static Orientation getOrientation() {
 		if (targetsDetected) {
 			return orientation;
 		}
@@ -239,15 +245,23 @@ public class FishyCam extends Thread {
 		}
 		return INVALID;
 	}
-	
-	public static boolean isCenterXInRange() {
-		if (orientation == Orientation.VERTICAL) {
-			return (centerX > VisionValues.inRangeXminV && centerX < VisionValues.inRangeXmaxV);
-		} else if (orientation == Orientation.HORIZONTAL) {
-			// TODO work on this if we want high goal in autonomous
-			return false;
-		} else {
-			return false;
+
+	public static Bearing getBearingToTarget() {
+		if (getOrientation() == Orientation.VERTICAL) {
+			if (centerX < VisionValues.minHorizontalBearing) {
+				return Bearing.LEFT;
+			} else if (centerX > VisionValues.maxHorizontalBearing) {
+				return Bearing.RIGHT;
+			}
+			return Bearing.CENTER;
+		} else if (getOrientation() == Orientation.HORIZONTAL) {
+			if (centerY < VisionValues.minVerticalBearing) {
+				return Bearing.UP;
+			} else if (centerY > VisionValues.maxVerticalBearing) {
+				return Bearing.DOWN;
+			}
+			return Bearing.CENTER;
 		}
+		return Bearing.NA;
 	}
 }
