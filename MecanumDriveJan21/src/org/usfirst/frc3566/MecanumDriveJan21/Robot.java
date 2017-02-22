@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -85,8 +86,8 @@ public class Robot extends IterativeRobot {
     		
     		autoChooser = new SendableChooser<Command>();
     		autoChooser.addDefault("autoLiftFront", new AutonomousLiftFront());
-    		autoChooser.addObject("autoLiftLeft", new AutonomousLiftSide('l'));
-    		autoChooser.addObject("autoLiftRight", new AutonomousLiftSide('r'));
+    		autoChooser.addObject("autoLiftLeft", new AutonomousLiftSide(Direction.LEFT));
+    		autoChooser.addObject("autoLiftRight", new AutonomousLiftSide(Direction.RIGHT));
     		autoChooser.addObject("autoStrafeLeft", new AutoStrafeLeft());
     		autoChooser.addObject("autoStrafeRight", new AutoStrafeRight());
     		SmartDashboard.putData("Auto Chooser", autoChooser);

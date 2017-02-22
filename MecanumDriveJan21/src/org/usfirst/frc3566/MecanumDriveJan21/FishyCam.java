@@ -11,6 +11,10 @@ import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 
+/**
+ * Thread the camera processing to allow for synchronous decision-making based
+ * on the feed.
+ */
 public class FishyCam extends Thread {
 
 	public static int FPStotal = 24, defaultStart = FPStotal / 2;
@@ -26,16 +30,38 @@ public class FishyCam extends Thread {
 	private static boolean targetsDetected;
 	private static double horizonSlope, centerX, centerY, averageArea;
 
+	/**
+	 * An enumerated type to describe our possible orientations (note that, if
+	 * no targets are visible, our orientation _must_ be Orientation.NA)
+	 */
 	public static enum Orientation {
 		VERTICAL, HORIZONTAL, NA
 	}
 
+	/**
+	 * An enumerated type to describe our possible bearing relative to the
+	 * vision targets (i.e. is the target to our left, above where we need it to
+	 * be or -- as with orientation -- are there no targets visible, so our
+	 * bearing is Bearing.NA?)
+	 */
 	public static enum Bearing {
 		LEFT, RIGHT, UP, DOWN, CENTER, NA
 	}
 
+	/**
+	 * A general "bad value" for coordinates
+	 */
 	public static final int INVALID = -1;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param portNumber
+	 *            Which USB port are we searching for the camera?
+	 * @param startFPS
+	 *            How many FPS should we start with (smaller is better, for
+	 *            memory/processing purposes)?
+	 */
 	public FishyCam(int portNumber, int startFPS) {
 		// Get the UsbCamera from CameraServer
 		camera = CameraServer.getInstance().startAutomaticCapture(portNumber);
@@ -43,7 +69,6 @@ public class FishyCam extends Thread {
 		camera.setResolution(640, 480);
 
 		myFPS = startFPS;
-		// camera.setFPS(myFPS);
 
 		// Get a CvSink. This will capture Mats from the camera
 		cvSink = CameraServer.getInstance().getVideo();
@@ -63,10 +88,9 @@ public class FishyCam extends Thread {
 
 	}
 
-	private double fuzzyLogic(double newCoordinate, double oldCoordinate) {
-		return newCoordinate;
-	}
-
+	/**
+	 * The main method for this thread -- handles all vision data collection
+	 */
 	@Override
 	public void run() {
 		/* reuse variables to ease on memory use... maybe */
@@ -94,9 +118,10 @@ public class FishyCam extends Thread {
 
 			/*
 			 * Give the output stream a new image to display
-			 * 
-			 * **don't** necessarily need this in competition bc it slows down
-			 * the dashboard
+			 */
+			/*
+			 * FIXME **don't** necessarily need this in competition b/cc it
+			 * slows down the dashboard
 			 */
 			outputStream.putFrame(pipeline.hslThresholdOutput());
 
@@ -104,14 +129,9 @@ public class FishyCam extends Thread {
 			 * the loop finds out the first, second and third biggest contours
 			 * in the filtered results
 			 */
-			/*
-			 * TODO check if in contoursOutput the contours are already sorted
-			 * by size
-			 */
 			int count = 0;
-			double largestArea = 0, secondLargestArea = 0;
+			double largestArea = INVALID, secondLargestArea = INVALID;
 			int largestIndex = INVALID, secondLargestIndex = INVALID;
-
 			for (MatOfPoint m : pipeline.filterContoursOutput()) {
 				double temp = Imgproc.contourArea(m);
 				if (temp >= largestArea) {
@@ -203,10 +223,21 @@ public class FishyCam extends Thread {
 		}
 	}
 
-	public void setCamFPSvalue(int fps) {
+	/**
+	 * Adjust the frames-per-second of the camera (fewer makes us take up less
+	 * memory/processing, but makes us less accurate)
+	 * 
+	 * @param fps
+	 */
+	public void setFPS(int fps) {
 		myFPS = fps;
 	}
 
+	/**
+	 * @return X-coordinate of the average center of the vision target, if
+	 *         vision targets are visible. `FishyCam.INVALID` if no vision
+	 *         targets are visible.
+	 */
 	public double getCenterX() {
 		if (targetsDetected) {
 			return centerX;
@@ -214,6 +245,11 @@ public class FishyCam extends Thread {
 		return INVALID;
 	}
 
+	/**
+	 * @return Y-coordinate of the average center of the vision target, if
+	 *         vision targets are visible. `FishyCam.INVALID` if no vision
+	 *         targets are visible.
+	 */
 	public double getCenterY() {
 		if (targetsDetected) {
 			return centerY;
@@ -221,6 +257,11 @@ public class FishyCam extends Thread {
 		return INVALID;
 	}
 
+	/**
+	 * @return Orientation of the vision target (vertical for lift target,
+	 *         horizontal for high goal target), if vision targets are visible.
+	 *         `FishyCam.Orientation.NA` if no vision targets are visible.
+	 */
 	public static Orientation getOrientation() {
 		if (targetsDetected) {
 			return orientation;
@@ -228,6 +269,13 @@ public class FishyCam extends Thread {
 		return Orientation.NA;
 	}
 
+	/**
+	 * @return Average area of the vision targets (for comparison to ideal
+	 *         values in VisionValues to determine range to target), if vision
+	 *         targets are visible. `FishyCam.INVALID` if no vision targets are
+	 *         visible.
+	 * @see org.usfirst.frc3566.MecanumDriveJan21.VisionValues
+	 */
 	public static double getArea() {
 		if (targetsDetected) {
 			return averageArea;
@@ -235,10 +283,25 @@ public class FishyCam extends Thread {
 		return INVALID;
 	}
 
+	/**
+	 * @return `TRUE` if and only if vision targets are in camera view, `FALSE`
+	 *         otherwise
+	 */
 	public static boolean isTargetsDetected() {
 		return targetsDetected;
 	}
 
+	/**
+	 * @return Slope of the "horizon" along the bottom of the vision targets
+	 *         (connecting the bottom left corner to the bottom right corner of
+	 *         their bounding rects), , if vision targets are visible.
+	 *         `FishyCam.INVALID` if no vision targets are visible. A positive
+	 *         slope indicates that the left side is closer, and the robot
+	 *         should therefore turn to the left AND strafe right to fix its
+	 *         orientation. Conversely, a negative slope indicates that the
+	 *         right side of the target is closer and the robot should turn
+	 *         right AND strafe left to bring the target to center.
+	 */
 	public static double getHorizonSlope() {
 		if (targetsDetected) {
 			return horizonSlope;
@@ -246,7 +309,21 @@ public class FishyCam extends Thread {
 		return INVALID;
 	}
 
+	/**
+	 * @return The bearing of the target relative to the robot -- that is, if
+	 *         the target is to the left, `FishyCam.Bearing.LEFT`, or if the
+	 *         target is above the desired location, `FishyCam.Bearing.UP`.
+	 *         Bearings are returned based on the detected orientation of the
+	 *         vision targets. If no vision target is in sight,
+	 *         `FishyCam.Bearing.NA`.
+	 */
 	public static Bearing getBearingToTarget() {
+		/*
+		 * Nota bene: we use the getOrientation() method here to protect against
+		 * the possibility that there might not be any vision targets in sight
+		 * (and because we're lazy and don't want to bother with fancy checks
+		 * for _that_ here.)
+		 */
 		if (getOrientation() == Orientation.VERTICAL) {
 			if (centerX < VisionValues.minHorizontalBearing) {
 				return Bearing.LEFT;

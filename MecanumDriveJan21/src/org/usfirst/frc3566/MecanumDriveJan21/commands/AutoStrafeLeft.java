@@ -1,6 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,7 +17,7 @@ public class AutoStrafeLeft extends Command {
     }
 
     protected void initialize() {
-    	new DriveForDistance('r',2, 0.35, new AutonomousLiftFront()).start();
+    	new DriveForDistance(Direction.RIGHT,2, 0.35, new AutonomousLiftFront()).start();
     }
 
     // Called repeatedly when this Command is scheduled to run

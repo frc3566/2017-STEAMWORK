@@ -8,66 +8,84 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc3566.MecanumDriveJan21.FishyCam;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
 
 /**
  *
  */
 public class AutonomousLiftFront extends Command {
 	private boolean finished;
-	//this is the autonomous command for when there is a lift in front of the robot
-	public AutonomousLiftFront(){
-		
+
+	// this is the autonomous command for when there is a lift in front of the
+	// robot
+	public AutonomousLiftFront() {
+
 	}
 
-    public boolean checkArea(){
-   //checks if the avgArea of the detected targets meets the target area requirements of the Lift 
-    	if(FishyCam.getArea() > VisionValues.idealVerticalTargetArea){
-    		return true;
-    	}else{
-    		return false;
-    	}
-    }
-    
-    protected void initialize() {
-    	finished = false;
-    }
+	protected void initialize() {
+		finished = false;
+	}
 
-    protected void execute() {
-    	//delay is 0 in the method below because this is called in the execute loop. 
-    	//Since the motor is already receiving constant commands, no extra delay is needed
-    	
-    	if(checkArea()){
-    		Robot.mecanumDriveTrain.stopDriveTrain();
-    		Timer.delay(1);
-        	new moveGearDeliveryPositive(0.5, 0.8, new DriveForDistance('b', 1, 0.2)).start();
-        	finished = true;
-    	}else{
-    		Robot.mecanumDriveTrain.driveTrainForward(0.15);
-    	}
-    }
+	protected void execute() {
+		/*
+		 * delay is 0 in the method below because this is called in the execute
+		 * loop. Since the motor is already receiving constant commands, no
+		 * extra delay is needed
+		 */
+		if (FishyCam.getArea() >= VisionValues.idealVerticalTargetArea) {
+			Robot.mecanumDriveTrain.stopDriveTrain();
+			Timer.delay(1);
+			new moveGearDeliveryPositive(0.5, 0.8, new DriveForDistance(Direction.BACKWARD, 1, 0.2)).start();
+			finished = true;
+		} else {
+			if (FishyCam.isTargetsDetected()) {
+				switch (FishyCam.getBearingToTarget()) {
+				case LEFT:
+					Robot.mecanumDriveTrain.driveTrainSidewayLeft(0.1);
+					break;
+				case RIGHT:
+					Robot.mecanumDriveTrain.driveTrainSidewayRight(0.1);
+					break;
+				case CENTER:
+				default:
+					if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
+						Robot.mecanumDriveTrain.rotateLeft(0.1);
+					} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
+						Robot.mecanumDriveTrain.rotateRight(0.1);
+					} else {
+						Robot.mecanumDriveTrain.driveTrainForward(0.2);
+					}
+					break;
+				}
+			}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	//when detected target area is big enough, calls the command to stop
-        return finished;
-    }
+			/* move expeditiously if we can't see the targets! */
+			Robot.mecanumDriveTrain.driveTrainForward(0.6);
+		}
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		// when detected target area is big enough, calls the command to stop
+		return finished;
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	Robot.mecanumDriveTrain.stopDriveTrain();
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		Robot.mecanumDriveTrain.stopDriveTrain();
+	}
 }
