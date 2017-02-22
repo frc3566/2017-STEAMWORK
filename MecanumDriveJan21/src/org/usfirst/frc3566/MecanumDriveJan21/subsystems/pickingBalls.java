@@ -25,10 +25,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class pickingBalls extends Subsystem {
-	private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	//private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
 
+	private final CANTalon ballPick = RobotMap.FPU7;
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -36,12 +36,12 @@ public class pickingBalls extends Subsystem {
     
     public void ballIn(){
     
-    	ballPick.set(-1);
+    	ballPick.set(-0.6);
     }
     
     public void ballOut(){
     	//if(Robot.gearLimitSwitchBack.get())
-    	ballPick.set(1);
+    	ballPick.set(0.6);
     }
     
 	public void stop() {

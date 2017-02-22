@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class climber extends Subsystem {
-	public static CANTalon climbBoy= RobotMap.climber;
+	//public static CANTalon climbBoy= RobotMap.climber;
+	public static CANTalon climbBoy= RobotMap.climber6;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
