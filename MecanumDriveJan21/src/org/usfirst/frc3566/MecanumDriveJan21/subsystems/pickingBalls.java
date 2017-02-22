@@ -36,12 +36,12 @@ public class pickingBalls extends Subsystem {
     
     public void ballIn(){
     
-    	ballPick.set(-0.6);
+    	ballPick.set(-0.8);
     }
     
     public void ballOut(){
     	//if(Robot.gearLimitSwitchBack.get())
-    	ballPick.set(0.6);
+    	ballPick.set(0.8);
     }
     
 	public void stop() {
