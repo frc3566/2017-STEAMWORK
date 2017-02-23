@@ -25,9 +25,9 @@ public class Sideway extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(myDirection=='l'){
-    		Robot.mecanumDriveTrain.driveTrainSidewayLeft(0.5);
+    		Robot.mecanumDriveTrain.driveTrainSidewayLeft(0.8);
     	}else if(myDirection=='r'){
-    		Robot.mecanumDriveTrain.driveTrainSidewayRight(0.5);
+    		Robot.mecanumDriveTrain.driveTrainSidewayRight(0.8);
     	}
     }
 

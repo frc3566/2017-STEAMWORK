@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
 
 
 /**
@@ -80,11 +79,13 @@ public class OI {
         ballOut = new JoystickButton(miscellaneousJoystick, 2);
         ballOut.whileHeld(new FuelOut());
         
+        /** style style style
         climbUP= new JoystickButton(miscellaneousJoystick, 5);
         climbUP.whileHeld(new climbPositive());
         
         climbDOWN = new JoystickButton (miscellaneousJoystick, 6);
         climbDOWN.whileHeld(new climbNegative());
+        **/
         
         trigger1 = new JoystickButton(miscellaneousJoystick, 9);
         trigger1.whileHeld(new ballTrigger());
@@ -122,6 +123,8 @@ public class OI {
     public double getRotation(){
     	return driveTrainJoystick.getRawAxis(2) * slowDownValue;
     }
+    
+    
     
     
     

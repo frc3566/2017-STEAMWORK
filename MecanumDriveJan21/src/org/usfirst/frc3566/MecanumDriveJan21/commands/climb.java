@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class climbNegative extends Command {
+public class climb extends Command {
 
-    public climbNegative() {
+    public climb() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        requires(Robot.climber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.climber.climbTheOtherWay();
+    	Robot.climber.climbTheOtherWay(Robot.oi.miscellaneousJoystick.getRawAxis(1));
     }
 
     // Called repeatedly when this Command is scheduled to run

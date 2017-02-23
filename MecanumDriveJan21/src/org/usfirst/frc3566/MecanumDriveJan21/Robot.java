@@ -153,7 +153,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("GearPotentiometer", gearPotentiometer.get());
         SmartDashboard.putBoolean("l1", gearLimitSwitchFront.get());
         SmartDashboard.putBoolean("l2", gearLimitSwitchBack.get());
-        SmartDashboard.putNumber("Shoot Trigger", RobotMap.ballOpener0.getPosition());
+      //  SmartDashboard.putNumber("Shoot Trigger", RobotMap.ballOpener0.getPosition());
     }
 
     /**

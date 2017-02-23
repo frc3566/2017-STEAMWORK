@@ -1,6 +1,8 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
+import org.usfirst.frc3566.MecanumDriveJan21.commands.DriveWithJoystick;
+import org.usfirst.frc3566.MecanumDriveJan21.commands.climb;
 
 import com.ctre.CANTalon;
 
@@ -9,9 +11,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
+
 public class climber extends Subsystem {
 	//public static CANTalon climbBoy= RobotMap.climber;
-	public static CANTalon climbBoy= RobotMap.climber6;
+	public static CANTalon climbclimb= RobotMap.climber;
 	
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -19,17 +22,18 @@ public class climber extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	 setDefaultCommand(new climb());
     }
     
-    public void climbOneWay() {
-    	climbBoy.set(1);
+    public void climbOneWay(double speed) {
+    	climbclimb.set(speed);
     	
     }
-    public void climbTheOtherWay(){
-    	climbBoy.set(-1);
+    public void climbTheOtherWay(double seped){
+    	climbclimb.set(-1*seped);
     	
     }
     public void STOP()	{
-    	climbBoy.set(0);
+    	climbclimb.set(0);
     }
 }

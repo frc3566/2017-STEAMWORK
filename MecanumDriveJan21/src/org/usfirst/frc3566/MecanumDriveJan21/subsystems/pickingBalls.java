@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class pickingBalls extends Subsystem {
 	//private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
 
-	private final CANTalon ballPick = RobotMap.FPU7;
+	private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
