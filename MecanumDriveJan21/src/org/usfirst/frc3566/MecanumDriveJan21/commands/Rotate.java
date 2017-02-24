@@ -1,7 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
-import org.usfirst.frc3566.MecanumDriveJan21.FishyCam.Orientation;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.FishyCam.Orientation;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,27 +9,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Sideway extends Command {
+public class Rotate extends Command {
 
 	Direction myDirection;
 	
-    public Sideway(Direction direction) {
+    public Rotate(Direction o) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	myDirection = direction;
+    	myDirection = o;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(myDirection.equals(Direction.LEFT)){
-    		Robot.mecanumDriveTrain.driveTrainSidewayLeft(0.8);
+    		Robot.mecanumDriveTrain.rotateLeft(0.5);;
     	}else if(myDirection.equals(Direction.RIGHT)){
-    		Robot.mecanumDriveTrain.driveTrainSidewayRight(0.8);
+    		Robot.mecanumDriveTrain.rotateRight(0.5);;
     	}
     }
 
