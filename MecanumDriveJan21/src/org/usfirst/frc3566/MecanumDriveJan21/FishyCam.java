@@ -2,7 +2,6 @@ package org.usfirst.frc3566.MecanumDriveJan21;
 
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 
@@ -96,7 +95,6 @@ public class FishyCam extends Thread {
 		/* reuse variables to ease on memory use... maybe */
 		MatOfPoint contour1, contour2;
 		Rect rect1, rect2, left, right, top, bottom;
-		Point bottomLeft, bottomRight;
 
 		while (!Thread.interrupted()) {
 			// updates the fps
@@ -193,8 +191,13 @@ public class FishyCam extends Thread {
 				 * 
 				 * A negative slope indicates that we are close on the right and
 				 * should therefore strafe left AND turn right
+				 * 
+				 * NOTA BENE: we use negative rise to calculate slope so we get
+				 * a meaningful slope on a standard cartesian first quadrant,
+				 * rather than the upside-down cartesian first quadrant in the
+				 * video
 				 */
-				horizonSlope = (double) ((right.y + right.height) - (left.y + left.height))
+				horizonSlope = (double) -((right.y + right.height) - (left.y + left.height))
 						/ (double) ((right.x + right.width) - left.x);
 
 				/*
@@ -212,6 +215,7 @@ public class FishyCam extends Thread {
 				 * Calculate average area of targets (for proximity sensing)
 				 */
 				averageArea = (largestArea + secondLargestArea) / 2;
+
 			}
 			Robot.table.putValue("Targets Detected", isTargetsDetected());
 			Robot.table.putValue("Average Detected Area", getArea());

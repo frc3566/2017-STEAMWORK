@@ -79,7 +79,7 @@ public class Robot extends IterativeRobot {
     		
     		gearPotentiometer = new AnalogPotentiometer(0, 360, 0);
    
-    		NetworkTable.setIPAddress("roborio-3566-Frc.local");
+    		NetworkTable.setIPAddress("cc");
     		table = NetworkTable.getTable("datatable");
     		
     		autoChooser = new SendableChooser<Command>();
