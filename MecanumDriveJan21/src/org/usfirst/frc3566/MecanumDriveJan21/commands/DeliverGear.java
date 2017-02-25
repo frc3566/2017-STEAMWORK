@@ -21,25 +21,54 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direct
 /**
  *
  */
-public class AutonomousLiftFront extends Command {
+public class DeliverGear extends Command {
 	private boolean finished;
 
 	// this is the autonomous command for when there is a lift in front of the
 	// robot
-	public AutonomousLiftFront() {
+	public DeliverGear() {
 
 	}
 
 	protected void initialize() {
 		finished = false;
-		Robot.mecanumDriveTrain.driveTrainForward(1.0);
 	}
 
 	protected void execute() {
-		if (FishyCam.isTargetsDetected()) {
-			finished = true;
+		/*
+		 * delay is 0 in the method below because this is called in the execute
+		 * loop. Since the motor is already receiving constant commands, no
+		 * extra delay is needed
+		 */
+		if (FishyCam.getArea() >= VisionValues.idealVerticalTargetArea) {
 			Robot.mecanumDriveTrain.stopDriveTrain();
-			new DeliverGear().start();
+			Timer.delay(1);
+			new moveGearDeliveryPositive(0.5, 0.8, new DriveForDistance(Direction.BACKWARD, 1, 0.2)).start();
+			finished = true;
+		} else {
+			if (FishyCam.isTargetsDetected()) {
+				switch (FishyCam.getBearingToTarget()) {
+				case LEFT:
+					Robot.mecanumDriveTrain.driveTrainSidewayLeft(0.1);
+					break;
+				case RIGHT:
+					Robot.mecanumDriveTrain.driveTrainSidewayRight(0.1);
+					break;
+				case CENTER:
+				default:
+					if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
+						Robot.mecanumDriveTrain.rotateLeft(0.1);
+					} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
+						Robot.mecanumDriveTrain.rotateRight(0.1);
+					} else {
+						Robot.mecanumDriveTrain.driveTrainForward(0.2);
+					}
+					break;
+				}
+			}
+
+			/* move expeditiously if we can't see the targets! */
+			Robot.mecanumDriveTrain.driveTrainForward(0.6);
 		}
 	}
 
