@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class shoot extends Subsystem {
+public class Shoot extends Subsystem {
 	private  CANTalon shoot;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
