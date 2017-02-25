@@ -1,0 +1,40 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="231" y="400"/>
+		<width>501</width>
+		<height>386</height>
+		<property name="Camera Choice" value="HSL 0"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="231" y="11"/>
+		<width>502</width>
+		<height>394</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="ResetGear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="22" y="192"/>
+	</widget>
+	<widget field="AutoLiftFront" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="9" y="159"/>
+	</widget>
+	<widget field="Deliver Gear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="14" y="224"/>
+	</widget>
+	<widget field="Auto Chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="12" y="12"/>
+	</widget>
+	<widget field="GearPotentiometer" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="16" y="293"/>
+	</widget>
+	<widget field="l2" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="98" y="320"/>
+	</widget>
+	<widget field="l1" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="99" y="349"/>
+		<height>20</height>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
