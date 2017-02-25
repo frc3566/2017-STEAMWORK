@@ -18,9 +18,6 @@ import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.TalonSRX;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

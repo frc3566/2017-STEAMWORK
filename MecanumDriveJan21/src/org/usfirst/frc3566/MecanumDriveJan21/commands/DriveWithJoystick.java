@@ -10,7 +10,6 @@
 
 
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;

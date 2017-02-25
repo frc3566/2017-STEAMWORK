@@ -13,9 +13,7 @@ package org.usfirst.frc3566.MecanumDriveJan21;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -44,7 +42,7 @@ public class Robot extends IterativeRobot {
 	public static NetworkTable table;
 	public static Potentiometer gearPotentiometer;
 	public static pickingBalls fuels;
-	public static shoot shoot;
+	public static Shoot shoot;
     Command autonomous;
    // public static Mailbox mailbox;
     public static OI oi;
@@ -99,7 +97,7 @@ public class Robot extends IterativeRobot {
     	GearDelivery= new GearDelivery();
     	fuels = new pickingBalls();
     	climber = new climber();
-    	shoot = new shoot();
+    	shoot = new Shoot();
         oi = new OI();
         OI.slowDownValue = 0.5;
         shooterTrigger = new shooterTrigger();

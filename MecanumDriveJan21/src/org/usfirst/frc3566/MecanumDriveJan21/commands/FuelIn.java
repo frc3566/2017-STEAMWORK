@@ -2,10 +2,6 @@ package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 
-import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
-
-import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

@@ -1,6 +1,5 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
-import java.awt.Robot;
 
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
 
