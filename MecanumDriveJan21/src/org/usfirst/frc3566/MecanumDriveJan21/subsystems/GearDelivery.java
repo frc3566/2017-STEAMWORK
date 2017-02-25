@@ -24,12 +24,12 @@ public class GearDelivery extends Subsystem {
     }
     
     public void deliver(double speed){
-    	if(Robot.gearLimitSwitchFront.get()&&Robot.gearPotentiometer.get()>19)
+    	if(Robot.gearLimitSwitchFront.get())
     	gearDelivery.set(speed*-1); //42 good
     }
     
     public void retract(double speed){
-    	if(Robot.gearLimitSwitchBack.get()&&Robot.gearPotentiometer.get()<120)
+    	if(Robot.gearLimitSwitchBack.get())
     	gearDelivery.set(speed);
     }
     

@@ -23,11 +23,8 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direct
  */
 public class DeliverGear extends Command {
 	private boolean finished;
-	
-	public static final double
-	STRAFE_POWER =0.4,
-	ROTATE_POWER =0.1,
-	FORWARD_POWER = 0.2;
+
+	public static final double STRAFE_POWER = 0.4, ROTATE_POWER = 0.1, FORWARD_POWER = 0.2;
 	public static final long TIMER = 50;
 
 	private enum Action {
@@ -50,53 +47,61 @@ public class DeliverGear extends Command {
 	}
 
 	protected void execute() {
-		if (System.currentTimeMillis() >= endTimer) {
+		if (FishyCam.getCenterY() <= VisionValues.minVerticalBearing) {
+			Robot.mecanumDriveTrain.stopDriveTrain();
+			finished = true;
+			
+		} else {
 
-			if (FishyCam.isTargetsDetected()) {
-				switch (FishyCam.getBearingToTarget()) {
-				case LEFT:
-					Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
-					action = Action.STRAFING_LEFT;
-					break;
-				case RIGHT:
-					Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
-					action = Action.STRAFING_RIGHT;
-					break;
-				case CENTER:
-				default:
-					if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
-						Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
-						action = Action.TURNING_LEFT;
-					} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
-						Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
-						action = Action.TURNING_RIGHT;
-					} else {
-						Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
-						action = Action.FORWARD;
+			if (System.currentTimeMillis() >= endTimer) {
+
+				if (FishyCam.isTargetsDetected()) {
+					switch (FishyCam.getBearingToTarget()) {
+					case LEFT:
+						Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
+						action = Action.STRAFING_LEFT;
+						break;
+					case RIGHT:
+						Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
+						action = Action.STRAFING_RIGHT;
+						break;
+					case CENTER:
+					default:
+						if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
+							Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
+							action = Action.TURNING_LEFT;
+						} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
+							Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
+							action = Action.TURNING_RIGHT;
+						} else {
+							Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
+							action = Action.FORWARD;
+						}
+						break;
 					}
+					endTimer = System.currentTimeMillis() + TIMER;
+				}
+			} else {
+				switch (action) {
+				case TURNING_LEFT:
+					Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
+					break;
+				case TURNING_RIGHT:
+					Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
+					break;
+				case STRAFING_LEFT:
+					Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
+					break;
+				case STRAFING_RIGHT:
+					Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
+					break;
+				case FORWARD:
+					Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
 					break;
 				}
-				endTimer = System.currentTimeMillis() + TIMER;
-			}
-		} else {
-			switch (action) {
-			case TURNING_LEFT:
-				Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
-				break;
-			case TURNING_RIGHT:
-				Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
-				break;
-			case STRAFING_LEFT:
-				Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
-				break;
-			case STRAFING_RIGHT:
-				Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
-				break;
-			case FORWARD:
-				Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
-				break;
 			}
 		}
+
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -107,7 +112,7 @@ public class DeliverGear extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-
+		new DeliverGearCommandGroup().start();
 	}
 
 	// Called when another command which requires one or more of the same

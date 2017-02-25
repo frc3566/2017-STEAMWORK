@@ -1,27 +1,25 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
+import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class FrontAndBack extends Command {
+public class ResetPotentiometer extends Command {
 
-	double forwardTime;
 	
-    public FrontAndBack() {
+    public ResetPotentiometer() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	forwardTime = 0.8;
-    	this.setTimeout(forwardTime);
     }
 
-    
     // Called just before this Command runs the first time
     protected void initialize() {
-    	new DriveForDistance(Direction.FORWARD, forwardTime, 0.1).start();
+    	VisionValues.potentiometer0 = Robot.gearPotentiometer.get();
+    	this.setTimeout(0.1);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,11 +33,11 @@ public class FrontAndBack extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	new DriveForDistance(Direction.BACKWARD, forwardTime+0.2, 0.1).start();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

@@ -34,7 +34,7 @@ public class AutonomousLiftFront extends Command {
 	protected void initialize() {
 		finished = false;
 		Robot.mecanumDriveTrain.driveTrainForward(0.2);
-		endTimer = System.currentTimeMillis();// + 2000;
+		endTimer = System.currentTimeMillis()+2000;// + 2000;
 	}
 
 	protected void execute() {

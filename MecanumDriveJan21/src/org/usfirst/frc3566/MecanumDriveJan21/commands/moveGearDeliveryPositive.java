@@ -1,6 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,11 +13,19 @@ public class moveGearDeliveryPositive extends Command {
 
 	Command endCommand; 
 	double mySpeed;
+	double distance = -1;
+	boolean finished = false;
 	
     public moveGearDeliveryPositive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	mySpeed=0.5;
+    }
+    
+    public moveGearDeliveryPositive(double speed, double PotentiometerDistance){
+    	mySpeed = speed;
+    	distance = PotentiometerDistance;
+    	this.setTimeout(5);
     }
 
     public moveGearDeliveryPositive(double Timeout, double speed, Command end){
@@ -31,21 +40,26 @@ public class moveGearDeliveryPositive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	if(distance != -1){
+    		if(Math.abs(Robot.gearPotentiometer.get()-VisionValues.potentiometer0 - distance)> 2){
+    			Robot.GearDelivery.deliver(mySpeed);
+    		}else{
+    			finished = true;
+    		}
+    	}else{
     	Robot.GearDelivery.deliver(mySpeed);
-    	
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
        // return (!Robot.gearLimitSwitchFront.get());
-    	return this.isTimedOut();
+    	return (finished || this.isTimedOut() || (!Robot.gearLimitSwitchFront.get()));
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	if(endCommand!=null){
-    		Timer.delay(1);
     		endCommand.start();
     	}
     	Robot.GearDelivery.stop();

@@ -62,7 +62,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	RobotMap.init();
-    	System.out.println("HIIIIIIII!!!!!!");
     	
             mecanumDriveTrain = new MecanumDriveTrain();
         
@@ -78,7 +77,8 @@ public class Robot extends IterativeRobot {
     		gearLimitSwitchBack = new DigitalInput(1);
     		
     		gearPotentiometer = new AnalogPotentiometer(0, 360, 0);
-   
+    		VisionValues.potentiometer0 = gearPotentiometer.get();
+    		
     		NetworkTable.setIPAddress("cc");
     		table = NetworkTable.getTable("datatable");
     		
@@ -93,7 +93,7 @@ public class Robot extends IterativeRobot {
     		SmartDashboard.putData("ResetGear", new moveGearNegative());
     		SmartDashboard.putData("Deliver Gear", new moveGearDeliveryPositive());
     		
-    //	mailbox = new Mailbox();
+
     	GearDelivery= new GearDelivery();
     	fuels = new pickingBalls();
     	climber = new climber();
@@ -101,6 +101,7 @@ public class Robot extends IterativeRobot {
         oi = new OI();
         OI.slowDownValue = 0.5;
         shooterTrigger = new shooterTrigger();
+        
         /**
         encoder1 = new Encoder(0, 1); //parameters: A channel and B channel
         encoder1.setMaxPeriod(.1);
