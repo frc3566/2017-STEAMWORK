@@ -69,11 +69,11 @@ public class MecanumDriveTrain extends Subsystem {
     }
     
     //TODO Need Check
-    public void driveTrainSidewayLeft(double speed){
+    public void driveTrainSidewayRight(double speed){
     	robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
     }
 
-    public void driveTrainSidewayRight(double speed){
+    public void driveTrainSidewayLeft(double speed){
     	robotDrive.mecanumDrive_Cartesian(speed*-1, 0, 0, 0);
     }
     

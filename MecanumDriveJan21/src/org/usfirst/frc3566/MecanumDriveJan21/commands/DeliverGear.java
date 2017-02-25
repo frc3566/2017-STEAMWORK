@@ -23,6 +23,20 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direct
  */
 public class DeliverGear extends Command {
 	private boolean finished;
+	
+	public static final double
+	STRAFE_POWER =0.4,
+	ROTATE_POWER =0.1,
+	FORWARD_POWER = 0.2;
+	public static final long TIMER = 50;
+
+	private enum Action {
+		TURNING_LEFT, TURNING_RIGHT, STRAFING_LEFT, STRAFING_RIGHT, FORWARD, NA
+	}
+
+	private Action action;
+
+	private long endTimer;
 
 	// this is the autonomous command for when there is a lift in front of the
 	// robot
@@ -32,43 +46,56 @@ public class DeliverGear extends Command {
 
 	protected void initialize() {
 		finished = false;
+		action = Action.NA;
 	}
 
 	protected void execute() {
-		/*
-		 * delay is 0 in the method below because this is called in the execute
-		 * loop. Since the motor is already receiving constant commands, no
-		 * extra delay is needed
-		 */
-		if (FishyCam.getArea() >= VisionValues.idealVerticalTargetArea) {
-			Robot.mecanumDriveTrain.stopDriveTrain();
-			Timer.delay(1);
-			new moveGearDeliveryPositive(0.5, 0.8, new DriveForDistance(Direction.BACKWARD, 1, 0.2)).start();
-			finished = true;
-		} else {
+		if (System.currentTimeMillis() >= endTimer) {
+
 			if (FishyCam.isTargetsDetected()) {
 				switch (FishyCam.getBearingToTarget()) {
 				case LEFT:
-					Robot.mecanumDriveTrain.driveTrainSidewayLeft(0.1);
+					Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
+					action = Action.STRAFING_LEFT;
 					break;
 				case RIGHT:
-					Robot.mecanumDriveTrain.driveTrainSidewayRight(0.1);
+					Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
+					action = Action.STRAFING_RIGHT;
 					break;
 				case CENTER:
 				default:
 					if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
-						Robot.mecanumDriveTrain.rotateLeft(0.1);
+						Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
+						action = Action.TURNING_LEFT;
 					} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
-						Robot.mecanumDriveTrain.rotateRight(0.1);
+						Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
+						action = Action.TURNING_RIGHT;
 					} else {
-						Robot.mecanumDriveTrain.driveTrainForward(0.2);
+						Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
+						action = Action.FORWARD;
 					}
 					break;
 				}
+				endTimer = System.currentTimeMillis() + TIMER;
 			}
-
-			/* move expeditiously if we can't see the targets! */
-			Robot.mecanumDriveTrain.driveTrainForward(0.6);
+		} else {
+			switch (action) {
+			case TURNING_LEFT:
+				Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
+				break;
+			case TURNING_RIGHT:
+				Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
+				break;
+			case STRAFING_LEFT:
+				Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
+				break;
+			case STRAFING_RIGHT:
+				Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
+				break;
+			case FORWARD:
+				Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
+				break;
+			}
 		}
 	}
 

@@ -32,9 +32,9 @@ public class GripPipeline implements VisionPipeline {
 	@Override	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-		double[] hslThresholdHue = {81.0, 92.0};
-		double[] hslThresholdSaturation = {112.0, 255.0};
-		double[] hslThresholdLuminance = {67.0, 211.0};
+		double[] hslThresholdHue = {11.0, 94.0};
+		double[] hslThresholdSaturation = {0.0, 177.0};
+		double[] hslThresholdLuminance = {235.0, 255.0};
 		hslThreshold(hslThresholdInput, hslThresholdHue, hslThresholdSaturation, hslThresholdLuminance, hslThresholdOutput);
 
 		// Step Find_Contours0:
@@ -45,14 +45,14 @@ public class GripPipeline implements VisionPipeline {
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
 		double filterContoursMinArea = 200.0;
-		double filterContoursMinPerimeter = 0.0;
-		double filterContoursMinWidth = 0;
+		double filterContoursMinPerimeter = 100.0;
+		double filterContoursMinWidth = 10;
 		double filterContoursMaxWidth = 1000;
-		double filterContoursMinHeight = 0;
+		double filterContoursMinHeight = 10;
 		double filterContoursMaxHeight = 1000;
 		double[] filterContoursSolidity = {15, 100};
 		double filterContoursMaxVertices = 1000;
-		double filterContoursMinVertices = 0;
+		double filterContoursMinVertices = 4;
 		double filterContoursMinRatio = 0.2;
 		double filterContoursMaxRatio = 5.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);

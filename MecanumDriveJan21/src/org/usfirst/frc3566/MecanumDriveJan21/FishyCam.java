@@ -242,7 +242,7 @@ public class FishyCam extends Thread {
 	 *         vision targets are visible. `FishyCam.INVALID` if no vision
 	 *         targets are visible.
 	 */
-	public double getCenterX() {
+	public static double getCenterX() {
 		if (targetsDetected) {
 			return centerX;
 		}
@@ -254,7 +254,7 @@ public class FishyCam extends Thread {
 	 *         vision targets are visible. `FishyCam.INVALID` if no vision
 	 *         targets are visible.
 	 */
-	public double getCenterY() {
+	public static double getCenterY() {
 		if (targetsDetected) {
 			return centerY;
 		}

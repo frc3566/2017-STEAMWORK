@@ -26,8 +26,8 @@ public class VisionValues {
 	 * acceptable centering range for gear delivery.
 	 */
 	public static double maxHorizontalBearing = 640/2 + 20, minHorizontalBearing = 640/2 - 20;
-	public static double maxVerticalBearing = 480/2 + 10, minVerticalBearing = 480/2 - 10;
-
+	public static double maxVerticalBearing = 480/2 + 10, minVerticalBearing = 172;
+	
 	/**
 	 * acceptable leveling range for vision target "horizon"
 	 */

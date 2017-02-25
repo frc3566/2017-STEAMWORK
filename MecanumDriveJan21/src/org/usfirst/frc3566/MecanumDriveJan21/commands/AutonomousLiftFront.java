@@ -23,6 +23,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direct
  */
 public class AutonomousLiftFront extends Command {
 	private boolean finished;
+	private long endTimer;
 
 	// this is the autonomous command for when there is a lift in front of the
 	// robot
@@ -32,14 +33,17 @@ public class AutonomousLiftFront extends Command {
 
 	protected void initialize() {
 		finished = false;
-		Robot.mecanumDriveTrain.driveTrainForward(1.0);
+		Robot.mecanumDriveTrain.driveTrainForward(0.2);
+		endTimer = System.currentTimeMillis();// + 2000;
 	}
 
 	protected void execute() {
-		if (FishyCam.isTargetsDetected()) {
+		if (System.currentTimeMillis() >= endTimer) {
 			finished = true;
 			Robot.mecanumDriveTrain.stopDriveTrain();
 			new DeliverGear().start();
+		} else {
+			Robot.mecanumDriveTrain.driveTrainForward(0.2);
 		}
 	}
 
