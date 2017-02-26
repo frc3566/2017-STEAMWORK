@@ -86,7 +86,7 @@ public class OI {
         ballIn = new JoystickButton(miscellaneousJoystick, 1);
         ballIn.whileHeld(new FuelIn());
         
-        deliverGear = new JoystickButton(miscellaneousJoystick, 5);
+        deliverGear = new JoystickButton(miscellaneousJoystick, 10);
         deliverGear.whenPressed(new DeliverGear());
         
         shoot = new JoystickButton(miscellaneousJoystick, 8);
@@ -98,6 +98,12 @@ public class OI {
         ballOut = new JoystickButton(miscellaneousJoystick, 2);
         ballOut.whileHeld(new FuelOut());
         
+        trigger1 = new JoystickButton(miscellaneousJoystick, 5);
+        trigger1.whileHeld(new ballTrigger());
+        
+
+        trigger2 = new JoystickButton(miscellaneousJoystick, 6);
+        trigger2.whileHeld(new ballTriggerPos2());
         /** style style style
         climbUP= new JoystickButton(miscellaneousJoystick, 5);
         climbUP.whileHeld(new climbPositive());
@@ -106,12 +112,7 @@ public class OI {
         climbDOWN.whileHeld(new climbNegative());
         **/
         
-        trigger1 = new JoystickButton(miscellaneousJoystick, 9);
-        trigger1.whileHeld(new ballTrigger());
         
-
-        trigger2 = new JoystickButton(miscellaneousJoystick, 10);
-        trigger2.whileHeld(new ballTriggerPos2());
         
 
       //  hopeMailMovesOpp = new JoystickButton(joystick1, 2);
