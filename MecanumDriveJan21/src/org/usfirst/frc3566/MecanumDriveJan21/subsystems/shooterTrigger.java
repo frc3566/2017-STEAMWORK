@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class shooterTrigger extends Subsystem {
+public class ShooterTrigger extends Subsystem {
 	public static Servo ballShoot = RobotMap.servo;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

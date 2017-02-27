@@ -1,7 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
-import org.usfirst.frc3566.MecanumDriveJan21.commands.climb;
+import org.usfirst.frc3566.MecanumDriveJan21.commands.Climb;
 
 import com.ctre.CANTalon;
 
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 
-public class climber extends Subsystem {
+public class Climber extends Subsystem {
 	//public static CANTalon climbBoy= RobotMap.climber;
 	public static CANTalon climbclimb= RobotMap.climber;
 	
@@ -21,7 +21,7 @@ public class climber extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	 setDefaultCommand(new climb());
+    	 setDefaultCommand(new Climb());
     }
     
     public void climbOneWay(double speed) {
