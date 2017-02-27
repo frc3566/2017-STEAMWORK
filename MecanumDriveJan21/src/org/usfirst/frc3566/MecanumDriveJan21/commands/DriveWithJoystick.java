@@ -48,7 +48,7 @@ public class DriveWithJoystick extends Command {
     protected void execute() {
     //	myDrive.mecanumDrive_Cartesian(Robot.oi.getSideWays(), Robot.oi.getStraight(), 
     //			Robot.oi.getRotation(), 0);
-    	myDrive.mecanumDrive_Cartesian(0, Robot.oi.getStraight(), 
+    	myDrive.mecanumDrive_Cartesian(Robot.oi.driveTrainJoystick.getRawAxis(0), Robot.oi.driveTrainJoystick.getRawAxis(1), 
     			Robot.oi.getRotation(), 0);
     }
 

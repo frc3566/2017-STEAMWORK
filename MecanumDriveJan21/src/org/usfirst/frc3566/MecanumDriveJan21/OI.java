@@ -79,12 +79,12 @@ public class OI {
         deliverGear2.whenPressed(new PlaceGearOnLiftHook());
         
         gearPositive = new JoystickButton(miscellaneousJoystick,4);
-        gearPositive.whileHeld(new RaiseGearHandler());
-        gearPositive.whenReleased(new StopGearHandler());
+        gearPositive.whileHeld(new GearHandlerRaise());
+        gearPositive.whenReleased(new GearHandlerStop());
         
         gearNegative = new JoystickButton(miscellaneousJoystick, 3);
-        gearNegative.whileHeld(new LowerGearHandler());
-        gearNegative.whenReleased(new StopGearHandler());
+        gearNegative.whileHeld(new GearHandlerLower());
+        gearNegative.whenReleased(new GearHandlerStop());
         
         ballIn = new JoystickButton(miscellaneousJoystick, 1);
         ballIn.whileHeld(new FuelIn());

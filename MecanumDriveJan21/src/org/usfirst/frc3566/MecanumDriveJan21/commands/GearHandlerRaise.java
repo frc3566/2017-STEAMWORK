@@ -9,26 +9,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class RaiseGearHandler extends Command {
+public class GearHandlerRaise extends Command {
 
 	Command endCommand; 
 	double mySpeed;
 	double distance = -1;
 	boolean finished = false;
 	
-    public RaiseGearHandler() {
+    public GearHandlerRaise() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	mySpeed=0.7;
     }
     
-    public RaiseGearHandler(double speed, double PotentiometerDistance){
+    public GearHandlerRaise(double speed, double PotentiometerDistance){
     	mySpeed = speed;
     	distance = PotentiometerDistance;
     	this.setTimeout(5);
     }
 
-    public RaiseGearHandler(double Timeout, double speed, Command end){
+    public GearHandlerRaise(double Timeout, double speed, Command end){
     	this.setTimeout(Timeout);
     	endCommand = end;
     	mySpeed = speed;

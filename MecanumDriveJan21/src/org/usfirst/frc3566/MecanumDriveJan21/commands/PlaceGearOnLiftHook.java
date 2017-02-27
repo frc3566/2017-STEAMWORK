@@ -16,14 +16,14 @@ public class PlaceGearOnLiftHook extends CommandGroup {
     	
         // Add Commands here:
     	addSequential(new AlignToLiftHook());
-    	addSequential(new LowerGearHandler());
+    	addSequential(new GearHandlerLower());
     	addSequential(new ResetPotentiometer());
-    	addSequential(new RaiseGearHandler(0.4, VisionValues.PotentiometerBottomToMiddleDistance));
+    	addSequential(new GearHandlerRaise(0.4, VisionValues.PotentiometerBottomToMiddleDistance));
     	addSequential(new DriveForDistance(Direction.FORWARD, 0.8, 0.2));
     	addSequential(new ResetPotentiometer());
-    	addSequential(new RaiseGearHandler(0.4, VisionValues.PotentiometerMiddleToTopDistance));
+    	addSequential(new GearHandlerRaise(0.4, VisionValues.PotentiometerMiddleToTopDistance));
     	addSequential(new DriveForDistance(Direction.BACKWARD, 1, 0.2));
-    	addSequential(new LowerGearHandler());
+    	addSequential(new GearHandlerLower());
     	addSequential(new ResetPotentiometer());
     	
     	/*move gear delivery positive sometimes does not go all the way up, but commond will go all the way through

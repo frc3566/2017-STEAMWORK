@@ -83,15 +83,15 @@ public class Robot extends IterativeRobot {
     		table = NetworkTable.getTable("datatable");
     		
     		autoChooser = new SendableChooser<Command>();
-    		autoChooser.addDefault("autoLiftFront", new AutonomousLiftFront());
-    		autoChooser.addObject("autoLiftLeft", new AutonomousLiftSide(Direction.LEFT));
-    		autoChooser.addObject("autoLiftRight", new AutonomousLiftSide(Direction.RIGHT));
-    		autoChooser.addObject("autoStrafeLeft", new AutoStrafeLeft());
-    		autoChooser.addObject("autoStrafeRight", new AutoStrafeRight());
-    		SmartDashboard.putData("Auto Chooser", autoChooser);
+    		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront());
+    		autoChooser.addObject("Left-Side Lift Hook", new AutonomousLiftSide(Direction.LEFT));
+    		autoChooser.addObject("Right-Side Lift Hook", new AutonomousLiftSide(Direction.RIGHT));
+    		autoChooser.addObject("Strafe Left", new AutoStrafeLeft());
+    		autoChooser.addObject("Strafe Right", new AutoStrafeRight());
+    		SmartDashboard.putData("Autonomous", autoChooser);
     	
-    		SmartDashboard.putData("ResetGear", new LowerGearHandler());
-    		SmartDashboard.putData("Deliver Gear", new RaiseGearHandler());
+    		SmartDashboard.putData("Reset Gear", new GearHandlerLower());
+    		SmartDashboard.putData("Deliver Gear", new GearHandlerRaise());
     		
 
     	gearDelivery= new GearDelivery();
@@ -125,6 +125,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         autonomous = (Command) autoChooser.getSelected();
+        System.out.println("Beginning autonomous: " + autonomous.getName());
         autonomous.start();
     }
 
@@ -149,9 +150,9 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     	//SmartDashboard.putNumber("encoderDistance", encoder1.getDistance());
-        SmartDashboard.putNumber("GearPotentiometer", gearPotentiometer.get());
-        SmartDashboard.putBoolean("l1", gearLimitSwitchFront.get());
-        SmartDashboard.putBoolean("l2", gearLimitSwitchBack.get());
+        SmartDashboard.putNumber("Gear Handler Potentiometer", gearPotentiometer.get());
+        SmartDashboard.putBoolean("Gear Handler Front Limit", gearLimitSwitchFront.get());
+        SmartDashboard.putBoolean(" Gear Handler Back Limit", gearLimitSwitchBack.get());
       //  SmartDashboard.putNumber("Shoot Trigger", RobotMap.ballOpener0.getPosition());
     }
 
