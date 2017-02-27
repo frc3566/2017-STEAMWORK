@@ -64,10 +64,8 @@ public class OI {
         back.whenPressed(new DriveForDistance(Direction.BACKWARD, 0.15, 0.2));
         
         sidewayL = new JoystickButton(driveTrainJoystick, 5);
-        sidewayL.whileHeld(new Sideway(Direction.LEFT));
         
         sidewayR = new JoystickButton(driveTrainJoystick, 6);
-        sidewayR.whileHeld(new Sideway(Direction.RIGHT));
         
         rotateL = new JoystickButton(driveTrainJoystick, 7);
         rotateL.whileHeld(new Rotate(Direction.LEFT));
