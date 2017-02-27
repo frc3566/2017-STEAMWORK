@@ -21,7 +21,7 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.climbTheOtherWay(Robot.oi.miscellaneousJoystick.getRawAxis(1));
+    	Robot.climber.ascend(Robot.oi.miscellaneousJoystick.getRawAxis(1));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +31,7 @@ public class Climb extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.STOP();
+    	Robot.climber.stop();
     }
 
     // Called when another command which requires one or more of the same

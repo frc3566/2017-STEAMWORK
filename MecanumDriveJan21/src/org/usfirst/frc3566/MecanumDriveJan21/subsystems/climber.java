@@ -12,27 +12,27 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 
 public class Climber extends Subsystem {
-	//public static CANTalon climbBoy= RobotMap.climber;
-	public static CANTalon climbclimb= RobotMap.climber;
-	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	public static CANTalon climber = RobotMap.climber;
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	 setDefaultCommand(new Climb());
-    }
-    
-    public void climbOneWay(double speed) {
-    	climbclimb.set(speed);
-    	
-    }
-    public void climbTheOtherWay(double seped){
-    	climbclimb.set(-1*seped);
-    	
-    }
-    public void STOP()	{
-    	climbclimb.set(0);
-    }
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
+
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		setDefaultCommand(new Climb());
+	}
+
+	public void ascend(double speed) {
+		climber.set(speed);
+
+	}
+
+	public void descend(double speed) {
+		climber.set(-1 * speed);
+
+	}
+
+	public void stop() {
+		climber.set(0);
+	}
 }
