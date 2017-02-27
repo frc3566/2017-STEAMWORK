@@ -8,34 +8,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DeliverGearCommandGroup extends CommandGroup {
+public class readyToDeliverCommandGroup extends CommandGroup {
 
-    public DeliverGearCommandGroup() {
-    	//Potentiometer Deliver 19
-    	//Potentiometer Middle 82
-    	
+    public readyToDeliverCommandGroup() {
         // Add Commands here:
+        // e.g. addSequential(new Command1());
+        //      addSequential(new Command2());
+        // these will run in order.
     	addSequential(new moveGearNegative());
     	addSequential(new ResetPotentiometer());
     	addSequential(new moveGearDeliveryPositive(0.4, VisionValues.PotentiometerBottomToMiddleDistance));
     	addSequential(new DriveForDistance(Direction.FORWARD, 0.8, 0.2));
     	addSequential(new ResetPotentiometer());
     	addSequential(new moveGearDeliveryPositive(0.4, VisionValues.PotentiometerMiddleToTopDistance));
-    	addSequential(new DriveForDistance(Direction.BACKWARD, 1, 0.2));
-    	addSequential(new moveGearNegative());
-    	addSequential(new ResetPotentiometer());
-    	
-    	/*move gear delivery positive sometimes does not go all the way up, but commond will go all the way through
-    	
-    	*/
-    	//addSequential(new FrontAndBack());
-    	
-    	
-    	
-    	
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
 
         // To run multiple commands at the same time,
         // use addParallel()

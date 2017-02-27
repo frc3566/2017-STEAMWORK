@@ -19,7 +19,7 @@ public class moveGearDeliveryPositive extends Command {
     public moveGearDeliveryPositive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	mySpeed=0.5;
+    	mySpeed=0.7;
     }
     
     public moveGearDeliveryPositive(double speed, double PotentiometerDistance){

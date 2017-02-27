@@ -34,6 +34,9 @@
 		<location x="99" y="349"/>
 		<height>20</height>
 	</widget>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="10" y="25"/>
+	</widget>
 </dashboard>
 <live-window>
 </live-window>
