@@ -7,16 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class stopGear extends Command {
+public class BallTriggerClose extends Command {
 
-    public stopGear() {
+    public BallTriggerClose() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.GearDelivery.stop();
+    	Robot.shooterTrigger.servoPositionDos();
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -9,26 +9,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class moveGearDeliveryPositive extends Command {
+public class RaiseGearHandler extends Command {
 
 	Command endCommand; 
 	double mySpeed;
 	double distance = -1;
 	boolean finished = false;
 	
-    public moveGearDeliveryPositive() {
+    public RaiseGearHandler() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	mySpeed=0.7;
     }
     
-    public moveGearDeliveryPositive(double speed, double PotentiometerDistance){
+    public RaiseGearHandler(double speed, double PotentiometerDistance){
     	mySpeed = speed;
     	distance = PotentiometerDistance;
     	this.setTimeout(5);
     }
 
-    public moveGearDeliveryPositive(double Timeout, double speed, Command end){
+    public RaiseGearHandler(double Timeout, double speed, Command end){
     	this.setTimeout(Timeout);
     	endCommand = end;
     	mySpeed = speed;
@@ -42,12 +42,12 @@ public class moveGearDeliveryPositive extends Command {
     protected void execute() {
     	if(distance != -1){
     		if(Math.abs(Robot.gearPotentiometer.get()-VisionValues.potentiometer0 - distance)> 2){
-    			Robot.GearDelivery.deliver(mySpeed);
+    			Robot.gearDelivery.deliver(mySpeed);
     		}else{
     			finished = true;
     		}
     	}else{
-    	Robot.GearDelivery.deliver(mySpeed);
+    	Robot.gearDelivery.deliver(mySpeed);
     	}
     }
 
@@ -62,7 +62,7 @@ public class moveGearDeliveryPositive extends Command {
     	if(endCommand!=null){
     		endCommand.start();
     	}
-    	Robot.GearDelivery.stop();
+    	Robot.gearDelivery.stop();
     }
 
     // Called when another command which requires one or more of the same

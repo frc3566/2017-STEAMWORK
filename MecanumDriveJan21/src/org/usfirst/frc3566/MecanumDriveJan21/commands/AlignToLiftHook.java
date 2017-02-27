@@ -53,7 +53,7 @@ public class AlignToLiftHook extends Command {
 		 * enough to finish delivering the gear
 		 */
 		// FIXME we should maybe pay attention to centering left/right, no?
-		if (FishyCam.getCenterY() <= VisionValues.minVerticalBearing) {
+		if (FishyCam.getCenterY() <= VisionValues.minHeightLiftHookVisionTargets) {
 			Robot.mecanumDriveTrain.stopDriveTrain();
 			finished = true;
 

@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class pickingBalls extends Subsystem {
+public class BallElevator extends Subsystem {
 	//private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
 
 	private final CANTalon ballPick = RobotMap.fuelPickerUpper8;

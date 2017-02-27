@@ -79,12 +79,12 @@ public class OI {
         deliverGear2.whenPressed(new PlaceGearOnLiftHook());
         
         gearPositive = new JoystickButton(miscellaneousJoystick,4);
-        gearPositive.whileHeld(new moveGearDeliveryPositive());
-        gearPositive.whenReleased(new stopGear());
+        gearPositive.whileHeld(new RaiseGearHandler());
+        gearPositive.whenReleased(new StopGearHandler());
         
         gearNegative = new JoystickButton(miscellaneousJoystick, 3);
-        gearNegative.whileHeld(new moveGearNegative());
-        gearNegative.whenReleased(new stopGear());
+        gearNegative.whileHeld(new LowerGearHandler());
+        gearNegative.whenReleased(new StopGearHandler());
         
         ballIn = new JoystickButton(miscellaneousJoystick, 1);
         ballIn.whileHeld(new FuelIn());
@@ -93,7 +93,7 @@ public class OI {
         deliverGear.whenPressed(new PlaceGearOnLiftHook());
         
         shoot = new JoystickButton(miscellaneousJoystick, 8);
-        shoot.whileHeld(new shoots());
+        shoot.whileHeld(new EnableShooter());
         
         suck = new JoystickButton(miscellaneousJoystick, 7);
        // suck.whileHeld(new suck());
@@ -102,11 +102,11 @@ public class OI {
        // ballOut.whileHeld(new FuelOut());
         
         trigger1 = new JoystickButton(miscellaneousJoystick, 5);
-        trigger1.whileHeld(new ballTrigger());
+        trigger1.whileHeld(new BallTriggerOpen());
         
 
         trigger2 = new JoystickButton(miscellaneousJoystick, 6);
-        trigger2.whileHeld(new ballTriggerPos2());
+        trigger2.whileHeld(new BallTriggerClose());
         /** style style style
         climbUP= new JoystickButton(miscellaneousJoystick, 5);
         climbUP.whileHeld(new climbPositive());
