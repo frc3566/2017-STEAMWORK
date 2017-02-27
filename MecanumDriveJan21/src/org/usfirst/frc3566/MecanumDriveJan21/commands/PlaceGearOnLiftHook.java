@@ -8,13 +8,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DeliverGearCommandGroup extends CommandGroup {
+public class PlaceGearOnLiftHook extends CommandGroup {
 
-    public DeliverGearCommandGroup() {
+    public PlaceGearOnLiftHook() {
     	//Potentiometer Deliver 19
     	//Potentiometer Middle 82
     	
         // Add Commands here:
+    	addSequential(new AlignToLiftHook());
     	addSequential(new moveGearNegative());
     	addSequential(new ResetPotentiometer());
     	addSequential(new moveGearDeliveryPositive(0.4, VisionValues.PotentiometerBottomToMiddleDistance));

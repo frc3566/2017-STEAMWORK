@@ -21,7 +21,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direct
 /**
  *
  */
-public class DeliverGear extends Command {
+public class AlignToLiftHook extends Command {
 	private boolean finished;
 
 	public static final double STRAFE_POWER = 0.4, ROTATE_POWER = 0.1, FORWARD_POWER = 0.2;
@@ -37,26 +37,44 @@ public class DeliverGear extends Command {
 
 	// this is the autonomous command for when there is a lift in front of the
 	// robot
-	public DeliverGear() {
+	public AlignToLiftHook() {
 
 	}
 
 	protected void initialize() {
 		finished = false;
 		action = Action.NA;
+		endTimer = 0;
 	}
 
 	protected void execute() {
+		/*
+		 * If the vison targets are high enough on the screen, then we're close
+		 * enough to finish delivering the gear
+		 */
+		// FIXME we should maybe pay attention to centering left/right, no?
 		if (FishyCam.getCenterY() <= VisionValues.minVerticalBearing) {
 			Robot.mecanumDriveTrain.stopDriveTrain();
 			finished = true;
-			
+
+			/*
+			 * ...otherwise, we're going to try to get ourselves centered on the
+			 * hook while slowly advancing towards it...
+			 */
 		} else {
 
+			/*
+			 * If we aren't in the middle of a maneuver, figure out what we're
+			 * going to do next to get centered
+			 */
 			if (System.currentTimeMillis() >= endTimer) {
 
+				/* If we can see the target... */
 				if (FishyCam.isTargetsDetected()) {
 					switch (FishyCam.getBearingToTarget()) {
+					/*
+					 * If we're not centered, strafe until we are...
+					 */
 					case LEFT:
 						Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
 						action = Action.STRAFING_LEFT;
@@ -65,14 +83,29 @@ public class DeliverGear extends Command {
 						Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
 						action = Action.STRAFING_RIGHT;
 						break;
+
+					/*
+					 * ...but once we're centered, make sure we're flat towards
+					 * the target...
+					 */
 					case CENTER:
 					default:
+						/*
+						 * ...by rotating to adjust the horizon line along the
+						 * bottom of the two vision targets (we want a slope of
+						 * zero, indicating the two vision targets are
+						 * equidistant from us)
+						 */
 						if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
 							Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
 							action = Action.TURNING_LEFT;
 						} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
 							Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
 							action = Action.TURNING_RIGHT;
+
+							/*
+							 * ...if we're dead-on, advance!
+							 */
 						} else {
 							Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
 							action = Action.FORWARD;
@@ -81,7 +114,12 @@ public class DeliverGear extends Command {
 					}
 					endTimer = System.currentTimeMillis() + TIMER;
 				}
+
 			} else {
+				/*
+				 * If we're mid-action, keep doing what we were doing until
+				 * we're done!
+				 */
 				switch (action) {
 				case TURNING_LEFT:
 					Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
@@ -112,7 +150,7 @@ public class DeliverGear extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		new readyToDeliverCommandGroup().start();
+		Robot.mecanumDriveTrain.stopDriveTrain();
 	}
 
 	// Called when another command which requires one or more of the same
