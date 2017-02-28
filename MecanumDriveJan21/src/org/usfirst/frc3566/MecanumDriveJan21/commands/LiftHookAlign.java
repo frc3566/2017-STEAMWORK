@@ -19,7 +19,7 @@ import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 /**
  *
  */
-public class AlignToLiftHook extends Command {
+public class LiftHookAlign extends Command {
 	private boolean finished;
 
 	public static final double STRAFE_POWER = 0.4, ROTATE_POWER = 0.1, FORWARD_POWER = 0.2;
@@ -35,7 +35,7 @@ public class AlignToLiftHook extends Command {
 
 	// this is the autonomous command for when there is a lift in front of the
 	// robot
-	public AlignToLiftHook() {
+	public LiftHookAlign() {
 
 	}
 

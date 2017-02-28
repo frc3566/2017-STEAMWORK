@@ -4,6 +4,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Bearing;
 import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Orientation;
 import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 
@@ -30,16 +31,6 @@ public class FishyCam extends Thread {
 	private static Orientation orientation;
 	private static boolean targetsDetected;
 	private static double horizonSlope, centerX, centerY, averageArea;
-
-	/**
-	 * An enumerated type to describe our possible bearing relative to the
-	 * vision targets (i.e. is the target to our left, above where we need it to
-	 * be or -- as with orientation -- are there no targets visible, so our
-	 * bearing is Bearing.NA?)
-	 */
-	public static enum Bearing {
-		LEFT, RIGHT, UP, DOWN, CENTER, NA
-	}
 
 	/**
 	 * A general "bad value" for coordinates

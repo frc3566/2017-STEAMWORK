@@ -25,6 +25,6 @@ public class AutonomousLiftSide extends CommandGroup {
 		default:
 			// do nothing
 		}
-		addSequential(new PlaceGearOnLiftHook());
+		addSequential(new LiftHookPlaceGear());
 	}
 }

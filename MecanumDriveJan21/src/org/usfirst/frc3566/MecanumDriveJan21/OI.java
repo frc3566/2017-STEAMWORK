@@ -76,7 +76,7 @@ public class OI {
         rotateR.whileHeld(new Rotate(Direction.RIGHT));
         
         deliverGear2 = new JoystickButton(driveTrainJoystick, 3);
-        deliverGear2.whenPressed(new PlaceGearOnLiftHook());
+        deliverGear2.whenPressed(new LiftHookPlaceGear());
         
         gearPositive = new JoystickButton(miscellaneousJoystick,4);
         gearPositive.whileHeld(new GearHandlerRaise());
@@ -88,7 +88,7 @@ public class OI {
         ballIn.whileHeld(new FuelIn());
         
         deliverGear = new JoystickButton(miscellaneousJoystick, 10);
-        deliverGear.whenPressed(new PlaceGearOnLiftHook());
+        deliverGear.whenPressed(new LiftHookPlaceGear());
         
         shoot = new JoystickButton(miscellaneousJoystick, 8);
         shoot.whenPressed(new EnableShooter());

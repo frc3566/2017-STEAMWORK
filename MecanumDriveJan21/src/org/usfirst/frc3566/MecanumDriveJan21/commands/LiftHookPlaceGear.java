@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class PlaceGearOnLiftHook extends CommandGroup {
+public class LiftHookPlaceGear extends CommandGroup {
 
-    public PlaceGearOnLiftHook() {
+    public LiftHookPlaceGear() {
     	//Potentiometer Deliver 19
     	//Potentiometer Middle 82
     	
-    	addSequential(new AlignToLiftHook());
+    	addSequential(new LiftHookAlign());
     	
    // 	addSequential(new GearHandlerLower());
     //	addSequential(new ResetPotentiometer());
