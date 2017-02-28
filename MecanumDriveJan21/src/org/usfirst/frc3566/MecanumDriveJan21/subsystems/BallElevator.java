@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class BallElevator extends Subsystem {
 	//private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
 
-	private final CANTalon ballPick = RobotMap.fuelPickerUpper8;
+	private final CANTalon ballPick = RobotMap.ballElevator;
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

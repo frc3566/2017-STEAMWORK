@@ -1,8 +1,8 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain;
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,7 +15,7 @@ public class DriveForDistance extends Command {
 	private double myDistance;
 	private double speed;
 	private Direction myDirection;
-	private MecanumDriveTrain drivetrain;
+	private DriveTrain drivetrain;
 	private Command myEnd;
 
 	public DriveForDistance(Direction direction, double distanceToDrive, double s) {

@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class GearDelivery extends Subsystem {
+public class GearHandler extends Subsystem {
 	//private final CANTalon gearDelivery = RobotMap.gearDeliveryMotor3;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private final CANTalon gearDelivery = RobotMap.gearDeliveryMotor3;
+	private final CANTalon gearHandler = RobotMap.gearHandler;
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -25,17 +25,17 @@ public class GearDelivery extends Subsystem {
     
     public void deliver(double speed){
     	if(Robot.gearLimitSwitchFront.get())
-    	gearDelivery.set(speed*-1); //42 good
+    	gearHandler.set(speed*-1); //42 good
     }
     
     public void retract(double speed){
     	if(Robot.gearLimitSwitchBack.get())
-    	gearDelivery.set(speed);
+    	gearHandler.set(speed);
     }
     
 	public void stop() {
 		// TODO Auto-generated method stub
-		gearDelivery.set(0.0);
+		gearHandler.set(0.0);
 		
 	}
 }

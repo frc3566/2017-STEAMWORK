@@ -2,7 +2,7 @@ package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc3566.MecanumDriveJan21.*;
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain.Direction;
 
 /**
  *

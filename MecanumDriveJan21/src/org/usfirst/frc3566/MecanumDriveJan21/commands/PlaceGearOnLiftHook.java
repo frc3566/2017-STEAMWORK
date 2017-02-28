@@ -1,7 +1,6 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
-import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.MecanumDriveTrain.Direction;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain.Direction;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
