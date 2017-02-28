@@ -19,7 +19,7 @@ public class GearHandlerRaise extends Command {
     public GearHandlerRaise() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	mySpeed=0.7;
+    	mySpeed=0.5;
     }
     
     public GearHandlerRaise(double speed, double PotentiometerDistance){
@@ -32,6 +32,11 @@ public class GearHandlerRaise extends Command {
     	this.setTimeout(Timeout);
     	endCommand = end;
     	mySpeed = speed;
+    }
+    
+    public GearHandlerRaise(double Timeout){
+    	this.setTimeout(Timeout);
+    	mySpeed=0.5;
     }
     
     // Called just before this Command runs the first time

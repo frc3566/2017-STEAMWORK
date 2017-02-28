@@ -18,7 +18,7 @@ public class Shooter extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	shoot = RobotMap.ballShooter1;
-    	shoot.set(0);
+    	
     }
     public void shoot(){
     	shoot.set(1);
@@ -28,7 +28,7 @@ public class Shooter extends Subsystem {
     	//shoot.set(-1);
     }
     public void noShoot(){
-    	//shoot.set(0);
+    	shoot.set(0);
     }
 }
 

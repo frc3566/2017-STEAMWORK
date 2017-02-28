@@ -21,10 +21,10 @@ public class ShooterTrigger extends Subsystem {
     }
     
     public void servoPositionUno(){
-    	ballShoot.set(0.76);
+    	ballShoot.set(0.3);
     }
     public void servoPositionDos(){
-    	ballShoot.set(.9);
+    	ballShoot.set(1.3);
     }
     }
 

@@ -35,7 +35,7 @@ public class GearHandlerLower extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (!Robot.gearLimitSwitchBack.get());
+        return (!Robot.gearLimitSwitchBack.get() || this.isTimedOut());
     }
 
     // Called once after isFinished returns true

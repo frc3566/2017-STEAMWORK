@@ -69,10 +69,10 @@ public class OI {
         sidewayR = new JoystickButton(driveTrainJoystick, 6);
         sidewayR.whileHeld(new Strafe(Direction.RIGHT));
         
-        rotateL = new JoystickButton(driveTrainJoystick, 7);
+        rotateL = new JoystickButton(driveTrainJoystick, 8);
         rotateL.whileHeld(new Rotate(Direction.LEFT));
         
-        rotateR = new JoystickButton(driveTrainJoystick, 8);
+        rotateR = new JoystickButton(driveTrainJoystick, 7);
         rotateR.whileHeld(new Rotate(Direction.RIGHT));
         
         deliverGear2 = new JoystickButton(driveTrainJoystick, 3);
@@ -80,11 +80,9 @@ public class OI {
         
         gearPositive = new JoystickButton(miscellaneousJoystick,4);
         gearPositive.whileHeld(new GearHandlerRaise());
-        gearPositive.whenReleased(new GearHandlerStop());
         
         gearNegative = new JoystickButton(miscellaneousJoystick, 3);
         gearNegative.whileHeld(new GearHandlerLower());
-        gearNegative.whenReleased(new GearHandlerStop());
         
         ballIn = new JoystickButton(miscellaneousJoystick, 1);
         ballIn.whileHeld(new FuelIn());
@@ -93,20 +91,15 @@ public class OI {
         deliverGear.whenPressed(new PlaceGearOnLiftHook());
         
         shoot = new JoystickButton(miscellaneousJoystick, 8);
-        shoot.whileHeld(new EnableShooter());
-        
-        fuelIn = new JoystickButton(miscellaneousJoystick, 7);
-       fuelIn.whileHeld(new FuelIn());
+        shoot.whenPressed(new EnableShooter());
         
         fuelOut = new JoystickButton(miscellaneousJoystick, 2);
        fuelOut.whileHeld(new FuelOut());
         
         ballTriggerOpen = new JoystickButton(miscellaneousJoystick, 5);
         ballTriggerOpen.whileHeld(new BallTriggerOpen());
-        
+        ballTriggerOpen.whenReleased(new BallTriggerClose());
 
-        ballTriggerClose = new JoystickButton(miscellaneousJoystick, 6);
-        ballTriggerClose.whileHeld(new BallTriggerClose());
         /** style style style
         climbUP= new JoystickButton(miscellaneousJoystick, 5);
         climbUP.whileHeld(new climbPositive());
