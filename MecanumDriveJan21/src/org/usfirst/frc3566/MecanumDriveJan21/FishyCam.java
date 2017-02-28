@@ -188,7 +188,7 @@ public class FishyCam extends Thread {
 				/*
 				 * checks if targets are vertical or horizontal
 				 */
-				orientation = (right.x > left.x + left.width ? Orientation.VERTICAL : Orientation.HORIZONTAL);
+				orientation = (right.x > left.x + left.width ? Orientation.LIFT_HOOK : Orientation.HIGH_GOAL);
 
 				/*
 				 * calculate the center point of the two targets
@@ -313,14 +313,14 @@ public class FishyCam extends Thread {
 		 * (and because we're lazy and don't want to bother with fancy checks
 		 * for _that_ here.)
 		 */
-		if (getOrientation() == Orientation.VERTICAL) {
+		if (getOrientation() == Orientation.LIFT_HOOK) {
 			if (centerX < VisionValues.minHorizontalBearing) {
 				return Bearing.LEFT;
 			} else if (centerX > VisionValues.maxHorizontalBearing) {
 				return Bearing.RIGHT;
 			}
 			return Bearing.CENTER;
-		} else if (getOrientation() == Orientation.HORIZONTAL) {
+		} else if (getOrientation() == Orientation.HIGH_GOAL) {
 			if (centerY < VisionValues.minHeightHighGoalVisionTarget) {
 				return Bearing.UP;
 			} else if (centerY > VisionValues.maxHeightHighGoalVisionTarget) {

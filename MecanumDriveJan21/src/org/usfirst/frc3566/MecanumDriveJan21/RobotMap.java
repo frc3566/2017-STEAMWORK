@@ -26,10 +26,14 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  * floating around.
  */
 public class RobotMap {
-	/**
-	 * Set robot edition here before pushing code (probably only either 1 or
+	/************************************************************************
+	 ************************************************************************
+	 *
+	 * Set robot edition HERE before pushing code (probably only either 1 or
 	 * 2...)
-	 */
+	 *
+	 ************************************************************************
+	 ***********************************************************************/
 	public static final int ROBOT_EDITION = 1;
 
 	/**
