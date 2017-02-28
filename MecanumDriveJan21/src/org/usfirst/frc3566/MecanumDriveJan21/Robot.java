@@ -79,6 +79,11 @@ public class Robot extends IterativeRobot {
 
 		autoChooser = new SendableChooser<Command>();
 		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront());
+
+		/*
+		 * FIXME not clear that we need all four of these commands (strafing to
+		 * side targets seems simplest? stick with that?
+		 */
 		autoChooser.addObject("Left-Side Lift Hook", new AutonomousLiftSide(Direction.LEFT));
 		autoChooser.addObject("Right-Side Lift Hook", new AutonomousLiftSide(Direction.RIGHT));
 		autoChooser.addObject("Strafe Left to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.LEFT));
