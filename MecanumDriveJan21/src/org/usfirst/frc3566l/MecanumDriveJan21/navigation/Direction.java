@@ -1,4 +1,4 @@
-package navigation;
+package org.usfirst.frc3566l.MecanumDriveJan21.navigation;
 
 /**
  * Name some directions for ease of code-reuse

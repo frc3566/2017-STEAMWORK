@@ -1,7 +1,8 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Direction;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import navigation.Direction;
 
 /**
  *

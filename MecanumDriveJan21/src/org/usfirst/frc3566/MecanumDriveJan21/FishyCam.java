@@ -4,13 +4,13 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Orientation;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
-import navigation.Orientation;
-import navigation.VisionValues;
 
 /**
  * Thread the camera processing to allow for synchronous decision-making based
@@ -272,7 +272,7 @@ public class FishyCam extends Thread {
 	 *         values in VisionValues to determine range to target), if vision
 	 *         targets are visible. `FishyCam.INVALID` if no vision targets are
 	 *         visible.
-	 * @see navigation.VisionValues
+	 * @see org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues
 	 */
 	public static double getArea() {
 		if (targetsDetected) {

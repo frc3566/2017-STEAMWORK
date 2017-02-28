@@ -21,11 +21,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import navigation.Direction;
-import navigation.VisionValues;
 
 import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Direction;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 
 /**
  * The VM is configured to automatically run this class, and to call the
