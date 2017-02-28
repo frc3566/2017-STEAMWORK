@@ -92,6 +92,7 @@ public class OI {
         
         shoot = new JoystickButton(miscellaneousJoystick, 8);
         shoot.whenPressed(new EnableShooter());
+        shoot.whenReleased(new stopShooter());
         
         fuelOut = new JoystickButton(miscellaneousJoystick, 2);
        fuelOut.whileHeld(new FuelOut());
