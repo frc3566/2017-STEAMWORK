@@ -18,6 +18,7 @@ public class DriveForDistance extends Command {
 	private DriveTrain drivetrain;
 	private Command myEnd;
 
+	/* FIXME what units is the distanceToDrive given in? */
 	public DriveForDistance(Direction direction, double distanceToDrive, double s) {
 		myDirection = direction;
 		myDistance = distanceToDrive;
@@ -38,6 +39,10 @@ public class DriveForDistance extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		/*
+		 * FIXME we need to get an encoder set up on this so we can actually
+		 * drive a distance!
+		 */
 		// myEncoder = Robot.encoder1;
 		// myEncoder.reset();
 	}

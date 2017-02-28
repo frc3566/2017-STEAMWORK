@@ -45,8 +45,6 @@ public class BallElevator extends Subsystem {
     }
     
 	public void stop() {
-		// TODO Auto-generated method stub
 		ballPick.set(0.0);
-		
 	}
 }
