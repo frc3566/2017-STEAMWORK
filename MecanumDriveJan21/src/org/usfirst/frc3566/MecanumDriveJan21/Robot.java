@@ -81,8 +81,8 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront());
 		autoChooser.addObject("Left-Side Lift Hook", new AutonomousLiftSide(Direction.LEFT));
 		autoChooser.addObject("Right-Side Lift Hook", new AutonomousLiftSide(Direction.RIGHT));
-		autoChooser.addObject("Strafe Left", new AutoStrafeLeft());
-		autoChooser.addObject("Strafe Right", new AutoStrafeRight());
+		autoChooser.addObject("Strafe Left to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.LEFT));
+		autoChooser.addObject("Strafe Right to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.RIGHT));
 		SmartDashboard.putData("Autonomous", autoChooser);
 
 		SmartDashboard.putData("Reset Gear", new GearHandlerLower());
