@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
 	private CANTalon shoot = RobotMap.shooter;
-	private Servo shooterTrigger = RobotMap.shooterTrigger;
+	private Servo shooterTrigger = RobotMap.ballTrigger;
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -33,11 +33,13 @@ public class Shooter extends Subsystem {
 		shoot.set(0);
 	}
 
-	public void servoPositionUno() {
+	public void openTrigger() {
+		// FIXME may be reversed with closeTrigger!!
 		shooterTrigger.set(0.3);
 	}
 
-	public void servoPositionDos() {
+	public void closeTrigger() {
+		// FIXME may be reversed with openTrigger!!
 		shooterTrigger.set(1.3);
 	}
 

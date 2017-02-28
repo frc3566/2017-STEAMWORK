@@ -16,7 +16,7 @@ public class BallTriggerOpen extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.servoPositionUno();
+    	Robot.shooter.openTrigger();
     }
 
     // Called repeatedly when this Command is scheduled to run

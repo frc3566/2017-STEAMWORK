@@ -39,7 +39,7 @@ public class RobotMap {
 			GEAR_HANDLER = "Gear Handler", CLIMBER = "Climber";
 
 	public static CANTalon frontLeft, rearLeft, frontRight, rearRight, gearHandler, ballElevator, shooter, climber;
-	public static Servo shooterTrigger;
+	public static Servo ballTrigger;
 
 	public static RobotDrive mecanumDriveTrainRobotDrive;
 
@@ -66,8 +66,8 @@ public class RobotMap {
 			shooter = new CANTalon(1);
 			LiveWindow.addActuator(SHOOTER, "Shooter (CAN 1)", shooter);
 			
-			shooterTrigger = new Servo(0);
-			LiveWindow.addActuator(SHOOTER, "Trigger (Servo 0)", shooterTrigger);
+			ballTrigger = new Servo(0);
+			LiveWindow.addActuator(SHOOTER, "Trigger (Servo 0)", ballTrigger);
 
 			gearHandler = new CANTalon(3);
 			LiveWindow.addActuator(GEAR_HANDLER, "Gear Handler (CAN 3)", gearHandler);
@@ -99,8 +99,8 @@ public class RobotMap {
 			shooter = new CANTalon(4);
 			LiveWindow.addActuator(SHOOTER, "Shooter (CAN 4)", shooter);
 
-			shooterTrigger = new Servo(0);
-			LiveWindow.addActuator(SHOOTER, "Trigger (Servo 0)", shooterTrigger);
+			ballTrigger = new Servo(0);
+			LiveWindow.addActuator(SHOOTER, "Trigger (Servo 0)", ballTrigger);
 
 			gearHandler = new CANTalon(1);
 			LiveWindow.addActuator(GEAR_HANDLER, "Gear Handler (CAN 1)", gearHandler);
