@@ -9,6 +9,8 @@ import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import navigation.Orientation;
+import navigation.VisionValues;
 
 /**
  * Thread the camera processing to allow for synchronous decision-making based
@@ -28,14 +30,6 @@ public class FishyCam extends Thread {
 	private static Orientation orientation;
 	private static boolean targetsDetected;
 	private static double horizonSlope, centerX, centerY, averageArea;
-
-	/**
-	 * An enumerated type to describe our possible orientations (note that, if
-	 * no targets are visible, our orientation _must_ be Orientation.NA)
-	 */
-	public static enum Orientation {
-		VERTICAL, HORIZONTAL, NA
-	}
 
 	/**
 	 * An enumerated type to describe our possible bearing relative to the
@@ -278,7 +272,7 @@ public class FishyCam extends Thread {
 	 *         values in VisionValues to determine range to target), if vision
 	 *         targets are visible. `FishyCam.INVALID` if no vision targets are
 	 *         visible.
-	 * @see org.usfirst.frc3566.MecanumDriveJan21.VisionValues
+	 * @see navigation.VisionValues
 	 */
 	public static double getArea() {
 		if (targetsDetected) {

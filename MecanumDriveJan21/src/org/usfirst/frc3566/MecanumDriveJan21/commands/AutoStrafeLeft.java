@@ -1,9 +1,9 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
-import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain.Direction;
 
 import edu.wpi.first.wpilibj.command.Command;
+import navigation.Direction;
 
 /**
  *

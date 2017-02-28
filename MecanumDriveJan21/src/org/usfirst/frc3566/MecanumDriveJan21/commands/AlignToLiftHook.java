@@ -11,10 +11,10 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import navigation.VisionValues;
 
 import org.usfirst.frc3566.MecanumDriveJan21.FishyCam;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
-import org.usfirst.frc3566.MecanumDriveJan21.VisionValues;
 
 /**
  *
@@ -47,7 +47,7 @@ public class AlignToLiftHook extends Command {
 
 	protected void execute() {
 		/*
-		 * If the vison targets are high enough on the screen, then we're close
+		 * If the vision targets are high enough on the screen, then we're close
 		 * enough to finish delivering the gear
 		 */
 		// FIXME we should maybe pay attention to centering left/right, no?
@@ -134,6 +134,8 @@ public class AlignToLiftHook extends Command {
 				case FORWARD:
 					Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
 					break;
+				default:
+					// do nothing
 				}
 			}
 		}
