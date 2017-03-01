@@ -53,12 +53,12 @@ public class Shooter extends PIDSubsystem {
 	// setDefaultCommand(new MySpecialCommand());
     }
 
-    public void engage() {
+    public void startShooter() {
 	setSetpoint(VisionValues.SHOOTER_OPTIMAL_SPEED);
 	enable();
     }
 
-    public void disengage() {
+    public void stopShooter() {
 	disable();
 	shooter.set(0.0);
 	closeTrigger();

@@ -1,7 +1,5 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
-import org.usfirst.frc3566.MecanumDriveJan21.Robot;
-
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
 import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 
@@ -52,7 +50,10 @@ public class GearHandler extends Subsystem {
     }
     
     public boolean isAtBackLimit() {
-	return gearLimitSwitchBack.get();
+	/*
+	 * Hmm. Seems like this is default open. Whatevs.
+	 */
+	return ! gearLimitSwitchBack.get();
     }
     
     public double getPoteniometer() {

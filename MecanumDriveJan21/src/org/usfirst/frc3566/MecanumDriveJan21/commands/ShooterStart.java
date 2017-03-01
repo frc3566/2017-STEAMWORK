@@ -10,7 +10,7 @@ public class ShooterStart extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-	Robot.shooter.engage();
+	Robot.shooter.startShooter();
 	finished = false;
     }
 
