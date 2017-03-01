@@ -4,7 +4,7 @@ import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class BallTriggerOpen extends Command {
+public class ShooterStart extends Command {
 
     private boolean finished;
 

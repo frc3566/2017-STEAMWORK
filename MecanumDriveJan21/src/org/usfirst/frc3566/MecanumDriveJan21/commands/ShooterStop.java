@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShooterDisengage extends Command {
+public class ShooterStop extends Command {
 
-    public ShooterDisengage() {
+    public ShooterStop() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

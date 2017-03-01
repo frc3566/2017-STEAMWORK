@@ -93,8 +93,8 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putData("Reset Gear", new GearHandlerLower());
 		SmartDashboard.putData("Deliver Gear", new GearHandlerRaise());
-		SmartDashboard.putData("Open Ball Trigger", new BallTriggerOpen());
-		SmartDashboard.putData("Disengage Shooter", new ShooterDisengage());
+		SmartDashboard.putData("Start Shooter", new ShooterStart());
+		SmartDashboard.putData("Stop Shooter", new ShooterStop());
 	}
 
 	/**

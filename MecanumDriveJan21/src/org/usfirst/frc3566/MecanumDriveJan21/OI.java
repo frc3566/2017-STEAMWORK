@@ -79,15 +79,15 @@ public class OI {
 		deliverGear.whenPressed(new LiftHookPlaceGear());
 
 		shoot = new JoystickButton(miscellaneousJoystick, 8);
-		shoot.whenPressed(new ShooterEngage());
-		shoot.whenReleased(new ShooterDisengage());
+		shoot.whenPressed(new ShooterStart());
+		shoot.whenReleased(new ShooterStop());
 
 		fuelOut = new JoystickButton(miscellaneousJoystick, 2);
 		fuelOut.whileHeld(new FuelOut());
 
 		ballTriggerOpen = new JoystickButton(miscellaneousJoystick, 5);
-		ballTriggerOpen.whileHeld(new BallTriggerOpen());
-		ballTriggerOpen.whenReleased(new BallTriggerClose());
+		ballTriggerOpen.whileHeld(new ShooterStart());
+		ballTriggerOpen.whenReleased(new ShooterStop());
 	}
 
 	public Joystick getJoystick1() {
