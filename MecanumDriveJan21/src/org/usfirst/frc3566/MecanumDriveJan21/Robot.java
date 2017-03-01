@@ -11,12 +11,9 @@
 package org.usfirst.frc3566.MecanumDriveJan21;
 
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -24,8 +21,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Direction;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -53,7 +49,6 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
-
 		RobotMap.init();
 
 		mecanumDriveTrain = new DriveTrain();
@@ -92,6 +87,7 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
+	    shooter.stopShooter();
 	}
 
 	public void disabledPeriodic() {
@@ -127,7 +123,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Gear Handler Potentiometer", gearHandler.getPoteniometer());
 		SmartDashboard.putBoolean("Gear Handler Front Limit", gearHandler.isAtFrontLimit());
-		SmartDashboard.putBoolean(" Gear Handler Back Limit", gearHandler.isAtBackLimit());
+		SmartDashboard.putBoolean("Gear Handler Back Limit", gearHandler.isAtBackLimit());
 		SmartDashboard.putNumber("Shooter Rate", shooter.getSpeed());
 	}
 
