@@ -12,9 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class GearHandler extends Subsystem {
-	// private final CANTalon gearDelivery = RobotMap.gearDeliveryMotor3;
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+
 	private final CANTalon gearHandler = RobotMap.gearHandler;
 
 	public void initDefaultCommand() {

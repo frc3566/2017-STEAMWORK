@@ -4,36 +4,35 @@ import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/* 
- * FIXME We need to wait to open the ball trigger until the shooter is at full speed, which means we need to connect to the CIMcoder and get a reading
- */
 public class BallTriggerOpen extends Command {
 
-	public BallTriggerOpen() {
-		// Use requires() here to declare subsystem dependencies
-		// eg. requires(chassis);
-	}
+    private boolean finished;
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		Robot.shooter.openTrigger();
-	}
+    // Called just before this Command runs the first time
+    protected void initialize() {
+	Robot.shooter.engage();
+	finished = false;
+    }
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+	if (Robot.shooter.isReady()) {
+	    Robot.shooter.openTrigger();
+	    finished = true;
 	}
+    }
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return false;
-	}
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+	return finished;
+    }
 
-	// Called once after isFinished returns true
-	protected void end() {
-	}
+    // Called once after isFinished returns true
+    protected void end() {
+    }
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-	}
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    }
 }

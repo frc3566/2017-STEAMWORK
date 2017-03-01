@@ -30,7 +30,7 @@ public class GearHandlerLower extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-    	Robot.gearDelivery.retract(mySpeed);
+    	Robot.gearHandler.retract(mySpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -43,7 +43,7 @@ public class GearHandlerLower extends Command {
     	if(endCommand!=null){
     		endCommand.start();
     	}
-    	Robot.gearDelivery.stop();
+    	Robot.gearHandler.stop();
     	
     }
 

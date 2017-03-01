@@ -45,13 +45,13 @@ public class GearHandlerRaise extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(distance != -1){
-    		if(Math.abs(Robot.gearPotentiometer.get()-VisionValues.potentiometer0 - distance)> 2){
-    			Robot.gearDelivery.deliver(mySpeed);
+    		if(Math.abs(Robot.gearHandlerPotentiometer.get()-VisionValues.potentiometer0 - distance)> 2){
+    			Robot.gearHandler.deliver(mySpeed);
     		}else{
     			finished = true;
     		}
     	}else{
-    	Robot.gearDelivery.deliver(mySpeed);
+    	Robot.gearHandler.deliver(mySpeed);
     	}
     }
 
@@ -66,7 +66,7 @@ public class GearHandlerRaise extends Command {
     	if(endCommand!=null){
     		endCommand.start();
     	}
-    	Robot.gearDelivery.stop();
+    	Robot.gearHandler.stop();
     }
 
     // Called when another command which requires one or more of the same

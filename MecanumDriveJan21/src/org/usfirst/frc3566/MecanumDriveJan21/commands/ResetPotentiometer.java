@@ -18,7 +18,7 @@ public class ResetPotentiometer extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	VisionValues.potentiometer0 = Robot.gearPotentiometer.get();
+    	VisionValues.potentiometer0 = Robot.gearHandlerPotentiometer.get();
     	this.setTimeout(0.1);
     }
 
