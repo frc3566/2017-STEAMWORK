@@ -14,148 +14,153 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc3566.MecanumDriveJan21.FishyCam;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain;
 import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 
 /**
  *
  */
 public class LiftHookAlign extends Command {
-	private boolean finished;
 
-	public static final double STRAFE_POWER = 0.4, ROTATE_POWER = 0.1, FORWARD_POWER = 0.2;
-	public static final long TIMER = 50;
+    private DriveTrain driveTrain;
+    
+    private boolean finished;
 
-	private enum Action {
-		TURNING_LEFT, TURNING_RIGHT, STRAFING_LEFT, STRAFING_RIGHT, FORWARD, NA
-	}
+    public static final double STRAFE_POWER = 0.4, ROTATE_POWER = 0.1, FORWARD_POWER = 0.2;
+    public static final long TIMER = 50;
 
-	private Action action;
+    private enum Action {
+	TURNING_LEFT, TURNING_RIGHT, STRAFING_LEFT, STRAFING_RIGHT, FORWARD, NA
+    }
 
-	private long endTimer;
+    private Action action;
 
-	// this is the autonomous command for when there is a lift in front of the
-	// robot
-	public LiftHookAlign() {
+    private long endTimer;
 
-	}
+    // this is the autonomous command for when there is a lift in front of the
+    // robot
+    public LiftHookAlign() {
+	requires(Robot.mecanumDriveTrain);
+	driveTrain = Robot.mecanumDriveTrain;
+    }
 
-	protected void initialize() {
-		finished = false;
-		action = Action.NA;
-		endTimer = 0;
-	}
+    protected void initialize() {
+	finished = false;
+	action = Action.NA;
+	endTimer = 0;
+    }
 
-	protected void execute() {
-		/*
-		 * If the vision targets are high enough on the screen, then we're close
-		 * enough to finish delivering the gear
-		 */
-		// FIXME we should maybe pay attention to centering left/right, no?
-		if (FishyCam.getCenterY() <= VisionValues.VISION_LIFT_HOOK_MIN_HEIGHT) {
-			Robot.mecanumDriveTrain.stopDriveTrain();
-			finished = true;
+    protected void execute() {
+	/*
+	 * If the vision targets are high enough on the screen, then we're close
+	 * enough to finish delivering the gear
+	 */
+	// FIXME we should maybe pay attention to centering left/right, no?
+	if (FishyCam.getCenterY() <= VisionValues.VISION_LIFT_HOOK_MIN_HEIGHT) {
+	    driveTrain.stopDriveTrain();
+	    finished = true;
+
+	    /*
+	     * ...otherwise, we're going to try to get ourselves centered on the
+	     * hook while slowly advancing towards it...
+	     */
+	} else {
+
+	    /*
+	     * If we aren't in the middle of a maneuver, figure out what we're
+	     * going to do next to get centered
+	     */
+	    if (System.currentTimeMillis() >= endTimer) {
+
+		/* If we can see the target... */
+		if (FishyCam.isTargetsDetected()) {
+		    switch (FishyCam.getBearingToTarget()) {
+			/*
+			 * If we're not centered, strafe until we are...
+			 */
+			case LEFT:
+			    driveTrain.strafeLeft(STRAFE_POWER);
+			    action = Action.STRAFING_LEFT;
+			    break;
+			case RIGHT:
+			    driveTrain.strafeRight(STRAFE_POWER);
+			    action = Action.STRAFING_RIGHT;
+			    break;
 
 			/*
-			 * ...otherwise, we're going to try to get ourselves centered on the
-			 * hook while slowly advancing towards it...
+			 * ...but once we're centered, make sure we're flat
+			 * towards the target...
 			 */
-		} else {
+			case CENTER:
+			default:
+			    /*
+			     * ...by rotating to adjust the horizon line along
+			     * the bottom of the two vision targets (we want a
+			     * slope of zero, indicating the two vision targets
+			     * are equidistant from us)
+			     */
+			    if (FishyCam.getHorizonSlope() > VisionValues.VISION_MAX_HORIZON_SLOPE) {
+				driveTrain.rotateLeft(ROTATE_POWER);
+				action = Action.TURNING_LEFT;
+			    } else if (FishyCam.getHorizonSlope() < VisionValues.VISION_MIN_HORIZON_SLOPE) {
+				driveTrain.rotateRight(ROTATE_POWER);
+				action = Action.TURNING_RIGHT;
 
-			/*
-			 * If we aren't in the middle of a maneuver, figure out what we're
-			 * going to do next to get centered
-			 */
-			if (System.currentTimeMillis() >= endTimer) {
-
-				/* If we can see the target... */
-				if (FishyCam.isTargetsDetected()) {
-					switch (FishyCam.getBearingToTarget()) {
-					/*
-					 * If we're not centered, strafe until we are...
-					 */
-					case LEFT:
-						Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
-						action = Action.STRAFING_LEFT;
-						break;
-					case RIGHT:
-						Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
-						action = Action.STRAFING_RIGHT;
-						break;
-
-					/*
-					 * ...but once we're centered, make sure we're flat towards
-					 * the target...
-					 */
-					case CENTER:
-					default:
-						/*
-						 * ...by rotating to adjust the horizon line along the
-						 * bottom of the two vision targets (we want a slope of
-						 * zero, indicating the two vision targets are
-						 * equidistant from us)
-						 */
-						if (FishyCam.getHorizonSlope() > VisionValues.VISION_MAX_HORIZON_SLOPE) {
-							Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
-							action = Action.TURNING_LEFT;
-						} else if (FishyCam.getHorizonSlope() < VisionValues.VISION_MIN_HORIZON_SLOPE) {
-							Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
-							action = Action.TURNING_RIGHT;
-
-							/*
-							 * ...if we're dead-on, advance!
-							 */
-						} else {
-							Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
-							action = Action.FORWARD;
-						}
-						break;
-					}
-					endTimer = System.currentTimeMillis() + TIMER;
-				}
-
-			} else {
 				/*
-				 * If we're mid-action, keep doing what we were doing until
-				 * we're done!
+				 * ...if we're dead-on, advance!
 				 */
-				switch (action) {
-				case TURNING_LEFT:
-					Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
-					break;
-				case TURNING_RIGHT:
-					Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
-					break;
-				case STRAFING_LEFT:
-					Robot.mecanumDriveTrain.driveTrainSidewayLeft(STRAFE_POWER);
-					break;
-				case STRAFING_RIGHT:
-					Robot.mecanumDriveTrain.driveTrainSidewayRight(STRAFE_POWER);
-					break;
-				case FORWARD:
-					Robot.mecanumDriveTrain.driveTrainForward(FORWARD_POWER);
-					break;
-				default:
-					// do nothing
-				}
-			}
+			    } else {
+				driveTrain.forward(FORWARD_POWER);
+				action = Action.FORWARD;
+			    }
+			    break;
+		    }
+		    endTimer = System.currentTimeMillis() + TIMER;
 		}
 
+	    } else {
+		/*
+		 * If we're mid-action, keep doing what we were doing until
+		 * we're done!
+		 */
+		switch (action) {
+		    case TURNING_LEFT:
+			driveTrain.rotateLeft(ROTATE_POWER);
+			break;
+		    case TURNING_RIGHT:
+			driveTrain.rotateRight(ROTATE_POWER);
+			break;
+		    case STRAFING_LEFT:
+			driveTrain.strafeLeft(STRAFE_POWER);
+			break;
+		    case STRAFING_RIGHT:
+			driveTrain.strafeRight(STRAFE_POWER);
+			break;
+		    case FORWARD:
+			driveTrain.forward(FORWARD_POWER);
+			break;
+		    default:
+			// do nothing
+		}
+	    }
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		// when detected target area is big enough, calls the command to stop
-		return finished;
-	}
+    }
 
-	// Called once after isFinished returns true
-	protected void end() {
-		Robot.mecanumDriveTrain.stopDriveTrain();
-	}
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+	// when detected target area is big enough, calls the command to stop
+	return finished;
+    }
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		Robot.mecanumDriveTrain.stopDriveTrain();
-	}
+    // Called once after isFinished returns true
+    protected void end() {
+	Robot.mecanumDriveTrain.stopDriveTrain();
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+	Robot.mecanumDriveTrain.stopDriveTrain();
+    }
 }

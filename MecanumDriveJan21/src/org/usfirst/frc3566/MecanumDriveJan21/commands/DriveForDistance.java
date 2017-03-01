@@ -11,80 +11,69 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveForDistance extends Command {
 
-	// private Encoder myEncoder;
-	private double myDistance;
-	private double speed;
-	private Direction myDirection;
-	private DriveTrain drivetrain;
-	private Command myEnd;
+    // private Encoder myEncoder;
+    private double myDistance;
+    private double speed;
+    private Direction myDirection;
+    private DriveTrain drivetrain;
+    private DriveTrain driveTrain;
 
-	/* FIXME what units is the distanceToDrive given in? */
-	public DriveForDistance(Direction direction, double distanceToDrive, double s) {
-		myDirection = direction;
-		myDistance = distanceToDrive;
-		speed = s;
-		drivetrain = Robot.mecanumDriveTrain;
-		this.setTimeout(distanceToDrive);
-	}
+    /* FIXME what units is the distanceToDrive given in? */
+    public DriveForDistance(Direction direction, double distanceToDrive, double s) {
+	requires(Robot.mecanumDriveTrain);
+	driveTrain = Robot.mecanumDriveTrain;
+	myDirection = direction;
+	myDistance = distanceToDrive;
+	speed = s;
+	drivetrain = Robot.mecanumDriveTrain;
+	this.setTimeout(distanceToDrive);
+    }
 
-	public DriveForDistance(Direction direction, double distanceToDrive, double s, Command endCommand) {
-		// Directions: f, b, l, r
-		myDirection = direction;
-		myDistance = distanceToDrive;
-		speed = s;
-		drivetrain = Robot.mecanumDriveTrain;
-		this.setTimeout(distanceToDrive);
-		myEnd = endCommand;
-	}
+    // Called just before this Command runs the first time
+    protected void initialize() {
+	/*
+	 * FIXME we need to get an encoder set up on this so we can actually
+	 * drive a distance!
+	 */
+	// myEncoder = Robot.encoder1;
+	// myEncoder.reset();
+    }
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		/*
-		 * FIXME we need to get an encoder set up on this so we can actually
-		 * drive a distance!
-		 */
-		// myEncoder = Robot.encoder1;
-		// myEncoder.reset();
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+	switch (myDirection) {
+	    case FORWARD:
+		drivetrain.forward(speed);
+		break;
+	    case BACKWARD:
+		drivetrain.driveTrainBackward(speed);
+		break;
+	    case LEFT:
+		drivetrain.strafeLeft(speed);
+		break;
+	    case RIGHT:
+		drivetrain.strafeRight(speed);
+		break;
+	    default:
+		System.out.println("no direction recognized");
+		break;
 	}
+    }
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		switch (myDirection) {
-		case FORWARD:
-			drivetrain.driveTrainForward(speed);
-			break;
-		case BACKWARD:
-			drivetrain.driveTrainBackward(speed);
-			break;
-		case LEFT:
-			drivetrain.driveTrainSidewayLeft(speed);
-			break;
-		case RIGHT:
-			drivetrain.driveTrainSidewayRight(speed);
-			break;
-		default:
-			System.out.println("no direction recognized");
-			break;
-		}
-	}
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+	return this.isTimedOut();
+	// return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
+    }
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return this.isTimedOut();
-		// return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
-	}
+    // Called once after isFinished returns true
+    protected void end() {
+	drivetrain.stopDriveTrain();
+    }
 
-	// Called once after isFinished returns true
-	protected void end() {
-		if (myEnd != null) {
-			myEnd.start();
-		}
-		drivetrain.stopDriveTrain();
-	}
-
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-		end();
-	}
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+	end();
+    }
 }

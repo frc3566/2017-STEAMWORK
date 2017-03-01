@@ -1,6 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,9 +10,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Climb extends Command {
 
+    private Climber climber;
+
     public Climb() {
-        // Use requires() here to declare subsystem dependencies
         requires(Robot.climber);
+        climber = Robot.climber;
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +24,7 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.climber.ascend(Robot.oi.miscellaneousJoystick.getRawAxis(1));
+    	climber.ascend(Robot.oi.miscellaneousJoystick.getRawAxis(1));
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +34,7 @@ public class Climb extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.climber.stop();
+    	climber.stop();
     }
 
     // Called when another command which requires one or more of the same

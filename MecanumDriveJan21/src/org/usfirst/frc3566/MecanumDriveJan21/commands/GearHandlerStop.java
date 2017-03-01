@@ -1,6 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.GearHandler;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,14 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class GearHandlerStop extends Command {
 
+    private GearHandler gearHandler;
+    
     public GearHandlerStop() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	requires(Robot.gearHandler);
+	gearHandler = Robot.gearHandler;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.gearHandler.stop();
+    	gearHandler.stop();
     }
 
     // Called repeatedly when this Command is scheduled to run

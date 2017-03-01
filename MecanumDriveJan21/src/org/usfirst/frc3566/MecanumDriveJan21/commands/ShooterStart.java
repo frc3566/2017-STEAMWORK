@@ -1,23 +1,30 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterStart extends Command {
 
     private boolean finished;
+    private Shooter shooter;
 
+    public ShooterStart() {
+	requires(Robot.shooter);
+	shooter = Robot.shooter;
+    }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
-	Robot.shooter.startShooter();
+	shooter.startShooter();
 	finished = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (Robot.shooter.isReady()) {
-	    Robot.shooter.openTrigger();
+	if (shooter.isReady()) {
+	    shooter.openTrigger();
 	    finished = true;
 	}
     }

@@ -44,7 +44,7 @@ public class DriveTrain extends Subsystem {
 		rearRight.set(0);
 	}
 
-	public void driveTrainForward(double speed) {
+	public void forward(double speed) {
 		robotDrive.mecanumDrive_Cartesian(0, -1 * speed, 0, 0);
 	}
 
@@ -53,11 +53,11 @@ public class DriveTrain extends Subsystem {
 	}
 
 	// TODO Need Check
-	public void driveTrainSidewayRight(double speed) {
+	public void strafeRight(double speed) {
 		robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
 	}
 
-	public void driveTrainSidewayLeft(double speed) {
+	public void strafeLeft(double speed) {
 		robotDrive.mecanumDrive_Cartesian(speed * -1, 0, 0, 0);
 	}
 

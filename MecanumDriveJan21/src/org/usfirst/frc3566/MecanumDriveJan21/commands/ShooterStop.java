@@ -1,6 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
+import org.usfirst.frc3566.MecanumDriveJan21.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,14 +10,16 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ShooterStop extends Command {
 
+    private Shooter shooter;
+    
     public ShooterStop() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+	requires(Robot.shooter);
+	shooter = Robot.shooter;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooter.stopShooter();
+    	shooter.stopShooter();
     }
 
     // Called repeatedly when this Command is scheduled to run
