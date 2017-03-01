@@ -61,107 +61,64 @@ public class RobotMap {
 	switch (ROBOT_EDITION) {
 	    case 1:
 		frontLeft = new CANTalon(5);
-		LiveWindow.addActuator(DRIVETRAIN, "Front Left (CAN 5)", frontLeft);
 		frontLeft.setInverted(false);
 
 		rearLeft = new CANTalon(6);
-		LiveWindow.addActuator(DRIVETRAIN, "Rear Left (CAN 6)", rearLeft);
 		rearLeft.setInverted(false);
 
 		frontRight = new CANTalon(7);
-		LiveWindow.addActuator(DRIVETRAIN, "Front Right (CAN 7)", frontRight);
 		frontRight.setInverted(true);
 
 		rearRight = new CANTalon(2);
-		LiveWindow.addActuator(DRIVETRAIN, "Rear Right (CAN 2)", rearRight);
 		rearRight.setInverted(true);
 
 		driveTrainEncoder = new Encoder(4, 5);
-		LiveWindow.addSensor(DRIVETRAIN, "Encoder (4, 5)", driveTrainEncoder);
 
 		shooter = new CANTalon(1);
-		LiveWindow.addActuator(SHOOTER, "Shooter (CAN 1)", shooter);
-
 		shooterEncoder = new Encoder(2, 3);
-		LiveWindow.addSensor(SHOOTER, "CIMcoder (2, 3)", shooterEncoder);
-
 		ballTrigger = new Servo(0);
-		LiveWindow.addActuator(SHOOTER, "Trigger (Servo 0)", ballTrigger);
-
 		gearHandler = new CANTalon(3);
-		LiveWindow.addActuator(GEAR_HANDLER, "Gear Handler (CAN 3)", gearHandler);
 
 		gearLimitSwitchFront = new DigitalInput(0);
-		LiveWindow.addSensor(GEAR_HANDLER, "Front Limit (0)", gearLimitSwitchFront);
-
 		gearLimitSwitchBack = new DigitalInput(1);
-		LiveWindow.addSensor(GEAR_HANDLER, "Back Limit (1)", gearLimitSwitchBack);
-
 		gearHandlerPotentiometer = new AnalogPotentiometer(0, 360, 0);
-		LiveWindow.addSensor(GEAR_HANDLER, "Potentiometer", gearHandlerPotentiometer);
-
 		gearHandlerEncoder = new Encoder(6, 7);
-		LiveWindow.addSensor(GEAR_HANDLER, "Encoder (6, 7)", gearHandlerEncoder);
 
 		ballElevator = new CANTalon(8);
-		LiveWindow.addActuator(BALL_ELEVATOR, "Ball Elevator (CAN 8)", ballElevator);
 
 		climber = new CANTalon(9);
-		LiveWindow.addActuator(CLIMBER, "Climber (CAN 9)", climber);
 
 		break;
 
 	    case 2:
 	    default:
 		frontLeft = new CANTalon(5);
-		LiveWindow.addActuator(DRIVETRAIN, "Front Left (CAN 5)", frontLeft);
 		frontLeft.setInverted(true);
 
 		rearLeft = new CANTalon(9);
-		LiveWindow.addActuator(DRIVETRAIN, "Rear Left (CAN 9)", rearLeft);
 		rearLeft.setInverted(true);
 
 		frontRight = new CANTalon(3);
-		LiveWindow.addActuator(DRIVETRAIN, "Front Right (CAN 3)", frontRight);
 		frontRight.setInverted(false);
 
 		rearRight = new CANTalon(2);
-		LiveWindow.addActuator(DRIVETRAIN, "Rear Right (CAN 2)", rearRight);
 		rearRight.setInverted(false);
 
 		driveTrainEncoder = new Encoder(4, 5);
-		LiveWindow.addSensor(DRIVETRAIN, "Encoder (4, 5)", driveTrainEncoder);
-
 		shooter = new CANTalon(4);
-		LiveWindow.addActuator(SHOOTER, "Shooter (CAN 4)", shooter);
-
 		shooterEncoder = new Encoder(2, 3);
-		LiveWindow.addSensor(SHOOTER, "CIMcoder (2, 3)", shooterEncoder);
-
 		ballTrigger = new Servo(0);
-		LiveWindow.addActuator(SHOOTER, "Trigger (Servo 0)", ballTrigger);
 
 		gearHandler = new CANTalon(1);
-		LiveWindow.addActuator(GEAR_HANDLER, "Gear Handler (CAN 1)", gearHandler);
-
 		gearLimitSwitchFront = new DigitalInput(0);
-		LiveWindow.addSensor(GEAR_HANDLER, "Front Limit (0)", gearLimitSwitchFront);
-
 		gearLimitSwitchBack = new DigitalInput(1);
-		LiveWindow.addSensor(GEAR_HANDLER, "Back Limit (1)", gearLimitSwitchBack);
-
 		gearHandlerPotentiometer = new AnalogPotentiometer(0, 360, 0);
-		LiveWindow.addSensor(GEAR_HANDLER, "Potentiometer", gearHandlerPotentiometer);
-
 		gearHandlerEncoder = new Encoder(6, 7);
-		LiveWindow.addSensor(GEAR_HANDLER, "Encoder (6, 7)", gearHandlerEncoder);
 
 		ballElevator = new CANTalon(7);
-		LiveWindow.addActuator(BALL_ELEVATOR, "Ball Elevator (CAN 7)", ballElevator);
 
 		climber = new CANTalon(6);
-		LiveWindow.addActuator(CLIMBER, "Climber (CAN 6)", climber);
-
+		
 		break;
 	}
 
@@ -170,6 +127,22 @@ public class RobotMap {
 	mecanumDriveTrainRobotDrive.setExpiration(0.1);
 	mecanumDriveTrainRobotDrive.setSensitivity(0.5);
 	mecanumDriveTrainRobotDrive.setMaxOutput(1.0);
+
+	LiveWindow.addActuator(DRIVETRAIN, "Front Left", frontLeft);
+	LiveWindow.addActuator(DRIVETRAIN, "Rear Left", rearLeft);
+	LiveWindow.addActuator(DRIVETRAIN, "Front Right", frontRight);
+	LiveWindow.addActuator(DRIVETRAIN, "Rear Right", rearRight);
+	LiveWindow.addSensor(DRIVETRAIN, "Encoder", driveTrainEncoder);
+	LiveWindow.addActuator(SHOOTER, "Shooter", shooter);
+	LiveWindow.addSensor(SHOOTER, "CIMcoder", shooterEncoder);
+	LiveWindow.addActuator(SHOOTER, "Trigger", ballTrigger);
+	LiveWindow.addActuator(GEAR_HANDLER, "Gear Handler", gearHandler);
+	LiveWindow.addSensor(GEAR_HANDLER, "Front Limit", gearLimitSwitchFront);
+	LiveWindow.addSensor(GEAR_HANDLER, "Back Limit", gearLimitSwitchBack);
+	LiveWindow.addSensor(GEAR_HANDLER, "Potentiometer", gearHandlerPotentiometer);
+	LiveWindow.addSensor(GEAR_HANDLER, "Encoder", gearHandlerEncoder);
+	LiveWindow.addActuator(BALL_ELEVATOR, "Ball Elevator", ballElevator);
+	LiveWindow.addActuator(CLIMBER, "Climber", climber);
 
     }
 }
