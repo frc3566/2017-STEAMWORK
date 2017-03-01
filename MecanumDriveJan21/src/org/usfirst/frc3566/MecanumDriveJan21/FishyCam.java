@@ -30,7 +30,7 @@ public class FishyCam extends Thread {
 	private GripPipeline pipeline;
 	private static Orientation orientation;
 	private static boolean targetsDetected;
-	private static double horizonSlope, centerX, centerY, averageArea;
+	private static double horizonSlope, centerX, centerY;
 
 	/**
 	 * A general "bad value" for coordinates
@@ -133,8 +133,8 @@ public class FishyCam extends Thread {
 			 * if 2 major visionTargets in view...We're seeing the targets!! for
 			 * now, we don't know if they are vertical or horizontal yet
 			 */
-			targetsDetected = largestArea > VisionValues.TargetAreaThreshold
-					&& secondLargestArea > VisionValues.TargetAreaThreshold;
+			targetsDetected = largestArea > VisionValues.VISION_MIN_AREA
+					&& secondLargestArea > VisionValues.VISION_MIN_AREA;
 			if (targetsDetected) {
 
 				/*
@@ -196,14 +196,8 @@ public class FishyCam extends Thread {
 				centerX = (left.x + right.x + right.width) / 2;
 				centerY = (top.y + bottom.y + bottom.height) / 2;
 
-				/*
-				 * Calculate average area of targets (for proximity sensing)
-				 */
-				averageArea = (largestArea + secondLargestArea) / 2;
-
 			}
 			Robot.table.putValue("Targets Detected", isTargetsDetected());
-			Robot.table.putValue("Average Detected Area", getArea());
 			Robot.table.putValue("Center X", getCenterX());
 			Robot.table.putValue("Center Y", getCenterY());
 			Robot.table.putValue("Orientation", getOrientation().toString());
@@ -256,20 +250,6 @@ public class FishyCam extends Thread {
 			return orientation;
 		}
 		return Orientation.NA;
-	}
-
-	/**
-	 * @return Average area of the vision targets (for comparison to ideal
-	 *         values in VisionValues to determine range to target), if vision
-	 *         targets are visible. `FishyCam.INVALID` if no vision targets are
-	 *         visible.
-	 * @see org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues
-	 */
-	public static double getArea() {
-		if (targetsDetected) {
-			return averageArea;
-		}
-		return INVALID;
 	}
 
 	/**

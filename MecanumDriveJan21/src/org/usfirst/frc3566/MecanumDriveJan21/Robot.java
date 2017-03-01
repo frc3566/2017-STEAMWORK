@@ -38,10 +38,7 @@ public class Robot extends IterativeRobot {
 
 	public static FishyCam liftCam;
 	public static UsbCamera elevatorCam;
-	public static DigitalInput gearLimitSwitchFront, gearLimitSwitchBack;
 	public static NetworkTable table;
-	public static Potentiometer gearHandlerPotentiometer;
-	public static Encoder driveTrainEncoder, shooterEncoder;
 	public static BallElevator ballElevator;
 	public static Shooter shooter;
 	public static Command autonomous;
@@ -74,13 +71,6 @@ public class Robot extends IterativeRobot {
 		System.out.println(camA.getId());
 
 		// camB = CameraServer.getInstance().startAutomaticCapture(1);
-		gearLimitSwitchFront = RobotMap.gearLimitSwitchFront;
-		gearLimitSwitchBack = RobotMap.gearLimitSwitchBack;
-
-		gearHandlerPotentiometer = RobotMap.gearHandlerPotentiometer;
-		VisionValues.GH_POT_ZERO = gearHandlerPotentiometer.get();
-		
-		shooterEncoder = RobotMap.shooterEncoder;
 
 		NetworkTable.setIPAddress("cc");
 		table = NetworkTable.getTable("datatable");
@@ -135,10 +125,10 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gear Handler Potentiometer", gearHandlerPotentiometer.get());
-		SmartDashboard.putBoolean("Gear Handler Front Limit", gearLimitSwitchFront.get());
-		SmartDashboard.putBoolean(" Gear Handler Back Limit", gearLimitSwitchBack.get());
-		SmartDashboard.putNumber("Shooter Rate", shooterEncoder.getRate());
+		SmartDashboard.putNumber("Gear Handler Potentiometer", gearHandler.getPoteniometer());
+		SmartDashboard.putBoolean("Gear Handler Front Limit", gearHandler.isAtFrontLimit());
+		SmartDashboard.putBoolean(" Gear Handler Back Limit", gearHandler.isAtBackLimit());
+		SmartDashboard.putNumber("Shooter Rate", shooter.getSpeed());
 	}
 
 	/**

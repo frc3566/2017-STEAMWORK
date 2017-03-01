@@ -77,4 +77,8 @@ public class Shooter extends PIDSubsystem {
     public boolean isReady() {
 	return shooterEncoder.getRate() > VisionValues.SHOOTER_MIN_SPEED;
     }
+    
+    public double getSpeed() {
+	return shooterEncoder.getRate();
+    }
 }
