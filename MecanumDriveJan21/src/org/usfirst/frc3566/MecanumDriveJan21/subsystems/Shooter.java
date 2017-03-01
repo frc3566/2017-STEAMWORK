@@ -1,6 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
+import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
 
 import com.ctre.CANTalon;
 
@@ -13,9 +14,6 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  *
  */
 public class Shooter extends PIDSubsystem {
-    public static final double BALL_TRIGGER_CLOSED = 0.9, BALL_TRIGGER_OPEN = 0.5,
-	    OPTIMAL_SPEED = 1800.0, MINIMUM_SPEED_TO_OPEN = OPTIMAL_SPEED * 0.9;
-
     private CANTalon shooter = RobotMap.shooter;
     private Servo shooterTrigger = RobotMap.ballTrigger;
     private Encoder shooterEncoder = RobotMap.shooterEncoder;
@@ -56,7 +54,7 @@ public class Shooter extends PIDSubsystem {
     }
 
     public void engage() {
-	setSetpoint(OPTIMAL_SPEED);
+	setSetpoint(VisionValues.SHOOTER_OPTIMAL_SPEED);
 	enable();
     }
 
@@ -68,15 +66,15 @@ public class Shooter extends PIDSubsystem {
 
     public void openTrigger() {
 	if (isReady()) {
-	    shooterTrigger.set(BALL_TRIGGER_OPEN);
+	    shooterTrigger.set(VisionValues.BALL_TRIGGER_OPEN);
 	}
     }
 
     public void closeTrigger() {
-	shooterTrigger.set(BALL_TRIGGER_CLOSED);
+	shooterTrigger.set(VisionValues.BALL_TRIGGER_CLOSED);
     }
 
     public boolean isReady() {
-	return shooterEncoder.getRate() > MINIMUM_SPEED_TO_OPEN;
+	return shooterEncoder.getRate() > VisionValues.SHOOTER_MIN_SPEED;
     }
 }

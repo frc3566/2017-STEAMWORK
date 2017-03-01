@@ -51,7 +51,7 @@ public class LiftHookAlign extends Command {
 		 * enough to finish delivering the gear
 		 */
 		// FIXME we should maybe pay attention to centering left/right, no?
-		if (FishyCam.getCenterY() <= VisionValues.minHeightLiftHookVisionTargets) {
+		if (FishyCam.getCenterY() <= VisionValues.VISION_LIFT_HOOK_MIN_HEIGHT) {
 			Robot.mecanumDriveTrain.stopDriveTrain();
 			finished = true;
 
@@ -94,10 +94,10 @@ public class LiftHookAlign extends Command {
 						 * zero, indicating the two vision targets are
 						 * equidistant from us)
 						 */
-						if (FishyCam.getHorizonSlope() > VisionValues.maxHorizonSlope) {
+						if (FishyCam.getHorizonSlope() > VisionValues.VISION_MAX_HORIZON_SLOPE) {
 							Robot.mecanumDriveTrain.rotateLeft(ROTATE_POWER);
 							action = Action.TURNING_LEFT;
-						} else if (FishyCam.getHorizonSlope() < VisionValues.minHorizonSlope) {
+						} else if (FishyCam.getHorizonSlope() < VisionValues.VISION_MIN_HORIZON_SLOPE) {
 							Robot.mecanumDriveTrain.rotateRight(ROTATE_POWER);
 							action = Action.TURNING_RIGHT;
 

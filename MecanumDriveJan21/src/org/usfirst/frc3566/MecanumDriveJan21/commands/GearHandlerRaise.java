@@ -45,7 +45,7 @@ public class GearHandlerRaise extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if(distance != -1){
-    		if(Math.abs(Robot.gearHandlerPotentiometer.get()-VisionValues.potentiometer0 - distance)> 2){
+    		if(Math.abs(Robot.gearHandlerPotentiometer.get()-VisionValues.GH_POT_ZERO - distance)> 2){
     			Robot.gearHandler.deliver(mySpeed);
     		}else{
     			finished = true;

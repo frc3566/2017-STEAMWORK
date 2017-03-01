@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
 		gearLimitSwitchBack = RobotMap.gearLimitSwitchBack;
 
 		gearHandlerPotentiometer = RobotMap.gearHandlerPotentiometer;
-		VisionValues.potentiometer0 = gearHandlerPotentiometer.get();
+		VisionValues.GH_POT_ZERO = gearHandlerPotentiometer.get();
 		
 		shooterEncoder = RobotMap.shooterEncoder;
 

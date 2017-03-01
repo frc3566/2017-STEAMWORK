@@ -314,16 +314,16 @@ public class FishyCam extends Thread {
 		 * for _that_ here.)
 		 */
 		if (getOrientation() == Orientation.LIFT_HOOK) {
-			if (centerX < VisionValues.minHorizontalBearing) {
+			if (centerX < VisionValues.VISION_MIN_HORIZ_BEARING) {
 				return Bearing.LEFT;
-			} else if (centerX > VisionValues.maxHorizontalBearing) {
+			} else if (centerX > VisionValues.VISION_MAX_HORIZ_BEARING) {
 				return Bearing.RIGHT;
 			}
 			return Bearing.CENTER;
 		} else if (getOrientation() == Orientation.HIGH_GOAL) {
-			if (centerY < VisionValues.minHeightHighGoalVisionTarget) {
+			if (centerY < VisionValues.VISION_HIGH_GOAL_MIN_HEIGHT) {
 				return Bearing.UP;
-			} else if (centerY > VisionValues.maxHeightHighGoalVisionTarget) {
+			} else if (centerY > VisionValues.VISION_HIGH_GOAL_MAX_HEIGHT) {
 				return Bearing.DOWN;
 			}
 			return Bearing.CENTER;
