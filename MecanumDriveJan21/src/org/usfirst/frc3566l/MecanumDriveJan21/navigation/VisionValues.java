@@ -2,6 +2,16 @@ package org.usfirst.frc3566l.MecanumDriveJan21.navigation;
 
 public class VisionValues {
 
+    /************************************************************************
+     ************************************************************************
+     * 
+     * Declare CONSTANTS here (as variables, sigh) and then INITIALIZE them
+     * in the init() method -- this allows us to maintain active code for
+     * two robot editions simultaneously!
+     * 
+     ************************************************************************
+     ***********************************************************************/
+    
     /**
      * test this on network table and see what's the ideal baseline area for
      * differentiating actual vision targets and unwanted interfering contours
@@ -65,7 +75,7 @@ public class VisionValues {
 	SHOOTER_MIN_SPEED = SHOOTER_OPTIMAL_SPEED * 0.9;
 
 	if (edition == 2) {
-
+	    /* update values for R2 as needed here */
 	}
     }
 }
