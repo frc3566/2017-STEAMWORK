@@ -29,12 +29,12 @@ public class GearHandler extends Subsystem {
     }
 
     public void deliver(double speed) {
-	if (gearLimitSwitchFront.get()) gearHandler.set(speed * -1); // 42
+	if (gearLimitSwitchFront.get()) gearHandler.set(speed ); // 42
 								     // good
     }
 
     public void retract(double speed) {
-	if (gearLimitSwitchBack.get()) gearHandler.set(speed);
+	if (gearLimitSwitchBack.get()) gearHandler.set(speed*-1);
     }
 
     public void stop() {
@@ -53,7 +53,7 @@ public class GearHandler extends Subsystem {
 	/*
 	 * Hmm. Seems like this is default open. Whatevs.
 	 */
-	return ! gearLimitSwitchBack.get();
+	return gearLimitSwitchBack.get();
     }
     
     public double getPoteniometer() {

@@ -17,7 +17,8 @@ public class DriveForDistance extends Command {
     private Direction myDirection;
     private DriveTrain drivetrain;
     private DriveTrain driveTrain;
-
+    private boolean Targeting;
+    
     /* FIXME what units is the distanceToDrive given in? */
     public DriveForDistance(Direction direction, double distanceToDrive, double s) {
 	requires(Robot.mecanumDriveTrain);
@@ -29,6 +30,11 @@ public class DriveForDistance extends Command {
 	this.setTimeout(distanceToDrive);
     }
 
+    public DriveForDistance(Direction direction, double distanceToDrive, double s, boolean a){
+	this(direction, distanceToDrive, s);
+	Targeting = true;
+    }
+    
     // Called just before this Command runs the first time
     protected void initialize() {
 	/*
@@ -62,7 +68,7 @@ public class DriveForDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return this.isTimedOut();
+	return (this.isTimedOut());
 	// return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
     }
 

@@ -41,9 +41,9 @@ public class VisionValues {
 	/*
 	 * acceptable centering range for gear delivery.
 	 */
-	VISION_MAX_HORIZ_BEARING = 640 / 2 + 20;
-	VISION_MIN_HORIZ_BEARING = 640 / 2 - 20;
-	VISION_LIFT_HOOK_MIN_HEIGHT = 185;
+	VISION_MAX_HORIZ_BEARING = 350 + 10;
+	VISION_MIN_HORIZ_BEARING = 350 - 10;
+	VISION_LIFT_HOOK_MIN_HEIGHT = 160;
 	VISION_HIGH_GOAL_MIN_HEIGHT = 480 / 2 - 20;
 	VISION_HIGH_GOAL_MAX_HEIGHT = 480 / 2 + 20;
 	/*
@@ -58,6 +58,10 @@ public class VisionValues {
 	GH_POT_ZERO = -1;
 	GH_POT_BOTTOM_TO_MIDDLE_DISTANCE = 51;
 	GH_POT_MIDDLE_TO_TOP_DISTANCE = 63;
+	//gear value when at top 0.36178053841190183
+	// gear value when at bottom 104.52675755101072
+	
+	//70 degrees is good value to shoot 
 
 	/********************************************************************
 	 * Shooter Values
@@ -67,7 +71,7 @@ public class VisionValues {
 	 */
 	BALL_TRIGGER_CLOSED = 0.9;
 	BALL_TRIGGER_OPEN = 0.5;
-	SHOOTER_OPTIMAL_SPEED = 1800.0; /*
+	SHOOTER_OPTIMAL_SPEED = 1500.0; /*
 					 * Speed necessary to consistently
 					 * launcht the ball into the high goal
 					 */
@@ -80,6 +84,8 @@ public class VisionValues {
 	/* update values for R2 as needed here */
 	if (edition == 2) {
 	    // right now... we know nothing!
+	    BALL_TRIGGER_CLOSED=0.8;
+	    BALL_TRIGGER_OPEN = 0.6;
 	}
     }
 }

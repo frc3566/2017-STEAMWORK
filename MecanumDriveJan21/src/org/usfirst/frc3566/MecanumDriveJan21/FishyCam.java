@@ -106,7 +106,7 @@ public class FishyCam extends Thread {
 			 * FIXME **don't** necessarily need this in competition b/cc it
 			 * slows down the dashboard
 			 */
-			outputStream.putFrame(pipeline.hslThresholdOutput());
+			// outputStream.putFrame(pipeline.hslThresholdOutput());
 
 			/*
 			 * the loop finds out the first, second and third biggest contours

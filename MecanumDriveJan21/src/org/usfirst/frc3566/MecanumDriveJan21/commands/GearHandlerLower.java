@@ -19,6 +19,13 @@ public class GearHandlerLower extends Command {
 	mySpeed = 0.5;
     }
 
+    public GearHandlerLower(double timeout) {
+  	requires(Robot.gearHandler);
+  	gearHandler = Robot.gearHandler;
+  	mySpeed = 0.5;
+  	this.setTimeout(timeout);      
+  	}
+    
     // Called just before this Command runs the first time
     protected void initialize() {
     }
@@ -31,7 +38,7 @@ public class GearHandlerLower extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-	return (gearHandler.isAtBackLimit() || this.isTimedOut());
+	return (this.isTimedOut() || !gearHandler.isAtBackLimit());
     }
 
     // Called once after isFinished returns true

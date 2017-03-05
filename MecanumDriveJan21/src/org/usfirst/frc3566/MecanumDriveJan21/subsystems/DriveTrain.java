@@ -45,29 +45,29 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void forward(double speed) {
-		robotDrive.mecanumDrive_Cartesian(0, -1 * speed, 0, 0);
+		robotDrive.mecanumDrive_Cartesian(0,  speed, 0, 0);
 	}
 
 	public void driveTrainBackward(double speed) {
-		robotDrive.mecanumDrive_Cartesian(0, speed, 0, 0);
+		robotDrive.mecanumDrive_Cartesian(0, -1 * speed, 0, 0);
 	}
 
 	// TODO Need Check
 	public void strafeRight(double speed) {
-		robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
-	}
-
-	public void strafeLeft(double speed) {
 		robotDrive.mecanumDrive_Cartesian(speed * -1, 0, 0, 0);
+	}
+ 
+	public void strafeLeft(double speed) {
+		robotDrive.mecanumDrive_Cartesian(speed, 0, 0, 0);
 	}
 
 	// TODO test
 	public void rotateLeft(double speed) {
-		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
+		robotDrive.mecanumDrive_Cartesian(0, 0, -1 * speed, 0);
 	}
 
 	// TODO test
 	public void rotateRight(double speed) {
-		robotDrive.mecanumDrive_Cartesian(0, 0, speed * -1, 0);
+		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
 	}
 }

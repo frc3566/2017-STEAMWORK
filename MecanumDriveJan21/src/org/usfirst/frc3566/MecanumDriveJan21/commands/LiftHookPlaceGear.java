@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LiftHookPlaceGear extends CommandGroup {
 
     public LiftHookPlaceGear() {
+	
     	//Potentiometer Deliver 19
     	//Potentiometer Middle 82
     	
@@ -21,12 +22,13 @@ public class LiftHookPlaceGear extends CommandGroup {
     	
     	addSequential(new GearHandlerRaise(1.5));
     //	addSequential(new GearHandlerRaise(0.4, VisionValues.PotentiometerBottomToMiddleDistance));
-    
-    	addSequential(new DriveForDistance(Direction.FORWARD, 0.8, 0.2));
+    	addSequential(new Wait(0.5));
+    	addSequential(new DriveForDistance(Direction.FORWARD, 0.3, 0.8));
+    	addSequential(new GearHandlerLower(1.5));
     //	addSequential(new ResetPotentiometer());
     	
     //	addSequential(new GearHandlerRaise(0.4, VisionValues.PotentiometerMiddleToTopDistance));
-    	addSequential(new GearHandlerRaise(0.5));
+
 
     }
 }

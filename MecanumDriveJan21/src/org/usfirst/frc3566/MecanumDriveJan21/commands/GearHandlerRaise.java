@@ -13,7 +13,6 @@ public class GearHandlerRaise extends Command {
     private GearHandler gearHandler;
     private double mySpeed;
     private double distance = -1;
-    private boolean finished = false;
 
     public GearHandlerRaise() {
 	requires(Robot.gearHandler);
@@ -24,10 +23,10 @@ public class GearHandlerRaise extends Command {
     public GearHandlerRaise(double speed, double PotentiometerDistance) {
 	mySpeed = speed;
 	distance = PotentiometerDistance;
-	this.setTimeout(5);
     }
 
     public GearHandlerRaise(double Timeout) {
+	this();
 	this.setTimeout(Timeout);
 	mySpeed = 0.5;
     }
@@ -38,21 +37,21 @@ public class GearHandlerRaise extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	if (distance != -1) {
-	    if (Math.abs(gearHandler.getPoteniometer() - VisionValues.GH_POT_ZERO - distance) > 2) {
-		gearHandler.deliver(mySpeed);
-	    } else {
-		finished = true;
-	    }
-	} else {
-	    Robot.gearHandler.deliver(mySpeed);
-	}
+//	if (distance != -1) {
+//	 //   if (Math.abs(gearHandler.getPoteniometer() - VisionValues.GH_POT_ZERO - distance) > 2) {
+//		gearHandler.deliver(mySpeed);
+//	  //  } else {
+//	//	finished = true;
+//	 //   }
+//	} else {
+	    gearHandler.deliver(mySpeed);
+	//}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
 	// return (!Robot.gearLimitSwitchFront.get());
-	return (finished || this.isTimedOut() || (!gearHandler.isAtFrontLimit()));
+	return (this.isTimedOut() || (!gearHandler.isAtFrontLimit()));
     }
 
     // Called once after isFinished returns true

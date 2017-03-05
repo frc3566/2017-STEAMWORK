@@ -10,13 +10,17 @@ public class AutonomousStrafeToSideLift extends CommandGroup {
     }
 
     public AutonomousStrafeToSideLift(Direction direction) {
-	addSequential(new DriveForDistance(direction, 2, 0.35));
-	addSequential(new AutonomousLiftFront());
-
-	// addSequential(new DriveForDistance(Direction.FORWARD, 3, 0.3));
-	// addSequential(new LiftHookPlaceGear());
-	// addSequential(new DriveForDistance(Direction.BACKWARD, 1, 0.2));
-	// addSequential(new GearHandlerLower());
-	// addSequential(new ResetPotentiometer());
+	
+	addSequential(new DriveForDistance(Direction.FORWARD, 4, 0.5));
+//	
+//	addSequential(new DriveForDistance(direction, 7, 0.4));
+//	if(direction==Direction.LEFT){
+//	addSequential(new Rotate(Direction.RIGHT, 0.5));
+//	/**NOTE: THIS IS FLIPPED **/
+//	}else if(direction==Direction.RIGHT){
+//	addSequential(new Rotate(Direction.LEFT, 0.5));
+//	}
+//	addSequential(new AutonomousLiftFront(direction));
+//	
     }
 }

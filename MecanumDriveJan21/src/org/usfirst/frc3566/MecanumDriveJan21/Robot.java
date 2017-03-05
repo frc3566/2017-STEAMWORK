@@ -71,7 +71,7 @@ public class Robot extends IterativeRobot {
 		table = NetworkTable.getTable("datatable");
 
 		autoChooser = new SendableChooser<Command>();
-		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront());
+		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront(Direction.LEFT));
 		autoChooser.addObject("Strafe Left to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.LEFT));
 		autoChooser.addObject("Strafe Right to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.RIGHT));
 		SmartDashboard.putData("Autonomous", autoChooser);
@@ -95,6 +95,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
+	    new GearHandlerLower().start();
 		autonomous = (Command) autoChooser.getSelected();
 		System.out.println("Beginning autonomous: " + autonomous.getName());
 		autonomous.start();
@@ -114,6 +115,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomous != null)
 			autonomous.cancel();
+		new GearHandlerLower().start();
 	}
 
 	/**
