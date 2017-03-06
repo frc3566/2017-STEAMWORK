@@ -10,7 +10,7 @@
 
 package org.usfirst.frc3566.MecanumDriveJan21;
 
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.VisionValues;
 
 import com.ctre.CANTalon;
 
@@ -37,7 +37,7 @@ public class RobotMap {
      *
      ************************************************************************
      ***********************************************************************/
-    public static final int ROBOT_EDITION = 2;
+    public static final int ROBOT_VERSION = 2;
 
     /**
      * Test mode LiveWindow groupings
@@ -53,9 +53,9 @@ public class RobotMap {
     public static RobotDrive mecanumDriveTrainRobotDrive;
 
     public static void init() {
-	VisionValues.init(ROBOT_EDITION);
+	VisionValues.init(ROBOT_VERSION);
 
-	switch (ROBOT_EDITION) {
+	switch (ROBOT_VERSION) {
 	    case 1:
 		frontLeft = new CANTalon(5);
 		frontLeft.setInverted(false);

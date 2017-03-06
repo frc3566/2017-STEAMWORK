@@ -4,9 +4,9 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Bearing;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Orientation;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.Bearing;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.Orientation;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.VisionValues;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;

@@ -1,7 +1,7 @@
 package org.usfirst.frc3566.MecanumDriveJan21.subsystems;
 
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.VisionValues;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.VisionValues;
 
 import com.ctre.CANTalon;
 

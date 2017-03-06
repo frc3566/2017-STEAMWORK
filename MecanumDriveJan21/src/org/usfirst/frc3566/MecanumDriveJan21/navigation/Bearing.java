@@ -1,4 +1,4 @@
-package org.usfirst.frc3566l.MecanumDriveJan21.navigation;
+package org.usfirst.frc3566.MecanumDriveJan21.navigation;
 
 /**
  * An enumerated type to describe our possible bearing relative to the

@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.*;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
-import org.usfirst.frc3566l.MecanumDriveJan21.navigation.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the

@@ -20,36 +20,46 @@ import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
  */
 public class DriveWithJoystick extends Command {
 
-    RobotDrive myDrive;
+	private RobotDrive myDrive;
+	private int version;
 
-    public DriveWithJoystick() {
+	public DriveWithJoystick() {
+		requires(Robot.mecanumDriveTrain);
+		myDrive = RobotMap.mecanumDriveTrainRobotDrive;
+		version = RobotMap.ROBOT_VERSION;
+	}
 
-	requires(Robot.mecanumDriveTrain);
-	myDrive = RobotMap.mecanumDriveTrainRobotDrive;
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		myDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-	myDrive.mecanumDrive_Cartesian(0.0, 0.0, 0.0, 0.0);
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		/*
+		 * Um, dudes… WTF? I'm leaving this as it is (reversing the joystick
+		 * input on R2), but I note that you reversed all of the directions in
+		 * the DriveTrain subsystem in R2 as well, which MIGHT account for why
+		 * you need to send the joystick command in reverse as well. I'll bet
+		 * this is a double-negative that could be eliminated.
+		 * 
+		 * -- SB 3/6
+		 */
+		myDrive.mecanumDrive_Cartesian(0, Robot.oi.driveTrainJoystick.getRawAxis(1) * (version == 1 ? 1 : -1),
+				Robot.oi.getRotation(), 0);
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-	myDrive.mecanumDrive_Cartesian(0,
-		Robot.oi.driveTrainJoystick.getRawAxis(1) * -1, Robot.oi.getRotation(), 0);
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-	return false;
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+	}
 }
