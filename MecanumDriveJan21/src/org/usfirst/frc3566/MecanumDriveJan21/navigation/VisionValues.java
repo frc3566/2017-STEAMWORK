@@ -16,9 +16,10 @@ public class VisionValues {
 	 * FIXME some day these will all be private variables with accessor methods
 	 */
 
-	public static double VISION_MIN_AREA, VISION_MAX_HORIZ_BEARING, VISION_MIN_HORIZ_BEARING,
-			VISION_LIFT_HOOK_MIN_HEIGHT, VISION_HIGH_GOAL_MIN_HEIGHT, VISION_HIGH_GOAL_MAX_HEIGHT,
-			VISION_MAX_HORIZON_SLOPE, VISION_MIN_HORIZON_SLOPE;
+	public static double VISION_MIN_AREA, VISION_LIFTHOOK_CENTER_X, VISION_LIFTHOOK_CENTER_X_ERROR,
+			VISION_LIFTHOOK_CENTER_Y, VISION_LIFTHOOK_CENTER_Y_ERROR, VISION_HIGHGOAL_CENTER_X,
+			VISION_LIFTHOOK_HORIZON_SLOPE, VISION_HIGHGOAL_CENTER_X_ERROR, VISION_HIGHGOAL_CENTER_Y,
+			VISION_HIGHGOAL_CENTER_Y_ERROR;
 
 	public static double GH_POT_ZERO, GH_POT_BOTTOM_TO_MIDDLE_DISTANCE, GH_POT_MIDDLE_TO_TOP_DISTANCE;
 
@@ -32,25 +33,31 @@ public class VisionValues {
 		/********************************************************************
 		 * Vision Values
 		 *******************************************************************/
-		VISION_MIN_AREA = 200; /*
-								 * basic filtering ImgProcArea values for both
-								 * vertical and horizontal targets access
-								 * through FishyThread for vision targeting aid.
-								 */
+		/*
+		 * basic filtering ImgProcArea values for both vertical and horizontal
+		 * targets access through FishyThread for vision targeting aid.
+		 */VISION_MIN_AREA = 200;
 
 		/*
 		 * acceptable centering range for gear delivery.
 		 */
-		VISION_MAX_HORIZ_BEARING = 640 / 2 + 20;
-		VISION_MIN_HORIZ_BEARING = 640 / 2 - 20;
-		VISION_LIFT_HOOK_MIN_HEIGHT = 180;
-		VISION_HIGH_GOAL_MIN_HEIGHT = 480 / 2 - 20;
-		VISION_HIGH_GOAL_MAX_HEIGHT = 480 / 2 + 20;
+		VISION_LIFTHOOK_CENTER_X = 640 / 2;
+		VISION_LIFTHOOK_CENTER_Y = 180;
+		VISION_LIFTHOOK_CENTER_X_ERROR = 10;
+		VISION_LIFTHOOK_CENTER_Y_ERROR = VISION_LIFTHOOK_CENTER_X_ERROR;
+
 		/*
-		 * acceptable leveling range for vision target "horizon"
+		 * acceptable +/- error for vision target "horizon"
 		 */
-		VISION_MAX_HORIZON_SLOPE = 0.05;
-		VISION_MIN_HORIZON_SLOPE = -0.05;
+		VISION_LIFTHOOK_HORIZON_SLOPE = 0.05;
+
+		/*
+		 * acceptable centering range for high goal
+		 */
+		VISION_HIGHGOAL_CENTER_X = VISION_LIFTHOOK_CENTER_X;
+		VISION_HIGHGOAL_CENTER_Y = 480 / 2;
+		VISION_HIGHGOAL_CENTER_X_ERROR = VISION_LIFTHOOK_CENTER_X_ERROR;
+		VISION_HIGHGOAL_CENTER_Y_ERROR = VISION_LIFTHOOK_CENTER_Y_ERROR;
 
 		/********************************************************************
 		 * Gear Handler Values
@@ -71,24 +78,25 @@ public class VisionValues {
 		 */
 		BALL_TRIGGER_CLOSED = 0.9;
 		BALL_TRIGGER_OPEN = 0.5;
-		SHOOTER_OPTIMAL_SPEED = 1800.0; /*
-										 * Speed necessary to consistently
-										 * launcht the ball into the high goal
-										 */
-		SHOOTER_MIN_SPEED = SHOOTER_OPTIMAL_SPEED
-				* 0.9; /*
-						 * Speed necessary to allow the trigger to open and drop
-						 * balls into the shooter
-						 */
+
+		/*
+		 * Speed necessary to consistently launch the ball into the high goal
+		 */
+		SHOOTER_OPTIMAL_SPEED = 1800.0;
+
+		/*
+		 * Speed necessary to allow the trigger to open and drop balls into the
+		 * shooter
+		 */
+		SHOOTER_MIN_SPEED = SHOOTER_OPTIMAL_SPEED * 0.9;
 
 		/* update values for R2 as needed here */
 		if (edition == 2) {
 			/*
 			 * Vision Values
 			 */
-			VISION_MAX_HORIZ_BEARING = 350 + 10;
-			VISION_MIN_HORIZ_BEARING = 350 - 10;
-			VISION_LIFT_HOOK_MIN_HEIGHT = 160;
+			VISION_LIFTHOOK_CENTER_X = 350;
+			VISION_LIFTHOOK_CENTER_Y = 170;
 
 			/*
 			 * Shooter Values
