@@ -49,7 +49,6 @@ public class GearHandler extends Subsystem {
 		return gearLimitSwitchFront.get();
 	}
 
-	@SuppressWarnings("unused")
 	public boolean isAtBackLimit() {
 		return !gearLimitSwitchBack.get();
 	}
