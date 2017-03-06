@@ -5,22 +5,18 @@ import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Direction;
 
 public class AutonomousStrafeToSideLift extends CommandGroup {
 
-    public AutonomousStrafeToSideLift() {
-	this(Direction.LEFT);
-    }
 
     public AutonomousStrafeToSideLift(Direction direction) {
-	
+	//drive to base line (78.5in) //assuming 40 in away from center
 	addSequential(new DriveForDistance(Direction.FORWARD, 4, 0.5));
-//	
-//	addSequential(new DriveForDistance(direction, 7, 0.4));
-//	if(direction==Direction.LEFT){
-//	addSequential(new Rotate(Direction.RIGHT, 0.5));
-//	/**NOTE: THIS IS FLIPPED **/
-//	}else if(direction==Direction.RIGHT){
-//	addSequential(new Rotate(Direction.LEFT, 0.5));
-//	}
-//	addSequential(new AutonomousLiftFront(direction));
-//	
+	
+	//rotate 60 degrees to the opposite angle
+	if(direction == Direction.LEFT){
+	addSequential(new Rotate(Direction.RIGHT, 0.35));
+	}else if(direction == Direction.RIGHT){
+	addSequential(new Rotate(Direction.LEFT, 0.35));
+	}
+	
+	addSequential(new AutonomousLiftFront(direction));
     }
 }

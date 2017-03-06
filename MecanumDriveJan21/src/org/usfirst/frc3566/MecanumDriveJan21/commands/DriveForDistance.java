@@ -1,5 +1,6 @@
 package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
+import org.usfirst.frc3566.MecanumDriveJan21.FishyCam;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.DriveTrain;
 import org.usfirst.frc3566l.MecanumDriveJan21.navigation.Direction;
@@ -32,7 +33,7 @@ public class DriveForDistance extends Command {
 
     public DriveForDistance(Direction direction, double distanceToDrive, double s, boolean a){
 	this(direction, distanceToDrive, s);
-	Targeting = true;
+	Targeting = a;
     }
     
     // Called just before this Command runs the first time
@@ -68,7 +69,11 @@ public class DriveForDistance extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+	if(Targeting){
+	    return (this.isTimedOut() || FishyCam.isTargetsDetected());
+	}else{
 	return (this.isTimedOut());
+	}
 	// return (Math.abs(myDistance) >= Math.abs(myEncoder.getDistance()));
     }
 
