@@ -50,6 +50,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		RobotMap.init();
+		SmartDashboard.putString("Robot Version", "You are using software for R" + RobotMap.ROBOT_VERSION);
+
 
 		mecanumDriveTrain = new DriveTrain();
 		gearHandler = new GearHandler();
