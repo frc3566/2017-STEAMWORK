@@ -76,12 +76,17 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront(Direction.LEFT));
 		autoChooser.addObject("Strafe Left to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.LEFT));
 		autoChooser.addObject("Strafe Right to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.RIGHT));
-		SmartDashboard.putData("Autonomous", autoChooser);
+		SmartDashboard.putData("Autonomous!", autoChooser);
 		
 		SmartDashboard.putData("Reset Gear", new GearHandlerLower());
 		SmartDashboard.putData("Deliver Gear", new GearHandlerRaise());
 		SmartDashboard.putData("Start Shooter", new ShooterStart());
 		SmartDashboard.putData("Stop Shooter", new ShooterStop());
+		SmartDashboard.putData("DriveForDistance", new DriveForDistance(Direction.FORWARD,
+			1.5, 0.3));
+		SmartDashboard.putData("Rotate", new Rotate(Direction.LEFT,
+			0.33, 0.5));
+		//Front bumper reaching baseline in 7ft9.25in: drive 1.5, 0.3; rotateLeft:0.33, 0.5
 	}
 
 	/**
@@ -117,7 +122,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomous != null)
 			autonomous.cancel();
-		new GearHandlerLower().start();
+	//	new GearHandlerLower().start();
 	}
 
 	/**

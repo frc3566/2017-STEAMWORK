@@ -8,15 +8,17 @@ public class AutonomousStrafeToSideLift extends CommandGroup {
 
 	public AutonomousStrafeToSideLift(Direction direction) {
 		// drive to base line (78.5in) //assuming 40 in away from center
-		addSequential(new DriveForDistance(Direction.FORWARD, 4, 0.5));
+	    //****Baseline is actually 7ft 9.25in away from wall!!
+		addSequential(new DriveForDistance(Direction.FORWARD, 5, 0.2));
 
 		// rotate 60 degrees to the opposite angle
 		if (direction == Direction.LEFT) {
-			addSequential(new Rotate(Direction.RIGHT, 0.35));
+			addSequential(new Rotate(Direction.RIGHT, 0.85, 0.3));
 		} else if (direction == Direction.RIGHT) {
-			addSequential(new Rotate(Direction.LEFT, 0.35));
+			addSequential(new Rotate(Direction.LEFT, 0.85, 0.3));
 		}
 
-		addSequential(new AutonomousLiftFront(direction));
+		//addSequential(new DriveForDistance(Direction.FORWARD, 1, 0.2));
+		//addSequential(new AutonomousLiftFront());
 	}
 }

@@ -13,15 +13,17 @@ public class Rotate extends Command {
 
 	private Direction myDirection;
 	private DriveTrain driveTrain;
+	private double mySpeed;
 
-	public Rotate(Direction direction) {
+	public Rotate(Direction direction, double speed) {
 		requires(Robot.mecanumDriveTrain);
 		driveTrain = Robot.mecanumDriveTrain;
 		myDirection = direction;
+		mySpeed=speed;
 	}
 
-	public Rotate(Direction direction, double Timeout) {
-		this(direction);
+	public Rotate(Direction direction, double Timeout, double speed) {
+		this(direction, speed);
 		this.setTimeout(Timeout);
 	}
 
@@ -32,9 +34,9 @@ public class Rotate extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		if (myDirection.equals(Direction.LEFT)) {
-			driveTrain.rotateLeft(0.5);
+			driveTrain.rotateLeft(mySpeed);
 		} else if (myDirection.equals(Direction.RIGHT)) {
-			driveTrain.rotateRight(0.5);
+			driveTrain.rotateRight(mySpeed);
 		}
 	}
 

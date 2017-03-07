@@ -37,7 +37,7 @@ public class RobotMap {
      *
      ************************************************************************
      ***********************************************************************/
-    public static final int ROBOT_VERSION = 2;
+    public static final int ROBOT_VERSION = 1;
 
     /**
      * Test mode LiveWindow groupings

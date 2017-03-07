@@ -58,10 +58,10 @@ public class OI {
 		sidewayR.whileHeld(new Strafe(Direction.RIGHT));
 
 		rotateL = new JoystickButton(driveTrainJoystick, 8);
-		rotateL.whileHeld(new Rotate(Direction.LEFT));
+		rotateL.whileHeld(new Rotate(Direction.LEFT, 0.5));
 
 		rotateR = new JoystickButton(driveTrainJoystick, 7);
-		rotateR.whileHeld(new Rotate(Direction.RIGHT));
+		rotateR.whileHeld(new Rotate(Direction.RIGHT, 0.5));
 
 		deliverGear2 = new JoystickButton(driveTrainJoystick, 4);
 		deliverGear2.whileHeld(new LiftHookPlaceGear());

@@ -1,184 +1,301 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Rotate" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="419"/>
+	</widget>
+	<widget field="DriveForDistance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="385"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
 		<location x="10" y="-27"/>
-		<width>592</width>
-		<height>496</height>
+		<width>454</width>
+		<height>411</height>
 		<property name="Camera Choice" value=""/>
 	</static-widget>
 	<widget field="Start Shooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="498" y="164"/>
+		<location x="507" y="23"/>
 	</widget>
 	<widget field="Deliver Gear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="536" y="184"/>
+		<location x="512" y="85"/>
 	</widget>
 	<widget field="Stop Shooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="486" y="105"/>
+		<location x="509" y="46"/>
 	</widget>
 	<widget field="Autonomous" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="28" y="456"/>
 	</widget>
 	<widget field="Reset Gear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="501" y="135"/>
+		<location x="914" y="6"/>
 	</widget>
 	<widget field="Shooter Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="517" y="64"/>
+		<location x="507" y="1"/>
 	</widget>
 	<widget field="Gear Handler Potentiometer" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="473" y="337"/>
+		<location x="511" y="117"/>
 	</widget>
 	<widget field="Gear Handler Back Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="40" y="608"/>
 		<height>26</height>
 	</widget>
-	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="524" y="239"/>
-	</widget>
 	<widget field="Gear Handler Front Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="37" y="577"/>
 		<height>33</height>
 	</widget>
+	<widget field="Robot Version" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="18" y="7"/>
+	</widget>
 </dashboard>
 <live-window>
-	<widget field="Ball Elevator" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Ball Elevator" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<location x="18" y="28"/>
-		<width>305</width>
-		<height>164</height>
-	</widget>
-	<widget field="Mecanum Drivetrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Front Left" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="Encoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="157"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<widget field="Rear Right" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="255"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="Front Right" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="396"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="Rear Left" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="537"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<location x="9" y="0"/>
-		<width>305</width>
-		<height>685</height>
-	</widget>
-	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Shooter" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<widget field="CIMcoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="157"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<widget field="Trigger" type="Servo" class="edu.wpi.first.smartdashboard.livewindow.elements.ServoController">
-			<location x="6" y="255"/>
-			<height>46</height>
-			<width>293</width>
-		</widget>
-		<location x="31" y="21"/>
-		<width>305</width>
-		<height>308</height>
-	</widget>
-	<widget field="Gear Handler" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Front Limit" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="16"/>
-			<height>20</height>
-			<width>293</width>
-		</widget>
-		<widget field="Encoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="36"/>
-			<height>98</height>
-			<width>293</width>
-		</widget>
-		<widget field="Back Limit" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="134"/>
-			<height>20</height>
-			<width>293</width>
-		</widget>
-		<widget field="Potentiometer" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="154"/>
-			<height>20</height>
-			<width>293</width>
-		</widget>
-		<widget field="Gear Handler" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="174"/>
-			<height>141</height>
-			<width>293</width>
-		</widget>
-		<location x="30" y="4"/>
-		<width>305</width>
-		<height>322</height>
-	</widget>
-	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="AnalogInput[0]" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="16"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<widget field="DigitalInput[7]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="36"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<widget field="DigitalInput[4]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="56"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<widget field="DigitalInput[2]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="76"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<widget field="DigitalInput[5]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="96"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<widget field="DigitalInput[6]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="116"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<widget field="DigitalInput[3]" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="136"/>
-			<height>20</height>
-			<width>88</width>
-		</widget>
-		<location x="18" y="25"/>
-		<width>100</width>
-		<height>163</height>
-	</widget>
 	<widget field="Climber" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Climber" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
-			<location x="6" y="16"/>
-			<height>141</height>
-			<width>293</width>
+		<widget field="Climber" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Climber" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
 		</widget>
 		<location x="1" y="3"/>
 		<width>305</width>
 		<height>164</height>
 	</widget>
+	<widget field="Mecanum Drivetrain" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Front Left" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Front Left" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Rear Right" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Rear Right" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Front Right" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Front Right" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Rear Left" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Rear Left" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="70" y="58"/>
+		<width>305</width>
+		<height>685</height>
+	</widget>
+	<widget field="Ball Elevator" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Ball Elevator" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Ball Elevator" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="18" y="28"/>
+		<width>305</width>
+		<height>164</height>
+	</widget>
+	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="AnalogInput[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="AnalogInput[0]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[7]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[7]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[4]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[2]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[5]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[6]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="DigitalInput[3]" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="18" y="25"/>
+		<width>100</width>
+		<height>163</height>
+	</widget>
+	<widget field="Gear Handler" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Front Limit" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Front Limit" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Encoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Back Limit" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Back Limit" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Potentiometer" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Potentiometer" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Gear Handler" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Gear Handler" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="30" y="4"/>
+		<width>305</width>
+		<height>322</height>
+	</widget>
+	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
+		<widget field="Shooter" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Shooter" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="CIMcoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="CIMcoder" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Trigger" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.ServoController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Trigger" type="Table" class="edu.wpi.first.smartdashboard.livewindow.elements.ServoController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="31" y="21"/>
+		<width>305</width>
+		<height>308</height>
+	</widget>
 </live-window>
+	<hidden field="Auto Selector"/>
 </xml>

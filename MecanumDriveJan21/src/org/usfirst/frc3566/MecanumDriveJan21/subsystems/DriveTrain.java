@@ -60,11 +60,11 @@ public class DriveTrain extends Subsystem {
 		robotDrive.mecanumDrive_Cartesian(speed * (version == 1 ? -1 : 1), 0, 0, 0);
 	}
 
-	public void rotateLeft(double speed) {
+	public void rotateRight(double speed) {
 		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
 	}
 
-	public void rotateRight(double speed) {
+	public void rotateLeft(double speed) {
 		robotDrive.mecanumDrive_Cartesian(0, 0, speed * -1, 0);
 	}
 }
