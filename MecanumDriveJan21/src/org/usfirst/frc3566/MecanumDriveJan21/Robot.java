@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3566.MecanumDriveJan21.commands.*;
+import org.usfirst.frc3566.MecanumDriveJan21.commands.test.drivetrain.*;
 import org.usfirst.frc3566.MecanumDriveJan21.navigation.*;
 import org.usfirst.frc3566.MecanumDriveJan21.subsystems.*;
 
@@ -50,7 +51,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		RobotMap.init();
-		SmartDashboard.putString("Robot Version", "You are using software for R" + RobotMap.ROBOT_VERSION);
+		SmartDashboard.putString("Robot Version", "R" + RobotMap.ROBOT_VERSION);
 
 
 		mecanumDriveTrain = new DriveTrain();
@@ -76,8 +77,9 @@ public class Robot extends IterativeRobot {
 		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront(Direction.LEFT));
 		autoChooser.addObject("Strafe Left to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.LEFT));
 		autoChooser.addObject("Strafe Right to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.RIGHT));
-		SmartDashboard.putData("Autonomous!", autoChooser);
+		SmartDashboard.putData("Autonomous Selector", autoChooser);
 		
+		SmartDashboard.putData("Lift Hook Align", new LiftHookAlign());
 		SmartDashboard.putData("Reset Gear", new GearHandlerLower());
 		SmartDashboard.putData("Deliver Gear", new GearHandlerRaise());
 		SmartDashboard.putData("Start Shooter", new ShooterStart());
@@ -86,6 +88,15 @@ public class Robot extends IterativeRobot {
 			1.5, 0.3));
 		SmartDashboard.putData("Rotate", new Rotate(Direction.LEFT,
 			0.33, 0.5));
+		
+		// Drive train testing
+		/*SmartDashboard.putData("Drive Forward", new DriveFoward());
+		SmartDashboard.putData("Drive Backward", new DriveBackward());
+		SmartDashboard.putData("Strafe Left", new StrafeLeft());
+		SmartDashboard.putData("Strafe Right", new StrafeRight());
+		SmartDashboard.putData("Rotate Left", new RotateLeft());
+		SmartDashboard.putData("Rotate Right", new RotateRight());*/
+		
 		//Front bumper reaching baseline in 7ft9.25in: drive 1.5, 0.3; rotateLeft:0.33, 0.5
 	}
 

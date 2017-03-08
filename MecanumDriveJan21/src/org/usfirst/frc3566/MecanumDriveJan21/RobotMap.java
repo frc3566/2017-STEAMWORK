@@ -37,7 +37,7 @@ public class RobotMap {
      *
      ************************************************************************
      ***********************************************************************/
-    public static final int ROBOT_VERSION = 2;
+    public static final int ROBOT_VERSION = 1;
 
     /**
      * Test mode LiveWindow groupings
@@ -78,6 +78,7 @@ public class RobotMap {
 
 		gearLimitSwitchFront = new DigitalInput(0);
 		gearLimitSwitchBack = new DigitalInput(1);
+		gearLimitSwitchMiddle = new DigitalInput(9);
 		gearHandlerPotentiometer = new AnalogPotentiometer(0, 360, 0);
 		gearHandlerEncoder = new Encoder(6, 7);
 

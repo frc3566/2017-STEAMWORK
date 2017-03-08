@@ -4,9 +4,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
-import org.usfirst.frc3566.MecanumDriveJan21.navigation.Bearing;
-import org.usfirst.frc3566.MecanumDriveJan21.navigation.Orientation;
-import org.usfirst.frc3566.MecanumDriveJan21.navigation.VisionValues;
+import org.usfirst.frc3566.MecanumDriveJan21.navigation.*;
 
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
@@ -20,17 +18,19 @@ import edu.wpi.first.wpilibj.CameraServer;
 public class FishyCam extends Thread {
 
 	public static int FPStotal = 24, defaultStart = FPStotal / 2;
+	public static final boolean ENABLE_OUTPUT = true;
+	public static final int BUFFER_DEPTH = BufferedDouble.DEFAULT_BUFFER_DEPTH;
 
 	// total should be smaller than 24 to make sure each cam starts at <= 12
 	private int myFPS;
-	private UsbCamera camera;
+	public UsbCamera camera;
 	private CvSink cvSink;
-	private CvSource outputStream;
+	public CvSource outputStream;
 	private Mat mat;
 	private GripPipeline pipeline;
 	private static Orientation orientation;
 	private static boolean targetsDetected;
-	private static double horizonSlope, centerX, centerY;
+	private static BufferedDouble centerX, centerY, horizonSlope;
 
 	/**
 	 * A general "bad value" for coordinates
@@ -70,6 +70,9 @@ public class FishyCam extends Thread {
 		// lets the robot stop this thread when restarting robot code or
 		// deploying.
 
+		centerX = new BufferedDouble(BUFFER_DEPTH);
+		centerY = new BufferedDouble(BUFFER_DEPTH);
+		horizonSlope = new BufferedDouble(BUFFER_DEPTH);
 	}
 
 	/**
@@ -102,11 +105,9 @@ public class FishyCam extends Thread {
 			/*
 			 * Give the output stream a new image to display
 			 */
-			/*
-			 * FIXME **don't** necessarily need this in competition b/cc it
-			 * slows down the dashboard
-			 */
-			// outputStream.putFrame(pipeline.hslThresholdOutput());
+			if (ENABLE_OUTPUT) {
+				outputStream.putFrame(pipeline.hslThresholdOutput());
+			}
 
 			/*
 			 * the loop finds out the first, second and third biggest contours
@@ -182,8 +183,8 @@ public class FishyCam extends Thread {
 				 * rather than the upside-down cartesian first quadrant in the
 				 * video
 				 */
-				horizonSlope = (double) -((right.y + right.height) - (left.y + left.height))
-						/ (double) ((right.x + right.width) - left.x);
+				horizonSlope.add((double) -((right.y + right.height) - (left.y + left.height))
+						/ (double) ((right.x + right.width) - left.x));
 
 				/*
 				 * checks if targets are vertical or horizontal
@@ -193,8 +194,8 @@ public class FishyCam extends Thread {
 				/*
 				 * calculate the center point of the two targets
 				 */
-				centerX = (left.x + right.x + right.width) / 2;
-				centerY = (top.y + bottom.y + bottom.height) / 2;
+				centerX.add((double) (left.x + right.x + right.width) / 2.0);
+				centerY.add((double) (top.y + bottom.y + bottom.height) / 2.0);
 
 			}
 			Robot.table.putValue("Targets Detected", isTargetsDetected());
@@ -223,7 +224,7 @@ public class FishyCam extends Thread {
 	 */
 	public static double getCenterX() {
 		if (targetsDetected) {
-			return centerX;
+			return centerX.getValue();
 		}
 		return INVALID;
 	}
@@ -235,7 +236,7 @@ public class FishyCam extends Thread {
 	 */
 	public static double getCenterY() {
 		if (targetsDetected) {
-			return centerY;
+			return centerY.getValue();
 		}
 		return INVALID;
 	}
@@ -273,7 +274,7 @@ public class FishyCam extends Thread {
 	 */
 	public static double getHorizonSlope() {
 		if (targetsDetected) {
-			return horizonSlope;
+			return horizonSlope.getValue();
 		}
 		return INVALID;
 	}
@@ -294,16 +295,18 @@ public class FishyCam extends Thread {
 		 * for _that_ here.)
 		 */
 		if (getOrientation() == Orientation.LIFT_HOOK) {
-			if (centerX < VisionValues.VISION_LIFTHOOK_CENTER_X - VisionValues.VISION_LIFTHOOK_CENTER_X_ERROR) {
+			if (getCenterX() < VisionValues.VISION_LIFTHOOK_CENTER_X - VisionValues.VISION_LIFTHOOK_CENTER_X_ERROR) {
 				return Bearing.LEFT;
-			} else if (centerX > VisionValues.VISION_LIFTHOOK_CENTER_X + VisionValues.VISION_LIFTHOOK_CENTER_X_ERROR) {
+			} else if (getCenterX() > VisionValues.VISION_LIFTHOOK_CENTER_X
+					+ VisionValues.VISION_LIFTHOOK_CENTER_X_ERROR) {
 				return Bearing.RIGHT;
 			}
 			return Bearing.CENTER;
 		} else if (getOrientation() == Orientation.HIGH_GOAL) {
-			if (centerY < VisionValues.VISION_HIGHGOAL_CENTER_Y - VisionValues.VISION_HIGHGOAL_CENTER_Y_ERROR) {
+			if (getCenterY() < VisionValues.VISION_HIGHGOAL_CENTER_Y - VisionValues.VISION_HIGHGOAL_CENTER_Y_ERROR) {
 				return Bearing.UP;
-			} else if (centerY > VisionValues.VISION_HIGHGOAL_CENTER_Y + VisionValues.VISION_HIGHGOAL_CENTER_Y_ERROR) {
+			} else if (getCenterY() > VisionValues.VISION_HIGHGOAL_CENTER_Y
+					+ VisionValues.VISION_HIGHGOAL_CENTER_Y_ERROR) {
 				return Bearing.DOWN;
 			}
 			return Bearing.CENTER;
