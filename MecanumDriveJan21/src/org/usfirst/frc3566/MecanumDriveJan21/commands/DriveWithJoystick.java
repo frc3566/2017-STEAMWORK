@@ -12,6 +12,8 @@ package org.usfirst.frc3566.MecanumDriveJan21.commands;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc3566.MecanumDriveJan21.OI;
 import org.usfirst.frc3566.MecanumDriveJan21.Robot;
 import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
 
@@ -21,11 +23,13 @@ import org.usfirst.frc3566.MecanumDriveJan21.RobotMap;
 public class DriveWithJoystick extends Command {
 
 	private RobotDrive myDrive;
+	private OI oi;
 	private int version;
 
 	public DriveWithJoystick() {
 		requires(Robot.mecanumDriveTrain);
 		myDrive = RobotMap.mecanumDriveTrainRobotDrive;
+		oi = Robot.oi;
 		version = RobotMap.ROBOT_VERSION;
 	}
 
@@ -45,8 +49,8 @@ public class DriveWithJoystick extends Command {
 		 * 
 		 * -- SB 3/6
 		 */
-		myDrive.mecanumDrive_Cartesian(0, Robot.oi.driveTrainJoystick.getRawAxis(1) * (version == 1 ? 1 : -1),
-				Robot.oi.getRotation(), 0);
+		myDrive.mecanumDrive_Cartesian(oi.driveTrainJoystick.getRawAxis(0), oi.driveTrainJoystick.getRawAxis(1) * (version == 1 ? 1 : -1),
+				oi.getRotation(), 0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
