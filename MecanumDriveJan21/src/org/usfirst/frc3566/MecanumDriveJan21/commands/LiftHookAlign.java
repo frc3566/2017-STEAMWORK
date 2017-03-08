@@ -28,7 +28,7 @@ public class LiftHookAlign extends Command {
 	private Bearing lastKnownBearing;
 	private boolean finished;
 
-	public static final double FORWARD_POWER = 0.2, STRAFE_POWER = FORWARD_POWER * 2, ROTATE_POWER = FORWARD_POWER;
+	public static final double FORWARD_POWER = 0.2, STRAFE_POWER = FORWARD_POWER * 2.0, ROTATE_POWER = FORWARD_POWER * 2.0;
 	public static final long TIMER = 0;
 
 	private enum Action {
@@ -70,8 +70,8 @@ public class LiftHookAlign extends Command {
 		 * enough to finish delivering the gear
 		 */
 		// FIXME we should maybe pay attention to centering left/right, no?
-		if (Math.abs(FishyCam.getCenterY()
-				- VisionValues.VISION_LIFTHOOK_CENTER_Y) < VisionValues.VISION_LIFTHOOK_CENTER_Y_ERROR) {
+		if (FishyCam.getCenterY()
+				< VisionValues.VISION_LIFTHOOK_CENTER_Y - VisionValues.VISION_LIFTHOOK_CENTER_Y_ERROR) {
 			driveTrain.stopDriveTrain();
 			finished = true;
 

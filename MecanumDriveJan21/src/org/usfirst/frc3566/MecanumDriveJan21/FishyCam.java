@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.CameraServer;
 public class FishyCam extends Thread {
 
 	public static int FPStotal = 24, defaultStart = FPStotal / 2;
-	public static final boolean ENABLE_OUTPUT = true;
-	public static final int BUFFER_DEPTH = BufferedDouble.DEFAULT_BUFFER_DEPTH;
+	public static final boolean ENABLE_OUTPUT = false;
+	public static final int BUFFER_DEPTH = 1;
 
 	// total should be smaller than 24 to make sure each cam starts at <= 12
 	private int myFPS;
