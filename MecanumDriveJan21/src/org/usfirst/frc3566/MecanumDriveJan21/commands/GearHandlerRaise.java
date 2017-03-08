@@ -17,7 +17,7 @@ public class GearHandlerRaise extends Command {
 	public GearHandlerRaise() {
 		requires(Robot.gearHandler);
 		gearHandler = Robot.gearHandler;
-		mySpeed = 0.5;
+		mySpeed = 0.7;
 	}
 
 	public GearHandlerRaise(double speed, double PotentiometerDistance) {

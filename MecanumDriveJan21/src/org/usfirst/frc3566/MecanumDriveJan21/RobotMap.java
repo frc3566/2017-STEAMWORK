@@ -37,7 +37,7 @@ public class RobotMap {
      *
      ************************************************************************
      ***********************************************************************/
-    public static final int ROBOT_VERSION = 1;
+    public static final int ROBOT_VERSION = 2;
 
     /**
      * Test mode LiveWindow groupings
@@ -49,7 +49,7 @@ public class RobotMap {
     public static Servo ballTrigger;
     public static Encoder driveTrainEncoder, shooterEncoder, gearHandlerEncoder;
     public static AnalogPotentiometer gearHandlerPotentiometer;
-    public static DigitalInput gearLimitSwitchFront, gearLimitSwitchBack;
+    public static DigitalInput gearLimitSwitchFront, gearLimitSwitchBack, gearLimitSwitchMiddle;
     public static RobotDrive mecanumDriveTrainRobotDrive;
 
     public static void init() {
@@ -109,6 +109,7 @@ public class RobotMap {
 		gearHandler = new CANTalon(1);
 		gearLimitSwitchFront = new DigitalInput(0);
 		gearLimitSwitchBack = new DigitalInput(1);
+		gearLimitSwitchMiddle = new DigitalInput(9);
 		gearHandlerPotentiometer = new AnalogPotentiometer(0, 360, 0);
 		gearHandlerEncoder = new Encoder(6, 7);
 

@@ -13,7 +13,8 @@ public class GearHandler extends Subsystem {
 
 	private final CANTalon gearHandler = RobotMap.gearHandler;
 	private final DigitalInput gearLimitSwitchFront = RobotMap.gearLimitSwitchFront,
-			gearLimitSwitchBack = RobotMap.gearLimitSwitchBack;
+			gearLimitSwitchBack = RobotMap.gearLimitSwitchBack,
+			gearLimitSwitchMiddle = RobotMap.gearLimitSwitchMiddle;
 	private final Potentiometer gearHandlerPotentiometer = RobotMap.gearHandlerPotentiometer;
 	private int version;
 
@@ -50,9 +51,13 @@ public class GearHandler extends Subsystem {
 	}
 
 	public boolean isAtBackLimit() {
-		return !gearLimitSwitchBack.get();
+		return gearLimitSwitchBack.get();
 	}
 
+	public boolean isAtMiddleLimit(){
+	    return gearLimitSwitchMiddle.get();
+	}
+	
 	public double getPoteniometer() {
 		return gearHandlerPotentiometer.get();
 	}

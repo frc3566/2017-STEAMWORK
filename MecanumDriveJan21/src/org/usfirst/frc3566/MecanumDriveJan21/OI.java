@@ -34,7 +34,7 @@ public class OI {
 	public static JoystickButton ballTriggerOpen, ballTriggerClose, trigger3;
 	public static JoystickButton sidewayL, sidewayR, rotateL, rotateR;
 	public static JoystickButton frontAndBack;
-	public static JoystickButton deliverGear, deliverGear2;
+	public static JoystickButton deliverGear, deliverGear2, gearMiddle;
 	public static JoystickButton front, back;
 	
 
@@ -57,10 +57,10 @@ public class OI {
 		sidewayR = new JoystickButton(driveTrainJoystick, 6);
 		sidewayR.whileHeld(new Strafe(Direction.RIGHT));
 
-		rotateL = new JoystickButton(driveTrainJoystick, 8);
+		rotateL = new JoystickButton(driveTrainJoystick, 7);
 		rotateL.whileHeld(new Rotate(Direction.LEFT, 0.5));
 
-		rotateR = new JoystickButton(driveTrainJoystick, 7);
+		rotateR = new JoystickButton(driveTrainJoystick, 8);
 		rotateR.whileHeld(new Rotate(Direction.RIGHT, 0.5));
 
 		deliverGear2 = new JoystickButton(driveTrainJoystick, 4);
@@ -69,6 +69,9 @@ public class OI {
 		gearPositive = new JoystickButton(miscellaneousJoystick, 3);
 		gearPositive.whileHeld(new GearHandlerRaise());
 
+		gearMiddle = new JoystickButton(miscellaneousJoystick, 7);
+		gearMiddle.whenPressed(new GearMiddle());
+		
 		gearNegative = new JoystickButton(miscellaneousJoystick, 4);
 		gearNegative.whileHeld(new GearHandlerLower()); 
 

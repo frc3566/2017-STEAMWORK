@@ -122,7 +122,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomous != null)
 			autonomous.cancel();
-	//	new GearHandlerLower().start();
+		new GearHandlerLower().start();
 	}
 
 	/**
@@ -134,6 +134,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Gear Handler Front Limit", gearHandler.isAtFrontLimit());
 		SmartDashboard.putBoolean("Gear Handler Back Limit", gearHandler.isAtBackLimit());
 		SmartDashboard.putNumber("Shooter Rate", shooter.getSpeed());
+		SmartDashboard.putBoolean("Gear Handler Middle Limit", gearHandler.isAtMiddleLimit());
 	}
 
 	/**

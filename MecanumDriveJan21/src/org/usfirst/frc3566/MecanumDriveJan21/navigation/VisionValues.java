@@ -95,8 +95,8 @@ public class VisionValues {
 			/*
 			 * Vision Values
 			 */
-			VISION_LIFTHOOK_CENTER_X = 350;
-			VISION_LIFTHOOK_CENTER_Y = 170;
+			VISION_LIFTHOOK_CENTER_X = 360;
+			VISION_LIFTHOOK_CENTER_Y = 125;
 
 			/*
 			 * Shooter Values
