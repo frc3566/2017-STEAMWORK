@@ -1,70 +1,70 @@
 <xml version="1.0">
 <dashboard>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="684" y="379"/>
-		<width>384</width>
-		<height>233</height>
-		<property name="Camera Choice" value="HSL 0"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
-		<location x="253" y="12"/>
-		<width>828</width>
-		<height>523</height>
-		<property name="Camera Choice" value=""/>
-	</static-widget>
-	<widget field="Start Shooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="21" y="330"/>
+	<widget field="Lift Hook Align" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="725" y="329"/>
 	</widget>
 	<widget field="Autonomous Selector" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="25" y="486"/>
+		<location x="0" y="400"/>
 	</widget>
-	<widget field="Deliver Gear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="296"/>
-	</widget>
-	<widget field="Lift Hook Align" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="262"/>
-	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="0" y="0"/>
+		<width>616</width>
+		<height>399</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
 	<widget field="DriveForDistance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="228"/>
+		<location x="773" y="170"/>
 	</widget>
 	<widget field="Stop Shooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="194"/>
+		<location x="788" y="199"/>
+	</widget>
+	<widget field="Autonomous!" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="757" y="10"/>
+	</widget>
+	<widget field="Start Shooter" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="784" y="136"/>
+	</widget>
+	<widget field="Deliver Gear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="789" y="261"/>
 	</widget>
 	<widget field="Reset Gear" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="160"/>
+		<location x="799" y="231"/>
 	</widget>
 	<widget field="Rotate" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="0" y="126"/>
-	</widget>
-	<widget field="Shooter Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="105"/>
-	</widget>
-	<widget field="Gear Handler Middle Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="84"/>
-	</widget>
-	<widget field="Gear Handler Potentiometer" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="63"/>
+		<location x="809" y="291"/>
 	</widget>
 	<widget field="Robot Version" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="42"/>
+		<location x="697" y="399"/>
+	</widget>
+	<widget field="Gear Handler Middle Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="685" y="457"/>
 	</widget>
 	<widget field="Gear Handler Back Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="21"/>
+		<location x="685" y="487"/>
+	</widget>
+	<widget field="Auto Selector" type="String" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="729" y="371"/>
 	</widget>
 	<widget field="Gear Handler Front Limit" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="0" y="0"/>
+		<location x="688" y="433"/>
+	</widget>
+	<widget field="Gear Handler Potentiometer" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="681" y="539"/>
+	</widget>
+	<widget field="Shooter Rate" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="725" y="565"/>
 	</widget>
 </dashboard>
 <live-window>
 	<widget field="Shooter" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Shooter" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+		<widget field="CIMcoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
 			<location x="6" y="16"/>
-			<height>141</height>
+			<height>98</height>
 			<width>293</width>
 		</widget>
-		<widget field="CIMcoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
-			<location x="6" y="157"/>
-			<height>98</height>
+		<widget field="Shooter" type="CANSpeedController" class="edu.wpi.first.smartdashboard.livewindow.elements.CANSpeedController">
+			<location x="6" y="114"/>
+			<height>141</height>
 			<width>293</width>
 		</widget>
 		<widget field="Trigger" type="Servo" class="edu.wpi.first.smartdashboard.livewindow.elements.ServoController">
@@ -72,7 +72,7 @@
 			<height>46</height>
 			<width>293</width>
 		</widget>
-		<location x="775" y="19"/>
+		<location x="450" y="43"/>
 		<width>305</width>
 		<height>308</height>
 	</widget>
@@ -82,27 +82,27 @@
 			<height>141</height>
 			<width>293</width>
 		</widget>
-		<location x="401" y="361"/>
+		<location x="0" y="237"/>
 		<width>305</width>
 		<height>164</height>
 	</widget>
 	<widget field="Gear Handler" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<widget field="Encoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+		<widget field="Front Limit" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="16"/>
-			<height>98</height>
+			<height>20</height>
 			<width>293</width>
 		</widget>
 		<widget field="Back Limit" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
-			<location x="6" y="114"/>
+			<location x="6" y="36"/>
 			<height>20</height>
+			<width>293</width>
+		</widget>
+		<widget field="Encoder" type="Quadrature Encoder" class="edu.wpi.first.smartdashboard.livewindow.elements.EncoderDisplay">
+			<location x="6" y="56"/>
+			<height>98</height>
 			<width>293</width>
 		</widget>
 		<widget field="Potentiometer" type="Analog Input" class="edu.wpi.first.smartdashboard.livewindow.elements.SingleNumberDisplay">
-			<location x="6" y="134"/>
-			<height>20</height>
-			<width>293</width>
-		</widget>
-		<widget field="Front Limit" type="Digital Input" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalInputDisplay">
 			<location x="6" y="154"/>
 			<height>20</height>
 			<width>293</width>
@@ -112,7 +112,7 @@
 			<height>141</height>
 			<width>293</width>
 		</widget>
-		<location x="411" y="18"/>
+		<location x="17" y="521"/>
 		<width>305</width>
 		<height>322</height>
 	</widget>
@@ -142,7 +142,7 @@
 			<height>141</height>
 			<width>293</width>
 		</widget>
-		<location x="15" y="10"/>
+		<location x="517" y="23"/>
 		<width>305</width>
 		<height>685</height>
 	</widget>
@@ -152,7 +152,7 @@
 			<height>141</height>
 			<width>293</width>
 		</widget>
-		<location x="772" y="349"/>
+		<location x="128" y="54"/>
 		<width>305</width>
 		<height>164</height>
 	</widget>
@@ -197,7 +197,7 @@
 			<height>20</height>
 			<width>104</width>
 		</widget>
-		<location x="714" y="444"/>
+		<location x="0" y="0"/>
 		<width>116</width>
 		<height>183</height>
 	</widget>

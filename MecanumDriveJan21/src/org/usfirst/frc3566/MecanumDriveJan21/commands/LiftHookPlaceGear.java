@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LiftHookPlaceGear extends CommandGroup {
 
 	public LiftHookPlaceGear() {
-		addSequential(new LiftHookAlign());
+		//addSequential(new LiftHookAlign());
 		//addSequential(new GearMiddle());
 		addSequential(new GearHandlerRaise(0.5));
 		addSequential(new Wait(0.5));
-		addSequential(new DriveForDistance(Direction.FORWARD, 0.3, 0.5));
+		addSequential(new DriveForDistance(Direction.FORWARD, 0.4, 0.7));
 		addSequential(new GearHandlerRaise(1));
 	}
 }

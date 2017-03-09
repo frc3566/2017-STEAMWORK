@@ -19,10 +19,10 @@ public class GearHandlerLower extends Command {
 		mySpeed = 0.7;
 	}
 
-	public GearHandlerLower(double timeout) {
+	public GearHandlerLower(double timeout, double speed) {
 		requires(Robot.gearHandler);
 		gearHandler = Robot.gearHandler;
-		mySpeed = 0.5;
+		mySpeed = speed;
 		this.setTimeout(timeout);
 	}
 

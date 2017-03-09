@@ -28,8 +28,9 @@ public class LiftHookAlign extends Command {
 	private Bearing lastKnownBearing;
 	private boolean finished;
 
-	public static final double FORWARD_POWER = 0.2, STRAFE_POWER = FORWARD_POWER * 2.0, ROTATE_POWER = FORWARD_POWER * 2.0;
-	public static final long TIMER = 0;
+	public static final double FORWARD_POWER = 0.2, STRAFE_POWER = FORWARD_POWER * 1.5, ROTATE_POWER = FORWARD_POWER * 1.0;
+	//public static final double FORWARD_POWER = 0.2, STRAFE_POWER = FORWARD_POWER * 2.0, ROTATE_POWER = FORWARD_POWER * 2.0;
+	public static final long TIMER = 10;
 
 	private enum Action {
 		ROTATE_LEFT,

@@ -82,7 +82,7 @@ public class VisionValues {
 		/*
 		 * Speed necessary to consistently launch the ball into the high goal
 		 */
-		SHOOTER_OPTIMAL_SPEED = 1800.0;
+		SHOOTER_OPTIMAL_SPEED = 550.0;
 
 		/*
 		 * Speed necessary to allow the trigger to open and drop balls into the
@@ -95,8 +95,8 @@ public class VisionValues {
 			/*
 			 * Vision Values
 			 */
-			VISION_LIFTHOOK_CENTER_X = 360;
-			VISION_LIFTHOOK_CENTER_Y = 125;
+			VISION_LIFTHOOK_CENTER_X = 350;
+			VISION_LIFTHOOK_CENTER_Y = 215;
 
 			/*
 			 * Shooter Values
