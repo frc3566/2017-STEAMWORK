@@ -115,17 +115,20 @@ public class LiftHookAlign extends Command {
 							 * slope of zero, indicating the two vision targets
 							 * are equidistant from us)
 							 */
-							if (FishyCam.getHorizonSlope() > VisionValues.VISION_LIFTHOOK_HORIZON_SLOPE) {
-								driveTrain.rotateLeft(ROTATE_POWER);
-								action = Action.ROTATE_LEFT;
-							} else if (FishyCam.getHorizonSlope() < -VisionValues.VISION_LIFTHOOK_HORIZON_SLOPE) {
-								driveTrain.rotateRight(ROTATE_POWER);
-								action = Action.ROTATE_RIGHT;
-
-								/*
-								 * ...if we're dead-on, advance!
-								 */
-							} else {
+							
+//							if (FishyCam.getHorizonSlope() > VisionValues.VISION_LIFTHOOK_HORIZON_SLOPE) {
+//								driveTrain.rotateLeft(ROTATE_POWER);
+//								action = Action.ROTATE_LEFT;
+//							} else if (FishyCam.getHorizonSlope() < -VisionValues.VISION_LIFTHOOK_HORIZON_SLOPE) {
+//								driveTrain.rotateRight(ROTATE_POWER);
+//								action = Action.ROTATE_RIGHT;
+//
+//								/*
+//								 * ...if we're dead-on, advance!
+//								 */
+//							} else {
+//								
+								{
 								driveTrain.forward(FORWARD_POWER);
 								action = Action.FORWARD;
 							}

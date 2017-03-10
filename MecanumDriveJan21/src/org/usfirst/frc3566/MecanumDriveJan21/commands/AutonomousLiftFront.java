@@ -6,13 +6,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousLiftFront extends CommandGroup {
 
-	public AutonomousLiftFront(Direction strafeDirection) {
+	public AutonomousLiftFront(Direction strafeDirection, boolean vision) {
 
 		// for front, 78.5in/6.6ft. For side, 46in
+		if(vision){
+		addSequential(new DriveForDistance(Direction.FORWARD, 3.65, 0.2));
+		}else{
 		addSequential(new DriveForDistance(Direction.FORWARD, 4.15, 0.2));
+		}
 		// finishes when timeout OR detects the target
 
-		addSequential(new LiftHookPlaceGear());
+		addSequential(new LiftHookPlaceGear(vision));
 
 		addSequential(new DriveForDistance(Direction.BACKWARD, 1, 0.3));
 		addSequential(new GearHandlerLower(1, 1));

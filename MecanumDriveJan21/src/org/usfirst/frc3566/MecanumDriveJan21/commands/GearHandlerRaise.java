@@ -28,7 +28,7 @@ public class GearHandlerRaise extends Command {
 	public GearHandlerRaise(double timeout) {
 		this();
 		this.setTimeout(timeout);
-		mySpeed = 0.5;
+		mySpeed = 0.7;
 	}
 
 	// Called just before this Command runs the first time

@@ -42,8 +42,8 @@ public class VisionValues {
 		 * acceptable centering range for gear delivery.
 		 */
 		VISION_LIFTHOOK_CENTER_X = 320;
-		VISION_LIFTHOOK_CENTER_Y = 10;
-		VISION_LIFTHOOK_CENTER_X_ERROR = 10;
+		VISION_LIFTHOOK_CENTER_Y = 15;
+		VISION_LIFTHOOK_CENTER_X_ERROR = 15;
 		VISION_LIFTHOOK_CENTER_Y_ERROR = VISION_LIFTHOOK_CENTER_X_ERROR;
 
 		/*
@@ -95,8 +95,8 @@ public class VisionValues {
 			/*
 			 * Vision Values
 			 */
-			VISION_LIFTHOOK_CENTER_X = 350;
-			VISION_LIFTHOOK_CENTER_Y = 215;
+			VISION_LIFTHOOK_CENTER_X = 335;
+			VISION_LIFTHOOK_CENTER_Y = 125;
 
 			/*
 			 * Shooter Values

@@ -74,9 +74,12 @@ public class Robot extends IterativeRobot {
 		table = NetworkTable.getTable("datatable");
 
 		autoChooser = new SendableChooser<Command>();
-		autoChooser.addDefault("Front Lift Hook", new AutonomousLiftFront(Direction.LEFT));
-		autoChooser.addObject("Strafe Left to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.LEFT));
-		autoChooser.addObject("Strafe Right to Side Lift Hook", new AutonomousStrafeToSideLift(Direction.RIGHT));
+		autoChooser.addDefault("Front  Vision", new AutonomousLiftFront(Direction.LEFT, true));
+		autoChooser.addDefault("Front Non Vision", new AutonomousLiftFront(Direction.LEFT, false));
+		autoChooser.addObject("Left Side Vision", new AutonomousStrafeToSideLift(Direction.LEFT, true));
+		autoChooser.addObject("Right Side Vision", new AutonomousStrafeToSideLift(Direction.RIGHT, true));
+		autoChooser.addObject("Left Side Non Vision", new AutonomousStrafeToSideLift(Direction.LEFT, false));
+		autoChooser.addObject("Right Side Non Vision", new AutonomousStrafeToSideLift(Direction.RIGHT, false));
 		SmartDashboard.putData("Auto", autoChooser);
 		
 		SmartDashboard.putData("Lift Hook Align", new LiftHookAlign());
